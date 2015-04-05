@@ -75,13 +75,14 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 ### Bonus Features (TBD)
 
-- [ ] add "sticky" borders & grid alignment lines
 - [ ] Undo and and redo
 - set default design properties
   - [ ] choose color palettes
     - [ ] color palettes should self-create sets of colors based on a few user-suggested colors
   - [ ] choose default fonts
   - [ ] set a background image for the site
+- [ ] gridlines
+- [ ] snap to objects
 - [ ] create CSS transitions (swipe/fade) between pages
 - [ ] media/video
 - [ ] add vertical menus
