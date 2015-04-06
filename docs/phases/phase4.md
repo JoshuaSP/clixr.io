@@ -14,6 +14,7 @@
 
 ### Views
   * EditElementMenu < MenuView
+  * OverlappingItemsMenu < MenuView
   * SelectStyleMenu < MenuView
   * LinkTargetMenu < MenuView
 

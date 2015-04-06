@@ -105,11 +105,15 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 [Details][phase-four]
 
-### Phase 5: (~1 day)
+### Phase 5: (~1-2 days)
 
-  We will implement the PageMenu, as well as the dropdown selector for selecting the page.  This will use the composite view functions of the site to swap pages, using CSS transitions.
+  We will implement the SiteMenu, as well as the dropdown selector for selecting the page.  This will use the composite view functions of the site to swap pages, using CSS transitions.
 
   We will be able to add, remove, rename, and delete pages from the Page menu, and we will make sure to remove the page references from all menus/buttons on delete.
+
+  For MVP, we will put site background image/color in this menu.
+
+  We will also be able to change the site name and site address.
 
 [Details][phase-five]
 
@@ -125,6 +129,8 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
   We will implement user authentication and the sites index view, where a user can see his/her own saved sites (if logged in) as well as templates provided by clixr. The sites will be served in a 4x4 gallery, displaying the site thumbnail, and on hover will provide buttons to edit or visit the site.
 
+  We will implement that users must be logged in to save or publish sites (but not to preview).
+
   We will put a great spinner on the loading of the edit view.
 
   We will then implement the "live site" functionality, using code in `routes.rb` which will dynamically load all published sites under clixr.io/:published_address/.
@@ -133,7 +139,7 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 ### Phase 7 (~2 days)
 
-  Using clixr.io and cute kitten pictures on the internet, we will make some absurd and fun templates that show off clixr's features. We will doubtless run into plenty of bugs in this process as well as a feature or two we really feel like we need to build.  Maybe video, maybe snap to grid. Both pretty easy.
+  Using clixr.io and cute kitten pictures on the internet, we will make some absurd and fun templates that show off clixr's features. We will doubtless run into plenty of bugs in this process as well as possibly a feature or two we really feel like we need to build.
 
 
 ### Bonus Features (TBD)

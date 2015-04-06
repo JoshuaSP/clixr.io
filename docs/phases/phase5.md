@@ -13,7 +13,7 @@
 ### Collections
 
 ### Views
-  * PageMenu < MenuView
+  * SiteMenu < MenuView
   * SiteView
   * PageView
 
