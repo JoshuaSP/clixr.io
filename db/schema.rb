@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150407225221) do
 
   create_table "sites", force: :cascade do |t|
     t.integer  "user_id",           default: 0, null: false
-    t.string   "name",                          null: false
+    t.string   "title",                         null: false
     t.string   "published_address"
     t.string   "thumbnail_url"
     t.string   "background_url"
