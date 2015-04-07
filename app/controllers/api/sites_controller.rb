@@ -1,5 +1,5 @@
 class Api::SitesController < ApplicationController
   def show
-    @site = Site.include(:pages, :entries).find(id)
+    @site = Site.includes(:elements, pages: {:elements}).find(id)
   end
 end

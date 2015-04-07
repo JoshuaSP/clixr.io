@@ -1,8 +1,6 @@
-# clixr.io
+# [clixr.io][heroku]
 
-<!-- [Heroku link][heroku]
-
-[heroku]: link_goes_here -->
+[heroku]: http://clixr.herokupapp.com
 
 ## Minimum Viable Product
 
@@ -65,7 +63,7 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 ## Implementation Timeline
 
-### Phase 1:  (~1-2 days)
+### Phase 1:  (~1-2 days) - Starting Up, Edit View, Menu Basics
 
   We will start by creating the page/site edit view, the core of the app.  We will create all necessary rails models and controllers as well as basic Backbone Models and Collections (to be refined later).
 
@@ -83,7 +81,7 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 [Details][phase-one]
 
-### Phase 2:  (~1-2 days)
+### Phase 2:  (~1-2 days) Adding Elements, Drag and Drop, Resize
 
   Today we will work on getting things on the page. We will create an abstract ElementView class, of which all element views will be subclasses. We will create skeletons of all the subclasses.
 
@@ -91,13 +89,13 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 [Details][phase-two]
 
-### Phase 3: (~1-2 days)
+### Phase 3: (~1-2 days) Adding More Fancy Elements
 
   Today we will work on adding text, images, buttons, horizontal lines, and menus to the page. We will create an image load modal. We will make sure images resize properly.
 
 [Details][phase-three]
 
-### Phase 4: (~2 days)
+### Phase 4: (~2 days) Edit Menu
 
   Today we will create the edit menu functionality. We will create an EditMenuView subclass of MenuView to encapsulate all the common edit menu functionality. We will create a populateMenu() function which will take in a hash of menu items and their functions, set up `<li>`s, and attach event handlers using `delegateEvents()`.
 
@@ -105,7 +103,7 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 [Details][phase-four]
 
-### Phase 5: (~1-2 days)
+### Phase 5: (~1-2 days) Site Menu/Pages
 
   We will implement the SiteMenu, as well as the dropdown selector for selecting the page.  This will use the composite view functions of the site to swap pages, using CSS transitions.
 
@@ -117,7 +115,7 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
 [Details][phase-five]
 
-### Phase 6 (~2-3 days)
+### Phase 6 (~2-3 days) Getting Sites Live, Seeing Index of Sites
 
   We will implement save of sites created in edit view, including thumbnail creation.
 
@@ -133,11 +131,11 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
   We will put a great spinner on the loading of the edit view.
 
-  We will then implement the "live site" functionality, using code in `routes.rb` which will dynamically load all published sites under clixr.io/:published_address/.
+  We will then implement the "live site" functionality, using code in `routes.rb` which will dynamically load all published sites under `clixr.io/:published_address/`.
 
 [Details][phase-six]
 
-### Phase 7 (~2 days)
+### Phase 7 (~2 days) Make Websites!
 
   Using clixr.io and cute kitten pictures on the internet, we will make some absurd and fun templates that show off clixr's features. We will doubtless run into plenty of bugs in this process as well as possibly a feature or two we really feel like we need to build.
 
@@ -153,6 +151,7 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 - [ ] gridlines
 - [ ] snap to objects
 - [ ] copy/paste, key commands
+- [ ] add galleries
 - [ ] add media: video (youtube, vimeo) or soundcloud
 - [ ] add vertical menus
 - [ ] add vertical lines
