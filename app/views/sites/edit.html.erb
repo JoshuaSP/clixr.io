@@ -1,0 +1,13 @@
+<div class="content">
+
+</div>
+
+<%= javascript_include_tag 'editor' %>
+<link href='http://fonts.googleapis.com/css?family=Exo|Signika:700,400' rel='stylesheet' type='text/css'>
+
+<script>
+  $(document).ready(function(){
+    var contentDiv = $('.content')
+    ClixrIo.initialize(contentDiv, <%= @site.id %>);
+  });
+</script>
