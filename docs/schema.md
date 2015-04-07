@@ -5,7 +5,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references user - 0 for templates)
-title       | string    | not null
+name       | string    | not null
 published_address     | string    | unique
 thumbnail_url | string  |
 background_url | string |
@@ -18,7 +18,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 site_id     | integer   | not null, foreign key (references site)
-name        | string    | not null
+title        | string    | not null
 ord         | integer   | not null (0 for home page)
 url         | string    |
 
