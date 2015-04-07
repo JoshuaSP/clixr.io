@@ -1,0 +1,12 @@
+json.extract! element, :type,
+                       :class,
+                       :container_id,
+                       :height,
+                       :width,
+                       :top,
+                       :left,
+                       :z_index,
+                       :resize_property,
+                       :css,
+                       :url,
+                       :content
