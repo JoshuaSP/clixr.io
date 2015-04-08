@@ -1,6 +1,6 @@
 # [clixr.io][heroku]
 
-[heroku]: http://clixr.herokupapp.com
+[heroku]: http://clixr.herokuapp.com
 
 ## Minimum Viable Product
 
