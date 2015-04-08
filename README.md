@@ -157,6 +157,7 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 - [ ] add vertical lines
 - [ ] add strips
 - [ ] quick, in-place preview
+      (will need to rewrite the menu-closing logic to handle zombie views for this)
 - [ ] Choose color palettes with lavish-like color palette creator
 - [ ] add ability to stage versions of the site, so an in-process-version and a live version exists
 

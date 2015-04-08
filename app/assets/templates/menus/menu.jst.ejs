@@ -1,11 +1,11 @@
-<ul class="clixr-menu">
-  <div class="topbar">
-    <h5> <%= name %> </h5>
-    <i class="fa fa-close"></i>
-  </div>
+<!-- <div class="menu-topbar">
+  <h5> <%= name %> </h5>
+  <i class="fa fa-close"></i>
+</div> -->
+<ul class="menu-items">
   <% menuItems.forEach(function(menuItem) { %>
     <li class="<%= menuItem.func %>-button">
-      <i class="fa fa-<%= menuItem.glyph %>"></i><label><= %menuItem.name %></label>
+      <i class="fa fa-<%= menuItem.glyph %>"></i><label><%= menuItem.name %></label>
     </li>
   <% }) %>
 </ul>

@@ -1,0 +1,48 @@
+$list-group-border: #000;
+$list-group-border-radius: 5px;
+
+@mixin border-bottom-radius($radius) {
+  border-bottom-right-radius: $radius;
+   border-bottom-left-radius: $radius;
+}
+
+@mixin border-top-radius($radius) {
+  border-top-right-radius: $radius;
+   border-top-left-radius: $radius;
+}
+
+.clixr-menu {
+  box-shadow: $basic-shadow;
+  background-color: white;
+  position: fixed;
+  padding: 0px 20px;
+  ul {
+    margin-bottom: 20px;
+    padding-left: 0; // reset padding because ul and ol
+  }
+  li {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    // Place the border on the list items and negative margin up for better styling
+    margin-bottom: -1px;
+    background-color: white;
+    border: 1px solid $list-group-border;
+
+    // Round the first and last items
+    &:first-child {
+      @include border-top-radius($list-group-border-radius);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+      @include border-bottom-radius($list-group-border-radius);
+    }
+  }
+}
+
+.add-element-menu {
+  top: 190px;
+  left: 130px;
+  border-radius: 10px;
+}

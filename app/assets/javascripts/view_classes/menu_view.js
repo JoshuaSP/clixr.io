@@ -1,14 +1,17 @@
 ClixrIo.Views.MenuView = Backbone.View.extend ({
-  template: 'menus/menu',
+  template: JST['menus/menu'],
 
-  initialize () {
-    this.addMenuItems();
+  initialize: function () {
+    this._addMenuItems();
+    this._addClose();
+    this.delegateEvents();
+    this.$el.addClass(this.subClass);
   },
 
+  subClass: "",
+  className: "clixr-menu",
   events: {},
-
   menuItems: [],
-
   name: "",
 
   render: function () {
@@ -20,6 +23,10 @@ ClixrIo.Views.MenuView = Backbone.View.extend ({
     return this;
   },
 
+  closeMenu: function () {
+    this.remove();
+  },
+
   // menuItems is an array of glyph, name, and optionally, function
 
   _addMenuItems: function(menuItems) {
@@ -27,12 +34,15 @@ ClixrIo.Views.MenuView = Backbone.View.extend ({
       menuItem.func = this._functionize(menuItem.name);
       menuItem.function = menuItem.function || menuItem.func;
       this.events["click ." + menuItem.func + "-button"] = menuItem.function;
-    });
+    }.bind(this));
+  },
+
+  _addClose: function () {
+    this.events["click .fa-close"] = "closeMenu";
   },
 
   _functionize: function(name) {
-    var newname = name.slice();
-    newname.splice(0, 1, newname.slice(0,1).toLowerCase());
+    var newname = name.slice(0,1).toLowerCase() + name.slice(1);
     return newname.replace(" ", "");
   }
 });
