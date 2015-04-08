@@ -78,16 +78,26 @@ body {
       }
     }
 
+    .fa-close {
+      display: none;
+    }
+
+    ul {
+      display: none;
+    }
+
     &.expanded-menu {
       width: 200px;
-      height: 326px;
+      height: 296px;
       padding-bottom: 20px;
 
       .fa-close {
         position: absolute;
+        display: block;
         top: 7px;
         left: 191px;
         font-size: 20px;
+        opacity: 1;
       }
 
       label {
@@ -97,6 +107,7 @@ body {
       ul {
         margin-top: 58px;
         padding: 0px 10px;
+        display: block;
       }
 
       li {

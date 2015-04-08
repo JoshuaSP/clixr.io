@@ -9,6 +9,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       { glyph: "minus", name: "Horizontal Line" }
     ],
 
+    className: "add-element-button",
+
     template: JST['menus/add_element'],
 
     initialize: function (options) {
@@ -17,8 +19,9 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       this.parent.append(this.render().$el);
     },
 
-    close: function () {
-      this.parent.removeClass("expanded-menu");
+    closeMenu: function (event) {
+      event.preventDefault();
+      this.$el.removeClass("expanded-menu");
     },
 
     button: function () {

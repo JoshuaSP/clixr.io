@@ -25,12 +25,16 @@ ClixrIo.Views.SiteEdit = Backbone.View.extend({
     return this;
   },
 
-  pageMenu: function () {
-
+  showPageMenu: function (event) {
+    if(!$(event.target).hasClass("fa-close")) {
+      this.pageMenu.$el.addClass("expanded-menu");
+    }
   },
 
-  showAddElementMenu: function () {
-    this.addElementMenu.$el.addClass("expanded-menu")
+  showAddElementMenu: function (event) {
+    if(!$(event.target).hasClass("fa-close")) {
+      this.addElementMenu.$el.addClass("expanded-menu");
+    }
   },
 
   _swapMenu: function (newMenu) {

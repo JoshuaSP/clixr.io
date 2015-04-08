@@ -1,3 +1,10 @@
 <div class="page-menu-button">
   <i class="main-icon fa fa-file"></i> <label>Page</label>
 </div>
+<ul>
+  <% menuItems.forEach(function(menuItem) { %>
+    <li class="<%= menuItem.func %>-button">
+      <i class="fa fa-<%= menuItem.glyph %>"></i><label><%= menuItem.name %></label>
+    </li>
+  <% }) %>
+</ul>
