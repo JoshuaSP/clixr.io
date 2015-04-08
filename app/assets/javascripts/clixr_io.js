@@ -1,6 +1,7 @@
 window.ClixrIo = {
   Models: {},
   Collections: {},
+  Mixins: {},
   Views: {},
   Routers: {},
   initialize: function($rootEl, id) {
@@ -8,6 +9,5 @@ window.ClixrIo = {
       el: $rootEl,
       model: new ClixrIo.Models.Site ({ id: id })
     });
-    siteEdit.render();
   }
 };

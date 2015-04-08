@@ -1,37 +1,48 @@
-ClixrIo.Views.AddElementMenu = ClixrIo.Views.MenuView.extend ({
-  menuItems: [
-    { glyph: "square", name: "Button" }, //could use entypo-doc-landscape
-    { glyph: "stop", name: "Box" },
-    { glyph: "font", name: "Text" },
-    { glyph: "image", name: "Image" },
-    { glyph: "align-justify", name: "Menu" },
-    { glyph: "minus", name: "Horizontal Line" }
-  ],
+ClixrIo.Views.AddElementMenu = Backbone.View.extend (
+  _.extend({}, ClixrIo.Mixins.MenuItems, {
+    menuItems: [
+      { glyph: "square", name: "Button" }, //could use entypo-doc-landscape
+      { glyph: "stop", name: "Box" },
+      { glyph: "font", name: "Text" },
+      { glyph: "image", name: "Image" },
+      { glyph: "align-justify", name: "Menu" },
+      { glyph: "minus", name: "Horizontal Line" }
+    ],
 
-  subClass: "add-element-menu",
-  name: "Add",
+    template: JST['menus/add_element'],
 
-  button: function () {
+    initialize: function (options) {
+      this.parent = options.parent;
+      this.setupMenuItems();
+      this.parent.append(this.render().$el);
+    },
 
-  },
+    close: function () {
+      this.parent.removeClass("expanded-menu");
+    },
 
-  box: function () {
+    button: function () {
 
-  },
+    },
 
-  text: function () {
+    box: function () {
 
-  },
+    },
 
-  image: function () {
+    text: function () {
 
-  },
+    },
 
-  menu: function () {
+    image: function () {
 
-  },
+    },
 
-  horizontalLine: function () {
+    menu: function () {
 
-  }
-});
+    },
+
+    horizontalLine: function () {
+
+    }
+  })
+);

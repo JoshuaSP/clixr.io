@@ -4,8 +4,19 @@ ClixrIo.Views.SiteEdit = Backbone.View.extend({
   currentMenu: null,
 
   events: {
-    "click .page-menu-button": "pageMenu",
-    "click .add-element-button": "addElementMenu"
+    "click .page-menu-button": "showPageMenu",
+    "click .add-element-button": "showAddElementMenu"
+  },
+
+  initialize: function () {
+    this.render();
+    this.addElementMenu = new ClixrIo.Views.AddElementMenu({
+      parent: this.$('.function-buttons')
+    });
+  },
+
+  collapseMenus: function () {
+    // iterate and collapse each menu
   },
 
   render: function () {
@@ -18,8 +29,8 @@ ClixrIo.Views.SiteEdit = Backbone.View.extend({
 
   },
 
-  addElementMenu: function () {
-    this._swapMenu(new ClixrIo.Views.AddElementMenu());
+  showAddElementMenu: function () {
+    this.addElementMenu.$el.addClass("expanded-menu")
   },
 
   _swapMenu: function (newMenu) {
@@ -27,7 +38,6 @@ ClixrIo.Views.SiteEdit = Backbone.View.extend({
       this.currentMenu.remove();
     }
     this.currentMenu = newMenu;
-    this.$el.append(newMenu.render().$el);
   }
 
 });

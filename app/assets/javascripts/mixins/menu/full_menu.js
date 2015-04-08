@@ -1,7 +1,7 @@
 ClixrIo.Views.MenuView = {
   template: JST['menus/menu'],
 
-  setup: function () {
+  setupMenuItems: function () {
     this._addMenuItems();
     this._addClose();
     this.delegateEvents();

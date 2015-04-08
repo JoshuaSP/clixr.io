@@ -1,23 +1,18 @@
-ClixrIo.Views.MenuView = {
+ClixrIo.Mixins.MenuItems = {
   template: JST['menus/menu'],
 
-  setup: function () {
+  setupMenuItems: function () {
     this._addMenuItems();
     this._addClose();
     this.delegateEvents();
-    this.$el.addClass(this.subClass);
   },
 
-  subClass: "",
-  className: "clixr-menu",
   events: {},
   menuItems: [],
-  name: "",
 
   render: function () {
     var content = this.template({
       menuItems: this.menuItems,
-      name: this.name
     });
     this.$el.html(content);
     return this;

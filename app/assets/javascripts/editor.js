@@ -4,5 +4,5 @@
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
-//= require_tree ./view_classes
+//= require_tree ./mixins
 //= require_tree ./views

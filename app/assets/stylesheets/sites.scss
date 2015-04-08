@@ -5,6 +5,9 @@
 $navbar-color: #77597f;
 $logo-color: #fff;
 $basic-shadow: 2px 2px 5px #333;
+$border-grey: #999;
+$menu-select: #ccc;
+
 
 body {
   font-family: sans-serif;
@@ -33,7 +36,7 @@ body {
   z-index: 1000000;
   top: 60px;
   left: 10px;
-  div {
+  > div {
     position: relative;
     width: 50px;
     height: 50px;
@@ -44,11 +47,12 @@ body {
     cursor: pointer;
     background-clip: border-box;
     box-shadow: $basic-shadow;
-    transition: width 150ms;
+    transition-property: width height background-color;
+    transition-duration: 150ms;
     font-size: 30px;
     overflow: hidden;
 
-    i {
+    .main-icon {
       float:left;
       font-size: 50px;
       margin: 2px;
@@ -73,7 +77,51 @@ body {
         opacity: 1;
       }
     }
+
+    &.expanded-menu {
+      width: 200px;
+      height: 326px;
+      padding-bottom: 20px;
+
+      .fa-close {
+        position: absolute;
+        top: 7px;
+        left: 191px;
+        font-size: 20px;
+      }
+
+      label {
+        opacity: 1;
+      }
+
+      ul {
+        margin-top: 58px;
+        padding: 0px 10px;
+      }
+
+      li {
+        display: block;
+        font-size: 25px;
+        border-top: 1px solid $border-grey;
+
+        i {
+          margin-top: 8px;
+          margin-bottom: 8px;
+        }
+
+        label {
+          margin-top: 11px;
+          margin-bottom: px;
+          font-size: 20px;
+        }
+
+        &:hover {
+          background-color: $menu-select;
+        }
+      }
+    }
   }
+
 }
 
 nav {
