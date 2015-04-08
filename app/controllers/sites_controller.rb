@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  def edit(id)
-    @site = Site.find(id)
+  def edit
+    @site = Site.find(params[:id])
   end
 end
