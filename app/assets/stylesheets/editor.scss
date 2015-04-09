@@ -1,3 +1,19 @@
+$select-color: #7effeb;
+$handle-bg-color: white;
+
 .ui-widget-content .ui-icon {
 	background-image: none;
+}
+
+.drag-handle {
+	z-index: 1000;
+	height: 9px;
+	width: 9px;
+	border-radius: 9px;
+	border: 1px solid $select-color;
+	background-color: $handle-bg-color;
+}
+
+.selected-element {
+  border: 1px solid $select-color;
 }

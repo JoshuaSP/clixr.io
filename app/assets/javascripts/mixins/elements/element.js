@@ -8,7 +8,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
     "ne": { right: "-5px", top: "-5px"},
     "e": { right: "-5px", top: "50%"},
     "se": { right: "-5px", bottom: "-5px"},
-    "s": { right: "50%", bottom: "-5px"},
+    "s": { left: "50%", bottom: "-5px"},
     "nw": { left: "-5px", top: "-5px"},
     "w": { left: "-5px", top: "50%"},
     "sw": { left: "-5px", bottom: "-5px"}
@@ -27,6 +27,8 @@ ClixrIo.Views.Element = Backbone.View.extend({
   },
 
   selectElement: function () {
+		if (this.selected) return;
+		this.selected = true;
     var $handles = {};
     this.$el.draggable();
     for (var handle in this.handles) {
@@ -34,10 +36,9 @@ ClixrIo.Views.Element = Backbone.View.extend({
       circle.addClass("ui-resizable-handle ui-resizable-" + handle);
       circle.css(this.handles[handle]);
       $handles[handle] = circle;
+			this.$el.append(circle);
     }
-    this.$el.resizable($handles);
-    this.setCss("border", "1px solid " + ClixrIo.Constants.SelectBoxColor);
+    this.$el.resizable({ handles: $handles });
+    this.$el.addClass("selected-element");
   }
 });
-
-ClixrIo.Constants.SelectBoxColor = "#7effeb";
