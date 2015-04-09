@@ -41,7 +41,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     box: function () {
-
+      var div = new ClixrIo.Models.Div();
+      div.css.left()
     },
 
     text: function () {

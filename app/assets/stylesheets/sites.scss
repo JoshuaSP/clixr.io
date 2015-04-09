@@ -7,6 +7,7 @@ $logo-color: #fff;
 $basic-shadow: 2px 2px 5px #333;
 $border-grey: #999;
 $menu-select: #ccc;
+$gridline-color: green;
 
 
 body {
@@ -146,4 +147,19 @@ nav {
   content: " ";
   clear: both;
   height: 0;
+}
+
+.user-page-container {
+}
+
+.user-page {
+  margin: 0 auto;
+  width: 980px;
+}
+
+.user-page-gridlines {
+  z-index: 100000;
+  width: 100%;
+  border-style: dotted;
+  border-color: transparent $gridline-color;
 }
