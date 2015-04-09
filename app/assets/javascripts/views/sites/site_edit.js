@@ -5,7 +5,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   events: {
     "click .page-menu-button": "showPageMenu",
-    "click .add-element-button": "showAddElementMenu"
+    "click .add-element-button": "showAddElementMenu",
+    "click .user-page .user-element": "selectElement"
   },
 
   initialize: function () {
@@ -22,9 +23,16 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     // iterate and collapse each menu
   },
 
-  // onRender: function () {
-  //
-  // },
+  selectElement: function(event) {
+    if (this.selectedView) {
+      this.selectedView.deselectElement();
+    }
+    var newView = _(this.subviews('.user-page')).find(function(subview) {
+      return subview.$el.is($(event.currentTarget));
+    });
+    newView.selectElement();
+    this.selectedView = newView;
+  },
 
   render: function () {
     var content = this.template({site: this.model});

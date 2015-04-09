@@ -42,13 +42,13 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     box: function () {
-      var div = new ClixrIo.Models.Element( {type: 'div'} );
+      var div = new ClixrIo.Models.Element({ type: 'div' });
       var divView = new ClixrIo.Views.Div({ model: div });
       this._placeCenter(divView);
       divView.setCss('width', '200px');
       divView.setCss('height', '200px');
       divView.setCss('background-color', '#7093ae');
-      this.parentView.addSubview(this.parentView.$userPage, divView);
+      this.parentView.addSubview('.user-page', divView);
     },
 
     text: function () {

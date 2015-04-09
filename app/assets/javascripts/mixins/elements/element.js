@@ -1,6 +1,5 @@
 ClixrIo.Views.Element = Backbone.View.extend({
   events: {
-    "click": "selectElement"
   },
 
   handles: {
@@ -14,8 +13,10 @@ ClixrIo.Views.Element = Backbone.View.extend({
     "sw": { left: "-5px", bottom: "-5px"}
   },
 
+	className: "user-element",
+
   initialize: function () {
-    this.className = this.model.get('class'),
+    this.$el.addClass(this.model.get('class'));
     this.model.css = this.model.get('css') ? $.parseJSON(this.model.get('css')) : {} ;
     this.model.css.position = "absolute";
     this.$el.css(this.model.css);
@@ -28,9 +29,21 @@ ClixrIo.Views.Element = Backbone.View.extend({
 
   selectElement: function () {
 		if (this.selected) return;
+    this.$el.addClass("selected-element");
 		this.selected = true;
-    var $handles = {};
     this.$el.draggable();
+		var $handles = this._addResizeHandles();
+    this.$el.resizable({ handles: $handles });
+	},
+
+	deselectElement: function () {
+		this.selected = false;
+		this.$('.drag-handle').remove();
+		this.$el.removeClass("selected-element");
+	},
+
+	_addResizeHandles: function () {
+    var $handles = {};
     for (var handle in this.handles) {
       var circle = $('<div class="drag-handle">');
       circle.addClass("ui-resizable-handle ui-resizable-" + handle);
@@ -38,7 +51,6 @@ ClixrIo.Views.Element = Backbone.View.extend({
       $handles[handle] = circle;
 			this.$el.append(circle);
     }
-    this.$el.resizable({ handles: $handles });
-    this.$el.addClass("selected-element");
+		return $handles;
   }
 });
