@@ -1,7 +1,6 @@
 ClixrIo.Views.Element = Backbone.View.extend({
-  className: this.model.get('class'),
-
   initialize: function () {
+    this.className = this.model.get('class'),
     this.model.css = $.parseJSON(this.model.get('css'));
     this.model.css.position = "absolute"
     this.$el.css(this.model.css);
