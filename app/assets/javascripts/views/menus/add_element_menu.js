@@ -42,12 +42,12 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     box: function () {
-      var div = new ClixrIo.Models.Div();
-      var divView = new ClixrIo.Views.Div(div);
+      var div = new ClixrIo.Models.Element( {type: 'div'} );
+      var divView = new ClixrIo.Views.Div({ model: div });
       this._placeCenter(divView);
-      div.css('width', '200px');
-      div.css('height', '200px');
-      div.css('background-color', 'black');
+      divView.setCss('width', '200px');
+      divView.setCss('height', '200px');
+      divView.setCss('background-color', 'black');
       this.parentView.addSubview(this.parentView.$userPage, divView);
     },
 
@@ -68,8 +68,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     _placeCenter: function (view) {
-      view.css("left", "490px");
-      view.css("top", "200px");
+      view.setCss("left", "490px");
+      view.setCss("top", "200px");
     }
   })
 );
