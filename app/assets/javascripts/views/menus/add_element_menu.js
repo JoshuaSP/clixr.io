@@ -47,7 +47,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       this._placeCenter(divView);
       divView.setCss('width', '200px');
       divView.setCss('height', '200px');
-      divView.setCss('background-color', 'black');
+      divView.setCss('background-color', '#7093ae');
       this.parentView.addSubview(this.parentView.$userPage, divView);
     },
 

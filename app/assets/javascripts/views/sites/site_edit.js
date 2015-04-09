@@ -16,7 +16,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     });
     this.currentPage = this.model.pages().where({ord: 0});
     this.$userPage = this.$('.user-page');
-    this._setupDragResize();
   },
 
   collapseMenus: function () {

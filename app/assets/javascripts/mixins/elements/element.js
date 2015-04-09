@@ -1,6 +1,6 @@
 ClixrIo.Views.Element = Backbone.View.extend({
   events: {
-    "click": "clickElement"
+    "click": "selectElement"
   },
 
   initialize: function () {
@@ -15,7 +15,10 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.model.css.property = value;
   },
 
-  clickElement: function () {
-    this.$el.draggable();
+  selectElement: function () {
+    this.$el.draggable().resizable({ handles: "all" });
+    this.setCss("border", "2px solid " + ClixrIo.Constants.SelectBoxColor);
   }
 });
+
+ClixrIo.Constants.SelectBoxColor = "#7effeb";
