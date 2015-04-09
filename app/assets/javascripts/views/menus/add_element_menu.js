@@ -11,7 +11,17 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     className: "add-element-button",
 
-    template: JST['menus/add_element'],
+    render: function () {
+      var content = this.template({
+        menuItems: this.menuItems,
+        mainIcon: "plus-circle",
+        title: "Add"
+      });
+      this.$el.html(content);
+      return this;
+    },
+
+    template: JST['menus/function_buttons'],
 
     initialize: function (options) {
       this.parent = options.parent;
