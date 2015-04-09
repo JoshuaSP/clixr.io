@@ -13,6 +13,7 @@ ClixrIo.Views.SiteEdit = Backbone.View.extend({
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
       parent: this.$('.function-buttons')
     });
+    this.currentPage = this.model.pages().where({ord: 0});
   },
 
   collapseMenus: function () {
@@ -26,7 +27,7 @@ ClixrIo.Views.SiteEdit = Backbone.View.extend({
   },
 
   showPageMenu: function (event) {
-    if(!$(event.target).hasClass("fa-close")) {
+    if (this.pageMenu.openable) {
       this.pageMenu.$el.addClass("expanded-menu");
     }
   },

@@ -13,6 +13,12 @@ ClixrIo.Models.Site = Backbone.Model.extend({
     return response;
   },
 
+  initialize: function () {
+    if (this.pages().length === 0) {
+      this.pages().add(new ClixrIo.Models.Page({title: "untitled", ord: 0}));
+    }
+  },
+
   elements: function() {
     return this._elements || (this._elements = new ClixrIo.Collections.Elements());
   },
@@ -20,5 +26,4 @@ ClixrIo.Models.Site = Backbone.Model.extend({
   pages: function() {
     return this._pages || (this._pages = new ClixrIo.Collections.Elements());
   },
-
 });

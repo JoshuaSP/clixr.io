@@ -30,7 +30,9 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     closeMenu: function (event) {
-      event.preventDefault();
+      setTimeout(function () {
+        this.openable = true;
+      }.bind(this), 0);
       this.$el.removeClass("expanded-menu");
     },
 
