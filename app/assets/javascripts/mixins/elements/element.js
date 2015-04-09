@@ -40,6 +40,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
 		this.selected = false;
 		this.$('.drag-handle').remove();
 		this.$el.removeClass("selected-element");
+		this.$el.resizable('destroy').draggable('destroy');
 	},
 
 	_addResizeHandles: function () {
