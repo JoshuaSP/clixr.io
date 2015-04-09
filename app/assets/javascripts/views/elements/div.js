@@ -1,5 +1,3 @@
-ClixrIo.Models.Div = Backbone.Model.extend({
-  _.extend({}, ClixrIo.Mixins.BasicElement, {
-    
-  })
-})
+ClixrIo.Models.Div = ClixrIo.Views.Element.extend({
+  tagName: 'div'
+});
