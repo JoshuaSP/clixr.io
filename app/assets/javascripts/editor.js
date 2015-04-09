@@ -6,5 +6,6 @@
 //= require_tree ./collections
 //= require_tree ./mixins
 //= require_tree ./views
+//= require wysihtml
 //= require_tree ../../../vendor/assets/javascripts/editor
 // ^^^ eventually remove & replace with CDN version

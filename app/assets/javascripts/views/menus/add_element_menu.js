@@ -52,7 +52,12 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     text: function () {
-
+      var text = new ClixrIo.Models.Element({ type: 'text' });
+      var textView = new ClixrIo.Views.Text({ model: text });
+      this._placeCenter(textView);
+      textView.setCss('width', '200px');
+      textView.setCss('height', '200px');
+      this.parentView.addSubview('.user-page', textView);
     },
 
     image: function () {
