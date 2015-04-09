@@ -27,6 +27,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       this.parent = options.parent;
       this.setupMenuItems();
       this.parent.append(this.render().$el);
+      this.parentView = options.parentView;
     },
 
     closeMenu: function (event) {
@@ -42,7 +43,12 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     box: function () {
       var div = new ClixrIo.Models.Div();
-      div.css.left()
+      var divView = new ClixrIo.Views.Div(div);
+      this._placeCenter(divView);
+      div.css('width', '200px');
+      div.css('height', '200px');
+      div.css('background-color', 'black');
+      this.parentView.addSubview(this.parentView.$userPage, divView);
     },
 
     text: function () {
@@ -59,6 +65,11 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     horizontalLine: function () {
 
+    },
+
+    _placeCenter: function (view) {
+      view.css("left", "490px");
+      view.css("top", "200px");
     }
   })
 );

@@ -1,4 +1,4 @@
-ClixrIo.Views.SiteEdit = Backbone.View.extend({
+ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   template: JST['sites/edit'],
 
   currentMenu: null,
@@ -11,9 +11,11 @@ ClixrIo.Views.SiteEdit = Backbone.View.extend({
   initialize: function () {
     this.render();
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
-      parent: this.$('.function-buttons')
+      parent: this.$('.function-buttons'),
+      parentView: this
     });
     this.currentPage = this.model.pages().where({ord: 0});
+    this.$userPage = this.$('user-content')
   },
 
   collapseMenus: function () {
