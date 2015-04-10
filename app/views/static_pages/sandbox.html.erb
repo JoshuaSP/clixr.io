@@ -1,4 +1,19 @@
-<!-- <%= javascript_include_tag 'editor' %> -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<%= javascript_include_tag 'editor' %>
 
-<div id="jquery-ui-test"></div>
+<div id="wysihtml5-toolbar">
+  <a data-wysihtml5-command="bold">bold</a>
+  <a data-wysihtml5-command="italic">italic</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">H1</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">P</a>
+</div>
+<div id="wysihtml5-textarea" style="margin-top: 200px; margin-left:300px; width: 200px; height: 200px;"></div>
+<!-- <textarea style="margin-top: 200px; margin-left:300px" id="wysihtml5-textarea"></textarea> -->
+
+<script>
+   var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+      toolbar:      "wysihtml5-toolbar", // id of toolbar element
+      // stylesheets:  "<%=stylesheet_path('wysihtml')%>", // optional, css to style the editor's content
+      parserRules:  wysihtml5ParserRules, // defined in parser rules set
+      //showToolbarAfterInit: false
+   });
+</script>

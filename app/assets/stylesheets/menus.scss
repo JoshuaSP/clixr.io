@@ -46,3 +46,7 @@ $list-group-border-radius: 5px;
   left: 130px;
   border-radius: 10px;
 }
+
+#wysihtml5-toolbar {
+  z-index: 10000;
+}

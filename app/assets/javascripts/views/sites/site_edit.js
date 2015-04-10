@@ -24,14 +24,18 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   selectElement: function(event) {
-    if (this.selectedView) {
-      this.selectedView.deselectElement();
-    }
     var newView = _(this.subviews('.user-page')).find(function(subview) {
       return subview.$el.is($(event.currentTarget));
     });
-    newView.selectElement();
-    this.selectedView = newView;
+    this.selectView(newView);
+  },
+
+  selectView: function(view) {
+    if (this.selectedView && this.selectedView !== view) {
+      this.selectedView.deselectElement();
+    }
+    view.selectElement();
+    this.selectedView = view;
   },
 
   render: function () {

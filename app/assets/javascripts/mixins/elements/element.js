@@ -28,13 +28,19 @@ ClixrIo.Views.Element = Backbone.View.extend({
   },
 
   selectElement: function () {
-		if (this.selected) return;
+		if (this.selected) {
+      this.secondClick();
+      return;
+    }
     this.$el.addClass("selected-element");
 		this.selected = true;
     this.$el.draggable();
 		var $handles = this._addResizeHandles();
     this.$el.resizable({ handles: $handles });
 	},
+
+  secondClick: function () {
+  },
 
 	deselectElement: function () {
 		this.selected = false;

@@ -48,7 +48,12 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       divView.setCss('width', '200px');
       divView.setCss('height', '200px');
       divView.setCss('background-color', '#7093ae');
-      this.parentView.addSubview('.user-page', divView);
+      this._addAndSelect(divView);
+    },
+
+    _addAndSelect: function(view) {
+      this.parentView.addSubview('.user-page', view);
+      this.parentView.selectView(view);
     },
 
     text: function () {
@@ -57,7 +62,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       this._placeCenter(textView);
       textView.setCss('width', '200px');
       textView.setCss('height', '200px');
-      this.parentView.addSubview('.user-page', textView);
+      this._addAndSelect(textView);
     },
 
     image: function () {
