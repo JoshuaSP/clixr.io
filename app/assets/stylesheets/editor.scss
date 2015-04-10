@@ -27,3 +27,10 @@ $handle-bg-color: white;
 *:focus {
 	outline: 0;
 }
+
+#wysihtml5-toolbar {
+	box-shadow: $basic-shadow;
+	background-color: white;
+	position: fixed;
+	padding: 30px 30px;
+}

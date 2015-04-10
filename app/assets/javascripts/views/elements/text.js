@@ -33,6 +33,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
       at: "center top-30px",
       of: this.$el
     });
+    this.toolbar.find('#text-styles').menu();
   },
 
   deselectElement: function () {
