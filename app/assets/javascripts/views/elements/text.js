@@ -1,60 +1,53 @@
 ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   tagName: 'div',
+  template: JST['elements/text_element'],
 
   initialize: function () {
     ClixrIo.Views.Element.prototype.initialize.apply(this);
-    this.$el.html(this.model.escape('content'));
+    this.$el.addClass('text-element')
+    this.$el.html(this.template({ content: this.model.escape('content')}));
+    this.$textbox = this.$('.text-content')
   },
 
-  selectElement: function () {
-    if (this.selected) {
-      this.secondClick();
-      return;
-    }
-    this.$el.addClass("selected-element");
-    this.selected = true;
-    this.$el.draggable();
-    var $handles = this._addResizeHandles();
-    this.$el.resizable({ handles: $handles });
-    this.$el.attr('id', 'texteditor');
+  secondClick: function () {
+    if (this.toolbar) return;
+    this.$el.draggable('destroy');
+    this.$textbox.attr('id', 'texteditor');
     this._setupToolbar();
     this.editor = new wysihtml5.Editor("texteditor", {
        toolbar: "wysihtml5-toolbar",
        parserRules: wysihtml5ParserRules, // defined in parser rules set
     });
-  },
-
-  // we set up the editor one click before we need to edit because reasons.
-  // because we can't programmatically get the cursor in the box.
-  // we really tried.
-
-  secondClick: function () {
-    this.$el.draggable('destroy');
-    this._showToolbar();
-  },
-
-  _showToolbar: function () {
-    this.toolbar.draggable();
-    this.toolbar.position({
-      my: "center",
-      at: "center top-30px",
-      of: this.$el
-      // within: menusContainer
-    });
-    this.toolbar.css("display", "block");
+    setTimeout(function () {
+      $('a[data-wysihtml5-command-value="p"]')[0].click()
+    },1);
   },
 
   _setupToolbar: function () {
     this.toolbar = $(JST['menus/text_toolbar']());
     var menusContainer = $('.floating-menus');
     menusContainer.append(this.toolbar);
-    this.toolbar.css("display", "none");
+    this.toolbar.draggable();
+    this.toolbar.position({
+      my: "center",
+      at: "center top-30px",
+      of: this.$el
+    });
   },
 
   deselectElement: function () {
-    ClixrIo.Views.Element.prototype.deselectElement.apply(this);
-    this.$el.attr('id','');
-    this.toolbar.remove();
-    this.editor = null;
+    this.selected = false;
+    this.$el.resizable('destroy');
+    this.$('.drag-handle').remove();
+    this.$el.removeClass("selected-element");
+    if (this.toolbar) {
+      this.$textbox.attr('id','');
+      this.$textbox.attr("contenteditable", "false")
+      this.toolbar.remove();
+      this.toolbar = null;
+      this.editor = null;
+    } else {
+      this.$el.draggable('destroy');
+    }
   }
 });
