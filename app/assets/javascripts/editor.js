@@ -6,9 +6,8 @@
 //= require_tree ./collections
 //= require_tree ./mixins
 //= require_tree ./views
-//= require bootstrap-wysihtml
 //= require parser_rules/advanced_unwrap
-//= require jquery
-//= require bootstrap-sprockets
+//= require wysihtml
+//= require wysihtml-toolbar
 //= require_tree ../../../vendor/assets/javascripts/editor
 // ^^^ eventually remove & replace with CDN version
