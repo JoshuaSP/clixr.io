@@ -1,16 +1,5 @@
 <div id="wysihtml5-toolbar">
   <ul id="text-toolbar-items">
-    <li>
-      <a href="#"><i class="fa fa-font"></i></a>
-      <ul data-wysihtml5-command-group="formatBlock">
-        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">Huge Header</a></li>
-        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">Big Header</a></li>
-        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">Medium Header</a></li>
-        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4">Normal Header</a></li>
-        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5">Small Header</a></li>
-        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">Normal Text</li></li>
-      </ul>
-    </li>
     <li><a data-wysihtml5-command="bold" title="CTRL+B"><i class="fa fa-bold"></i></a></li>
     <li><a data-wysihtml5-command="italic" title="CTRL+I"><i class="fa fa-italic"></i></a></li>
     <li><a data-wysihtml5-command="underline" title="CTRL+U"><i class="fa fa-underline"></i></a></li>
@@ -23,19 +12,28 @@
       <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
     </div>
 
-    <a data-wysihtml5-command="alignLeftStyle"><i class="fa fa-align-left"></i></a>
-    <a data-wysihtml5-command="alignRightStyle"><i class="fa fa-align-right"></i></a>
-    <a data-wysihtml5-command="alignCenterStyle"><i class="fa fa-align-center"></i></a>
-    <a data-wysihtml5-command="foreColorStyle">Color</a>
-    <div data-wysihtml5-dialog="foreColorStyle" style="display: none;">
-      Color:
-      <input type="text" data-wysihtml5-dialog-field="color" value="rgba(0,0,0,1)" />
-      <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
-    </div>
-    <div class="block">
-      <a data-wysihtml5-command="undo">undo</a>
-      <a data-wysihtml5-command="redo">redo</a>
-    </div>
-    <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">P</a>
+    <li><a data-wysihtml5-command="alignLeftStyle"><i class="fa fa-align-left"></i></a></li>
+    <li><a data-wysihtml5-command="alignRightStyle"><i class="fa fa-align-right"></i></a></li>
+    <li><a data-wysihtml5-command="alignCenterStyle"><i class="fa fa-align-center"></i></a></li>
+    <li>
+      <a data-wysihtml5-command="foreColorStyle">Color</a>
+      <div data-wysihtml5-dialog="foreColorStyle" style="display: none;">
+        Color:
+        <input type="text" data-wysihtml5-dialog-field="color" value="rgba(0,0,0,1)" />
+        <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+      </div>
+    </li>
+    <li>
+      <a class="font-button" href="#">Font</a>
+      <ul data-wysihtml5-command-group="formatBlock" class="include-user-fonts foreground-dropdown">
+        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">Font 1</li></li>
+        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">Font 2</a></li>
+        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">Font 3</a></li>
+        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">Font 4</a></li>
+        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4">Font 5</a></li>
+        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5">Font 6</a></li>
+      </ul>
+    </li>
+    <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p"></a>
   </ul>
 </div>

@@ -430,3 +430,11 @@ th {
 label {
   cursor: inherit;
 }
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
