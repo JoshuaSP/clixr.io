@@ -19,7 +19,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
        parserRules: wysihtml5ParserRules, // defined in parser rules set
     });
     setTimeout(function () {
-      $('a[data-wysihtml5-command-value="p"]')[0].click()
+      // $('a[data-wysihtml5-command-value="p"]')[0].click()
     },1);
   },
 
@@ -33,7 +33,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
       at: "center top-30px",
       of: this.$el
     });
-    this.toolbar.find('#text-styles').menu();
+    this.toolbar.find('#text-toolbar-items').dropit();
   },
 
   deselectElement: function () {

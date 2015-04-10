@@ -29,8 +29,25 @@ $handle-bg-color: white;
 }
 
 #wysihtml5-toolbar {
-	box-shadow: $basic-shadow;
-	background-color: white;
 	position: fixed;
-	padding: 30px 30px;
+	background-color: white;
+	border-radius: 10px;
+	margin: 30px;
+	padding: 10px;
+	cursor: pointer;
+	background-clip: border-box;
+	box-shadow: $basic-shadow;
+	font-size: 20px;
+	overflow: hidden;
+
+	ul {
+		list-style-type: none;
+	}
+
+	li {
+		float:left;
+		padding: 5px;
+		box-shadow: 2px 2px 3px #777;
+		margin: 6px;
+	}
 }
