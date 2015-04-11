@@ -111,6 +111,10 @@ $lightish-blue: #ddf;
 		left: -55px;
 		top: 43px;
 
+		span {
+			top: -3px;
+		}
+
 		> div {
 			border-radius: 4px;
 		}
@@ -165,7 +169,6 @@ $lightish-blue: #ddf;
 		border-radius: 12px;
 		// border: 2px solid #88b;
 		left: -4px;
-		top: -3px;
 		width: 14px;
 		height: 14px;
 		box-shadow: 1px 1px 2px #333;
