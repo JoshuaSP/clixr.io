@@ -34,25 +34,21 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
       max: 150,
       orientation: "vertical"
     });
-    var $redSlider = $('.color-picker .red .slider');
-    var $greenSlider = $('.color-picker .green .slider');
-    var $blueSlider = $('.color-picker .blue .slider');
-    $('.color-picker .red .slider, .color-picker .green .slider, .color-picker .blue .slider').slider({
-      slide: function (event, ui) {
+    var slideFunctionCreator = function ($redSlider, $greenSlider, $blueSlider) {
+      return function (event, ui) {
         editor.composer.commands.exec(
           "foreColorStyle",
           "rgb(" + $redSlider.slider("value") + "," +
           $greenSlider.slider("value") + "," +
           $blueSlider.slider("value") + ")"
         );
-      },
-      min: 0,
-      max: 256
-    });
+      }
+    }
+    ClixrIo.Mixins.ColorPicker(slideFunctionCreator);
   },
 
   _setupToolbar: function () {
-    this.toolbar = $(JST['menus/text_toolbar']());
+    this.toolbar = $(JST['menus/text_toolbar']({ colorPicker: JST['menus/color_picker']() }));
     var menusContainer = $('.floating-menus');
     menusContainer.append(this.toolbar);
     this.toolbar.draggable();
