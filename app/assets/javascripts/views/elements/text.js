@@ -33,10 +33,11 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
       at: "center top-30px",
       of: this.$el
     });
-    this.toolbar.find('a.font-button').onClick(function () {
-      this.toolbar.find('.font-menu').toggle();
-    }.bind(this))
-    this.toolbar.find('.font-menu').draggable();
+    ClixrIo.Mixins.SetupSubmenus(this.toolbar, {
+      '.font-button': '.font-menu',
+      '.size-button': '.size-slider',
+      '.color-button': '.color-picker',
+    });
   },
 
   deselectElement: function () {

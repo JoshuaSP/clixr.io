@@ -65,11 +65,11 @@ $handle-bg-color: white;
 		}
 	}
 
-	.font-menu {
+	> div {
+		opacity: 0;
+		display: none;
 		z-index: 5000;
 		position: absolute;
-		right: -120px;
-		top: -30px;
 		background-color: white;
 		border-radius: 10px;
 		margin: 30px;
@@ -77,10 +77,23 @@ $handle-bg-color: white;
 		cursor: pointer;
 		background-clip: border-box;
 		box-shadow: $basic-shadow;
+		transition: opacity 200ms;
+	}
+
+	.font-menu {
+		right: -215px;
+		top: -30px;
 		width: 150px;
 		ul {
 			padding: 0;
 			margin: 0;
+		}
+
+		.size-slider {
+	    -webkit-appearance: slider-vertical; /* WebKit */
+	    width: 8px;
+	    height: 175px;
+	    padding: 0 5px;
 		}
 
 		li {
