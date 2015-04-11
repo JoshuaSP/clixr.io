@@ -18,9 +18,36 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
        toolbar: "wysihtml5-toolbar",
        parserRules: wysihtml5ParserRules, // defined in parser rules set
     });
+    this._hookupSliders(this.editor);
     setTimeout(function () {
-      // $('a[data-wysihtml5-command-value="p"]')[0].click()
+      $('a[data-wysihtml5-command-value="p"]')[0].click();
     },1);
+  },
+
+  _hookupSliders: function (editor) {
+    $('.size-slider .slider').slider({
+      slide: function (event, ui) {
+        editor.composer.commands.exec("fontSizeStyle", ui.value + "px");
+      },
+      min: 5,
+      max: 150,
+      orientation: "vertical"
+    });
+    var $redSlider = $('.color-picker .red .slider');
+    var $greenSlider = $('.color-picker .green .slider');
+    var $blueSlider = $('.color-picker .blue .slider');
+    $('.color-picker .red .slider, .color-picker .green .slider, .color-picker .blue .slider').slider({
+      slide: function (event, ui) {
+        editor.composer.commands.exec(
+          "foreColorStyle",
+          "rgb(" + $redSlider.slider("value") + "," +
+          $greenSlider.slider("value") + "," +
+          $blueSlider.slider("value") + ")"
+        );
+      },
+      min: 0,
+      max: 256
+    });
   },
 
   _setupToolbar: function () {
@@ -30,7 +57,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     this.toolbar.draggable();
     this.toolbar.position({
       my: "center",
-      at: "center top-30px",
+      at: "center top-45px",
       of: this.$el
     });
     ClixrIo.Mixins.SetupSubmenus(this.toolbar, {

@@ -1,10 +1,14 @@
 .selected-element {
   border: 1px solid $select-color;
-	z-index: 5000;
+	z-index: 15000;
 }
 
 .user-page {
 
+}
+
+.text-content {
+  overflow: hidden;
 }
 
 .include-user-fonts {
