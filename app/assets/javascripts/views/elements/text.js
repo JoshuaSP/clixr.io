@@ -21,7 +21,8 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     this._hookupSliders(this.editor);
     setTimeout(function () {
       $('a[data-wysihtml5-command-value="p"]')[0].click();
-    },1);
+      this.toolbar.css('opacity', 1)
+    }.bind(this),1);
   },
 
   _hookupSliders: function (editor) {
@@ -75,8 +76,11 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     if (this.toolbar) {
       this.$textbox.attr('id','');
       this.$textbox.attr("contenteditable", "false")
-      this.toolbar.remove();
-      this.toolbar = null;
+      this.toolbar.css('opacity',0)
+      setTimeout(function() {
+        this.toolbar.remove();
+        this.toolbar = null;
+      }.bind(this), 200)
       this.editor = null;
     } else {
       this.$el.draggable('destroy');

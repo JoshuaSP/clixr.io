@@ -30,6 +30,8 @@ $lightish-blue: #ddf;
 }
 
 #wysihtml5-toolbar {
+	transition: opacity 200ms;
+	opacity: 0;
 	z-index: 5000;
 	position: fixed;
 	background-color: white;
