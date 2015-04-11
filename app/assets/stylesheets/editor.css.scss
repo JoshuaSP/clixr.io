@@ -39,43 +39,52 @@ $handle-bg-color: white;
 	background-clip: border-box;
 	box-shadow: $basic-shadow;
 	font-size: 20px;
-	overflow: hidden;
 
 	.foreground-dropdown {
 		z-index: 5001;
 	}
 
 	> ul {
-
 		padding: 0;
 		margin: 0;
 
 		> li {
-			float:left;
-			padding: 5px;
-			box-shadow: 2px 2px 3px #aaa;
-			margin: 3px;
-			transition: background-color 100ms;
+			float: left;
+		}
 
-			&:hover {
-				background-color: #ddf;
-			}
+	}
+
+	li {
+		padding: 5px;
+		box-shadow: 2px 2px 3px #aaa;
+		margin: 3px;
+		transition: background-color 100ms;
+
+		&:hover {
+			background-color: #ddf;
 		}
 	}
 
-	.font-button > ul {
-		width: 50px;
-	}
-}
+	.font-menu {
+		z-index: 5000;
+		position: absolute;
+		right: -120px;
+		top: -30px;
+		background-color: white;
+		border-radius: 10px;
+		margin: 30px;
+		padding: 7px;
+		cursor: pointer;
+		background-clip: border-box;
+		box-shadow: $basic-shadow;
+		width: 150px;
+		ul {
+			padding: 0;
+			margin: 0;
+		}
 
-.font-menu {
-	z-index: 5000;
-	position: fixed;
-	background-color: white;
-	border-radius: 10px;
-	margin: 30px;
-	padding: 7px;
-	cursor: pointer;
-	background-clip: border-box;
-	box-shadow: $basic-shadow;
+		li {
+			display: block;
+		}
+	}
 }

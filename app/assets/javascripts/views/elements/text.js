@@ -33,7 +33,10 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
       at: "center top-30px",
       of: this.$el
     });
-    this.toolbar.find('#text-toolbar-items').dropit();
+    this.toolbar.find('a.font-button').onClick(function () {
+      this.toolbar.find('.font-menu').toggle();
+    }.bind(this))
+    this.toolbar.find('.font-menu').draggable();
   },
 
   deselectElement: function () {
