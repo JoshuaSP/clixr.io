@@ -52,6 +52,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     _addAndSelect: function(view) {
+      this.parentView.collection.add(view.model);
       this.parentView.addSubview('.user-page', view);
       this.parentView.selectView(view);
     },
@@ -66,11 +67,12 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     image: function () {
-
-    },
-
-    menu: function () {
-
+      var image = new ClixrIo.Models.Element({ type: 'image' });
+      new ClixrIo.Views.OpenImageModal ()
+      ClixrIo.Mixins.MenuUtils.openImageModal({
+        model: image,
+        success: function() {},
+      });
     },
 
     horizontalLine: function () {

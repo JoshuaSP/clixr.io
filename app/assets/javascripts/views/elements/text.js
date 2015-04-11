@@ -44,7 +44,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
         );
       }
     }
-    ClixrIo.Mixins.ColorPicker(slideFunctionCreator);
+    ClixrIo.Mixins.MenuUtils.colorPicker(slideFunctionCreator);
   },
 
   _setupToolbar: function () {
@@ -57,7 +57,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
       at: "center top-45px",
       of: this.$el
     });
-    ClixrIo.Mixins.SetupSubmenus(this.toolbar, {
+    ClixrIo.Mixins.MenuUtils.setupSubmenus(this.toolbar, {
       '.font-button': '.font-menu',
       '.size-button': '.size-slider',
       '.color-button': '.color-picker',
