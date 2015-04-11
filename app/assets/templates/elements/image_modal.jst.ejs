@@ -1,0 +1,12 @@
+<i class="fa fa-close"></i>
+<label>Paste an Image Url<input type="text" name="url"></label>
+<a href="#" class="select">Select</a>
+<% if (this.model.get('url')) { %>
+  <img src="<=% this.model.escape('url')%>"/>
+<% } else { %>
+  <div class="logo image-placeholder">
+    clixr.io
+  </div>
+<% } %>
+<a href="#" class="upload">Upload an Image</a>
+<input type="submit" value="OK">
