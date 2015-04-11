@@ -17,6 +17,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     });
     this.currentPage = this.model.pages().where({ord: 0});
     this.$userPage = this.$('.user-page');
+    $.cloudinary.config({ cloud_name: 'clixr-io', api_key: '442135653978222'});
   },
 
   collapseMenus: function () {

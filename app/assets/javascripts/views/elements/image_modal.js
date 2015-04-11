@@ -13,11 +13,14 @@ ClixrIo.Views.ImageModal = Backbone.View.extend({
 
   initialize: function (options) {
     this.success = options.success;
-    $(document).click(function (event) {
-      if (!event.target.closest(this.$el).length) {
-        this.closeModal;
-      }
-    }.bind(this));
+    var modalView = this;
+    setTimeout(function () {
+      $(document).click(function (event) {
+        if (!$(event.target).closest(modalView.$el).length) {
+          modalView.closeModal;
+        }
+      });
+    }, 0);
   },
 
   selectUrl: function () {
@@ -29,6 +32,7 @@ ClixrIo.Views.ImageModal = Backbone.View.extend({
     var content = this.template({ model: this.model });
     this.$el.html(content);
     // TODO make things blurry
+    this.$('.image-upload').load('/image_upload');
     return this;
   },
 

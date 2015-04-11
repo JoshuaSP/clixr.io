@@ -68,10 +68,11 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     image: function () {
       var image = new ClixrIo.Models.Element({ type: 'image' });
-      new ClixrIo.Views.ImageModal ({
+      var imageModal = new ClixrIo.Views.ImageModal ({
         model: image,
         success: function() {},
       })
+      $('.modals').append(imageModal.render().$el)
     },
 
     horizontalLine: function () {

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: clixr-io
+  api_key: '442135653978222'
+  api_secret: IBa44tIxlHHi2U_NJbpaZDhpOME
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: clixr-io
+  api_key: '442135653978222'
+  api_secret: IBa44tIxlHHi2U_NJbpaZDhpOME
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: clixr-io
+  api_key: '442135653978222'
+  api_secret: IBa44tIxlHHi2U_NJbpaZDhpOME
+  enhance_image_tag: true
+  static_image_support: false
