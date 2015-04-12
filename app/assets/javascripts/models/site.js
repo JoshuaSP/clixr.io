@@ -1,5 +1,5 @@
 ClixrIo.Models.Site = Backbone.Model.extend({
-  urlRoot: "api/sites/",
+  urlRoot: "/api/sites/",
 
   parse: function (response) {
     if (response.elements) {
@@ -14,6 +14,9 @@ ClixrIo.Models.Site = Backbone.Model.extend({
   },
 
   initialize: function () {
+  },
+
+  ensurePage: function () {
     if (this.pages().length === 0) {
       this.pages().add(new ClixrIo.Models.Page({title: "untitled", ord: 0}));
     }

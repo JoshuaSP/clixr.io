@@ -75,6 +75,18 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       $('.modals').append(imageModal.render().$el)
     },
 
+    menu: function () {
+      var menu = new ClixrIo.Models.Element({ type: 'menu' });
+      var menuView = new ClixrIo.Views.Menu({
+        model: menu,
+        collection: this.collection
+      });
+      this._placeCenter(menuView);
+      menuView.setCss('width', '400px');
+      menuView.setCss('height', '75px');
+      this._addAndSelect(menuView);
+    },
+
     horizontalLine: function () {
 
     },

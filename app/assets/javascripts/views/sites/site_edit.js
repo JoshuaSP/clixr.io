@@ -10,14 +10,23 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
+    this.model.fetch({
+      success: this._setupPage.bind(this)
+    });
+    $.cloudinary.config({ cloud_name: 'clixr-io', api_key: '442135653978222'});
+  },
+
+  _setupPage: function () {
+    this.model.ensurePage();
+    this.currentPage = this.model.pages().where({ord: 0});
     this.render();
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
       parent: this.$('.function-buttons'),
-      parentView: this
+      parentView: this,
+      collection: this.model.pages(),
+      model: this.currentPage
     });
-    this.currentPage = this.model.pages().where({ord: 0});
     this.$userPage = this.$('.user-page');
-    $.cloudinary.config({ cloud_name: 'clixr-io', api_key: '442135653978222'});
   },
 
   collapseMenus: function () {

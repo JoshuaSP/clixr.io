@@ -1,5 +1,5 @@
 ClixrIo.Views.ImageModal = Backbone.View.extend({
-  template: JST['elements/image_modal'],
+  template: JST['menus/image_modal'],
 
   tagName: "form",
   className: "image-modal",
