@@ -1,12 +1,13 @@
 ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   tagName: 'div',
   template: JST['elements/text_element'],
+  editMenu: ClixrIo.Views.TextEditMenu,
 
   initialize: function () {
     ClixrIo.Views.Element.prototype.initialize.apply(this);
-    this.$el.addClass('text-element')
+    this.$el.addClass('text-element');
     this.$el.html(this.template({ content: this.model.escape('content')}));
-    this.$textbox = this.$('.text-content')
+    this.$textbox = this.$('.text-content');
   },
 
   // secondClick: function () {

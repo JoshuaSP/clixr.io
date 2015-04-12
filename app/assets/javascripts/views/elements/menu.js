@@ -1,6 +1,7 @@
 ClixrIo.Views.Menu = ClixrIo.Views.Element.extend({
   tagName: 'ul',
   template: JST['elements/menu'],
+  editMenu: ClixrIo.Views.MenuEditMenu,
 
   initialize: function () {
     ClixrIo.Views.Element.prototype.initialize.apply(this);
