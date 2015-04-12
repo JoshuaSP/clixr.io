@@ -34,19 +34,40 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   selectElement: function(event) {
+    var newView = this.findView($(event.currentTarget));
+    newView.alternates = this.findAlternates(event, newView);
+    this.selectView(newView);
+  },
+
+  findView: function($el) {
     var allViews = this.subviews('.user-page-elements')
       .concat(this.subviews('.user-site-elements'));
-    var newView = _(allViews).find(function(subview) {
-      return subview.$el.is($(event.currentTarget));
+    return _(allViews).find(function(subview) {
+      return subview.$el.is($el);
     });
-    this.selectView(newView);
+  },
+
+  findAlternates: function(event, selectedView) {
+    return _(this.elementStack(event)).map(function($el) {
+      return this.findView($el);
+    }.bind(this)).reject(function($el) {
+      return $el === selectedView;
+    });
+  },
+
+  elementStack: function (event) {
+    return this.$('.user-element').filter(function ($el) {
+      var xCoords = [$el.offset().left, $el.offset().left + $el.css('width')];
+      var yCoords = [$el.offset().top, $el.offset().top + $el.css('height')];
+      return this._between(xCoords, event.pageX) && this._between(yCoords, event.pageY);
+    }.bind(this));
   },
 
   selectView: function(view) {
     if (this.selectedView && this.selectedView !== view) {
-      this.selectedView.deselectElement();
+      this.selectedView.deselect();
     }
-    view.selectElement();
+    view.select();
     this.selectedView = view;
   },
 
@@ -90,5 +111,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       this.currentMenu.remove();
     }
     this.currentMenu = newMenu;
+  },
+
+  _between: function (coords, x) {
+    return (x >= coords[0] && x <= coords[1])
   }
 });

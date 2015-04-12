@@ -27,7 +27,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.model.css.property = value;
   },
 
-  selectElement: function () {
+  select: function () {
 		if (this.selected) {
       this.secondClick();
       return;
@@ -42,7 +42,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
   secondClick: function () {
   },
 
-	deselectElement: function () {
+	deselect: function () {
 		this.selected = false;
 		this.$('.drag-handle').remove();
 		this.$el.removeClass("selected-element");
