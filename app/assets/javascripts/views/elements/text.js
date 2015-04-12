@@ -9,21 +9,21 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     this.$textbox = this.$('.text-content')
   },
 
-  secondClick: function () {
-    if (this.toolbar) return;
-    this.$el.draggable('destroy');
-    this.$textbox.attr('id', 'texteditor');
-    this._setupToolbar();
-    this.editor = new wysihtml5.Editor("texteditor", {
-       toolbar: "wysihtml5-toolbar",
-       parserRules: wysihtml5ParserRules, // defined in parser rules set
-    });
-    this._hookupSliders(this.editor);
-    setTimeout(function () {
-      $('a[data-wysihtml5-command-value="p"]')[0].click();
-      this.toolbar.css('opacity', 1)
-    }.bind(this),1);
-  },
+  // secondClick: function () {
+  //   if (this.toolbar) return;
+  //   this.$el.draggable('destroy');
+  //   this.$textbox.attr('id', 'texteditor');
+  //   this._setupToolbar();
+  //   this.editor = new wysihtml5.Editor("texteditor", {
+  //      toolbar: "wysihtml5-toolbar",
+  //      parserRules: wysihtml5ParserRules, // defined in parser rules set
+  //   });
+  //   this._hookupSliders(this.editor);
+  //   setTimeout(function () {
+  //     $('a[data-wysihtml5-command-value="p"]')[0].click();
+  //     this.toolbar.css('opacity', 1)
+  //   }.bind(this),1);
+  // },
 
   _hookupSliders: function (editor) {
     $('.size-slider .slider').slider({

@@ -1,10 +1,12 @@
 ClixrIo.Views.Menu = ClixrIo.Views.Element.extend({
   tagName: 'ul',
   template: JST['elements/menu'],
-  className: "user-menu-style-1",
 
   initialize: function () {
     ClixrIo.Views.Element.prototype.initialize.apply(this);
+    if (this.model.get('class').indexOf("user-menu-style") === -1) {
+      this.$el.addClass('user-menu-style-1');
+    }
     this.listenTo(this.collection, "add remove", this.render);
   },
 

@@ -5,7 +5,7 @@ ClixrIo.Mixins.EditElementMenu = {
   },
 
   overlappingItems: function () {
-
+    
   },
 
   putoneverypage: function () {

@@ -1,3 +1,4 @@
 ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
-  tagName: 'img'
+  tagName: 'img',
+  editMenu: ClixrIo.Views.ImageEditMenu
 });

@@ -1,7 +1,4 @@
 ClixrIo.Views.Element = Backbone.View.extend({
-  events: {
-  },
-
   handles: {
     "n": { left: "50%", top: "-5px"},
     "ne": { right: "-5px", top: "-5px"},
@@ -40,11 +37,20 @@ ClixrIo.Views.Element = Backbone.View.extend({
 	},
 
   secondClick: function () {
+    if (this.editMenuView) return;
+    this.editMenuView = new this.editMenu({
+      elementView: this,
+      model: this.model
+    });
   },
 
 	deselect: function () {
 		this.selected = false;
 		this.$('.drag-handle').remove();
+    if (this.editMenuView) {
+      this.editMenuView.remove();
+      this.editMenuView = null;
+    }
 		this.$el.removeClass("selected-element");
 		this.$el.resizable('destroy').draggable('destroy');
 	},
