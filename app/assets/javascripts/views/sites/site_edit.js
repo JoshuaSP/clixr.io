@@ -49,7 +49,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({site: this.model});
+    var content = this.template({ site: this.model });
     this.$el.html(content);
     // this.onRender();
     return this;

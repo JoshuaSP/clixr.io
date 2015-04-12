@@ -10,6 +10,14 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     ],
 
     className: "add-element-button",
+    template: JST['menus/function_buttons'],
+
+    initialize: function (options) {
+      this.parent = options.parent;
+      this.setupMenuItems();
+      this.parent.append(this.render().$el);
+      this.parentView = options.parentView;
+    },
 
     render: function () {
       var content = this.template({
@@ -21,15 +29,6 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       return this;
     },
 
-    template: JST['menus/function_buttons'],
-
-    initialize: function (options) {
-      this.parent = options.parent;
-      this.setupMenuItems();
-      this.parent.append(this.render().$el);
-      this.parentView = options.parentView;
-    },
-
     closeMenu: function (event) {
       setTimeout(function () {
         this.openable = true;
@@ -38,7 +37,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     button: function () {
-
+      
     },
 
     horizontalLine: function () {
