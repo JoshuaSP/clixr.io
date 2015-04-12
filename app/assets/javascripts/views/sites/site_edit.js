@@ -6,7 +6,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   events: {
     "click .page-menu-button": "showPageMenu",
     "click .add-element-button": "showAddElementMenu",
-    "click .user-element": "selectElement"
+    "click .user-page-elements .user-element": "selectElement",
+    "click .user-site-elements .user-element": "selectElement"
   },
 
   initialize: function () {
@@ -48,16 +49,17 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   findAlternates: function(event, selectedView) {
-    return _(this.elementStack(event)).map(function($el) {
+    return _.chain(this.elementStack(event)).map(function($el) {
       return this.findView($el);
     }.bind(this)).reject(function($el) {
       return $el === selectedView;
-    });
+    }).value();
   },
 
   elementStack: function (event) {
     var view = this;
-    return this.$('.user-element').filter(function (index, $el) {
+    return this.$('.user-element').filter(function (index, el) {
+      $el = $(el)
       var xCoords = [$el.offset().left, $el.offset().left + $el.css('width')];
       var yCoords = [$el.offset().top, $el.offset().top + $el.css('height')];
       return view._between(xCoords, event.pageX) && view._between(yCoords, event.pageY);
