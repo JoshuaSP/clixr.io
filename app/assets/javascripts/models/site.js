@@ -27,6 +27,6 @@ ClixrIo.Models.Site = Backbone.Model.extend({
   },
 
   pages: function() {
-    return this._pages || (this._pages = new ClixrIo.Collections.Elements());
+    return this._pages || (this._pages = new ClixrIo.Collections.Pages());
   },
 });
