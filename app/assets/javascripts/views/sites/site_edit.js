@@ -36,7 +36,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   selectElement: function(event) {
     var newView = this.findView($(event.currentTarget));
-    // newView.alternates = this.findAlternates(event, newView);
     var intersectors = this._findIntersectors(newView.$el, '.user-element');
     newView.intersectingViews = _(this.findViews(intersectors)).sortBy(function(view) {
       return parseInt(view.$el.css('z-index'))
@@ -76,8 +75,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   _renderElements: function (selector, elements) {
     _(elements).each(function (element) {
-      var elementView = new this.elementViews[element.get('type')]();
-      elementView.siteView = this
+      var elementView = new this.elementViews[element.get('type')]({
+        siteView: this
+      });
       this.addSubview(selector, elementView);
     });
   },

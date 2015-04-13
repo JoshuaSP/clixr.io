@@ -18,7 +18,7 @@ ClixrIo.Views.OverlappingItemsMenu = Backbone.View.extend({
     var content = this.template({ items: this.collection });
     this.$el.html(content);
     return this;
-  }.bind(this),
+  },
 
   sortStart: function(event, ui) {
     this.oldPos = ui.item.index();

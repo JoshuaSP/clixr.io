@@ -5,8 +5,8 @@ ClixrIo.Mixins.EditElementMenu = {
 
   },
 
-  putoneverypage: function () {
-
+  putOnEveryPage: function () {
+    
   },
 
 }

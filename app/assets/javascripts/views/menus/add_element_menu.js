@@ -57,11 +57,12 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       divView.$el.css('width', '200px');
       divView.$el.css('height', '200px');
       divView.$el.css('background-color', '#7093ae');
-      divView.$el.addClass('user-div-style-1')
+      divView.$el.addClass('user-div-style-1');
       this._addAndSelect(divView);
     },
 
     _addAndSelect: function(view) {
+      view.siteView = this.siteView;
       this.model.elements().add(view.model);
       this.siteView.addSubview('.user-page-elements', view);
       this.siteView.selectView(view);
@@ -81,8 +82,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       var imageModal = new ClixrIo.Views.ImageModal ({
         model: image,
         success: function() {},
-      })
-      $('.modals').append(imageModal.render().$el)
+      });
+      $('.modals').append(imageModal.render().$el);
     },
 
     menu: function () {

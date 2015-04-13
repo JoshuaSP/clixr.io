@@ -12,7 +12,8 @@ ClixrIo.Views.Element = Backbone.View.extend({
 
 	className: "user-element",
 
-  initialize: function () {
+  initialize: function (options) {
+    this.siteView = options.siteView;
     this.$el.addClass(this.model.get('class'));
     var css = this.model.get('css') ? $.parseJSON(this.model.get('css')) : {} ;
     css.position = "absolute";
@@ -43,13 +44,20 @@ ClixrIo.Views.Element = Backbone.View.extend({
     $el.resizable({ handles: $handles });
 	},
 
+  global: function () {
+    return this.model.collection === this.siteView.model.elements();
+  },
+
   secondClick: function () {
     if (this.editMenuView) return;
     this.editMenuView = new this.editMenu({
       $targetEl: this.$el,
       model: this.model,
+      close: this.closeEditMenu.bind(this),
       siteView: this.siteView,
-      intersectingViews: this.intersectingViews
+      intersectingViews: this.intersectingViews,
+      global: this.global,
+      deleteElement: this.deleteElement.bind(this)
     });
     this.editMenuView.$el.position({
       my: "center",
@@ -60,9 +68,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.editMenuView.$el.draggable();
   },
 
-	deselect: function () {
-		this.selected = false;
-		this.$('.drag-handle').remove();
+  closeEditMenu: function () {
     if (this.editMenuView) {
       this.editMenuView.$el.css('opacity', 0);
       setTimeout(function () {
@@ -70,6 +76,12 @@ ClixrIo.Views.Element = Backbone.View.extend({
         this.editMenuView = null;
       }.bind(this), 200);
     }
+  },
+
+	deselect: function () {
+		this.selected = false;
+		this.$('.drag-handle').remove();
+    this.closeEditMenu();
 		this.$el.removeClass("selected-element");
 		this.$el.resizable('destroy').draggable('destroy');
 	},
@@ -84,5 +96,16 @@ ClixrIo.Views.Element = Backbone.View.extend({
 			this.$el.append(circle);
     }
 		return $handles;
+  },
+
+  deleteElement: function () {
+    this.deselect();
+    this.siteView.selectedView = null;
+    this.model.collection.remove(this.model);
+    if (this.global()) {
+      this.siteView.removeSubview('.user-site-elements', this);
+    } else {
+      this.siteView.removeSubview('.user-page-elements', this);
+    }
   }
 });

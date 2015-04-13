@@ -3,6 +3,12 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
     template: JST['menus/div_edit_menu'],
     className: 'edit-menu',
 
+    events: {
+      'click .site-page-toggle': 'sitePageToggle',
+      'click .delete-button': 'deleteElement',
+      'click .fa-close': 'close'
+    },
+
     styles: [
       'user-div-style-1',
       'user-div-style-2',
@@ -12,9 +18,7 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
     intersectingViews: [],
 
     initialize: function (options) {
-      this.$targetEl = options.$targetEl;
-      this.siteView = options.siteView;
-      this.intersectingViews = options.intersectingViews;
+      _.extend(this, options)
       $('.floating-menus').append(this.render().$el);
       this.setupColorPicker();
       this.styleMenu();
@@ -24,6 +28,19 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
         '.color-button': '.color-picker',
         '.overlapping-button': '.overlapping-items'
       });
+      this.delegateEvents();
+    },
+
+    sitePageToggle: function () {
+      if (this.global()) {
+        this.model.collection.remove(this.model);
+        this.siteView.currentPage.elements().add(this.model);
+        this.$('.site-page-toggle i').removeClass('fa-check-square-o').addClass('fa-square-o');
+      } else {
+        this.model.collection.remove(this.model);
+        this.siteView.model.elements().add(this.model);
+        this.$('.site-page-toggle i').addClass('fa-check-square-o').removeClass('fa-square-o');
+      }
     },
 
     overlappingItems: function () {
@@ -41,7 +58,7 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
       this.$el.append(this.overlappingItemsMenu.render().$el);
       this.$('.overlapping-button').click(function() {
         this.overlappingItemsMenu.render();
-      });
+      }.bind(this));
     },
 
     styleMenu: function () {
@@ -73,6 +90,7 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
 
     render: function () {
       var content = this.template({
+        global: this.global(),
         styleMenu: JST['menus/style_menu']({ styles: this.styles }),
         colorPicker: JST['menus/color_picker'](),
       });

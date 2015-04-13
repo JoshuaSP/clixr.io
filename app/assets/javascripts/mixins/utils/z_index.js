@@ -36,7 +36,7 @@ ClixrIo.Mixins.ZIndex = {
     var defaultRemove = view.remove;
 
     view.remove = function () {
-      defaultRemove().apply(view);
+      defaultRemove.apply(view);
       zis.splice(zis.indexOf(view), 1);
       zIndex.refresh();
     };

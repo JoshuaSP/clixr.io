@@ -148,12 +148,30 @@ $lightish-blue: #ddf;
 .edit-menu {
 	@include basic-window;
 	padding: 15px;
+	width: 165px;
+
+	.color-picker {
+		left: -200px;
+		top: 5px;
+	}
+
+	.style-menu {
+		left: -120px;
+		top: 130px;
+		width: 50px;
+	}
+
+	.fa-close {
+		position: absolute;
+		top: 4px;
+		right: 6px;
+	}
 
   li {
 		padding: 5px 0;
 		border-top: 1px solid $border-grey ;
 
-		&:first-child {
+		&:first-of-type {
 			border-top: none;
 		}
 
