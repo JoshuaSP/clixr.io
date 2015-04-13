@@ -23,7 +23,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.renderSite();
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
       $functionButtons: this.$('.function-buttons'),
-      parentView: this,
+      siteView: this,
       collection: this.model.pages(),
       model: this.currentPage
     });
@@ -38,7 +38,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     var newView = this.findView($(event.currentTarget));
     // newView.alternates = this.findAlternates(event, newView);
     var intersectors = this._findIntersectors(newView.$el, '.user-element');
-    newView.intersectingViews = this.findViews(intersectors);
+    newView.intersectingViews = _(this.findViews(intersectors)).sortBy(function(view) {
+      return parseInt(view.$el.css('z-index'))
+    }).reverse();
     this.selectView(newView);
   },
 
@@ -75,16 +77,18 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   _renderElements: function (selector, elements) {
     _(elements).each(function (element) {
       var elementView = new this.elementViews[element.get('type')]();
+      elementView.siteView = this
       this.addSubview(selector, elementView);
     });
   },
 
   elementViews: {
-    'div': ClixrIo.Views.Div,
-    'text': ClixrIo.Views.Text,
-    'menu': ClixrIo.Views.Menu,
-    'image': ClixrIo.Views.Image,
-    'button': ClixrIo.Views.Button
+    'Box': ClixrIo.Views.Div,
+    'Horizontal Line': ClixrIo.Views.Div,
+    'Text': ClixrIo.Views.Text,
+    'Menu': ClixrIo.Views.Menu,
+    'Image': ClixrIo.Views.Image,
+    'Button': ClixrIo.Views.Button
   },
 
   showPageMenu: function (event) {
@@ -106,7 +110,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.currentMenu = newMenu;
   },
 
-  _findIntersectors: function($target, intersectorsSelector) {
+  _findIntersectors: function($target, intersectorsSelector) {  // copied from StackOverflow, because why not
     var intersectors = [];
 
     var tAxis = $target.offset();
