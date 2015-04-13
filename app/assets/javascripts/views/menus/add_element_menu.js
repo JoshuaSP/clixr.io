@@ -57,6 +57,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       divView.$el.css('width', '200px');
       divView.$el.css('height', '200px');
       divView.$el.css('background-color', '#7093ae');
+      divView.$el.addClass('user-div-style-1')
       this._addAndSelect(divView);
     },
 

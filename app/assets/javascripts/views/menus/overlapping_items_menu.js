@@ -4,8 +4,8 @@ ClixrIo.Views.OverlappingItemsMenu = Backbone.View.extend({
     'sortupdate': 'update'
   },
 
-  template: 'menus/overlapping_items_menu',
-  tagName: "ul",
+  template: JST['menus/overlapping_items_menu'],
+  className: "overlapping-items",
 
   initialize: function () {
     this.render();
@@ -16,7 +16,9 @@ ClixrIo.Views.OverlappingItemsMenu = Backbone.View.extend({
 
   render: function() {
     var content = this.template({ items: this.collection });
-  },
+    this.$el.html(content);
+    return this;
+  }.bind(this),
 
   sortStart: function(event, ui) {
     this.oldPos = ui.item.index();
@@ -25,12 +27,12 @@ ClixrIo.Views.OverlappingItemsMenu = Backbone.View.extend({
   update: function(event, ui) {
     var els = this.collection.models;
     var newPos = ui.item.index();
-    var movedView = els.get(this.oldPos).view;
+    var movedView = els[this.oldPos].view;
     els.splice(newPos, 0, els.splice(this.oldPos, 1)[0]);
     if (newPos < this.oldPos ) {
-      movedView.moveBehind(els[newPos + 1].view);
+      movedView.moveInFrontOf(els[newPos + 1].view);
     } else {
-      movedView.moveInFrontOf(els[newPos - 1].view);
+      movedView.moveBehind(els[newPos - 1].view);
     }
   }
 });

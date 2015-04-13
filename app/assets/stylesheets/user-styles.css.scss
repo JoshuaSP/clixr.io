@@ -1,6 +1,9 @@
 .selected-element {
   border: 1px solid $select-color;
-	z-index: 15000;
+}
+
+.bring-to-front {
+  z-index: 10000 !important;
 }
 
 .user-page {
@@ -57,4 +60,17 @@
     width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
     display: inline-block;
   }
+}
+
+.user-div-style-1 {
+
+}
+
+.user-div-style-2 {
+  border-radius: 15px;
+}
+
+.user-div-style-3 {
+  border-radius: 25px;
+  opacity: .75;
 }

@@ -27,28 +27,48 @@ ClixrIo.Views.Element = Backbone.View.extend({
       this.secondClick();
       return;
     }
-    this.$el.addClass("selected-element");
+    var $el = this.$el;
+    $el.addClass("selected-element");
 		this.selected = true;
-    this.$el.draggable();
+    $el.draggable({
+      start: function () {
+        $el.addClass('bring-to-front');
+      },
+
+      stop: function () {
+        $el.removeClass('bring-to-front');
+      }
+    });
 		var $handles = this._addResizeHandles();
-    this.$el.resizable({ handles: $handles });
+    $el.resizable({ handles: $handles });
 	},
 
   secondClick: function () {
     if (this.editMenuView) return;
     this.editMenuView = new this.editMenu({
-      elementView: this,
+      $targetEl: this.$el,
       model: this.model,
-      siteView: this.siteView
+      siteView: this.siteView,
+      intersectingViews: this.intersectingViews
     });
+    this.editMenuView.$el.position({
+      my: "center",
+      at: "left-150px center",
+      of: this.$el
+    });
+    this.editMenuView.$el.css('opacity', 1);
+    this.editMenuView.$el.draggable();
   },
 
 	deselect: function () {
 		this.selected = false;
 		this.$('.drag-handle').remove();
     if (this.editMenuView) {
-      this.editMenuView.remove();
-      this.editMenuView = null;
+      this.editMenuView.$el.css('opacity', 0);
+      setTimeout(function () {
+        this.editMenuView.remove();
+        this.editMenuView = null;
+      }.bind(this), 200);
     }
 		this.$el.removeClass("selected-element");
 		this.$el.resizable('destroy').draggable('destroy');

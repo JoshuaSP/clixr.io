@@ -1,5 +1,5 @@
 ClixrIo.Mixins.MenuUtils = {
-  colorPicker: function (slideFunctionCreator) {
+  colorPicker: function (slideFunctionCreator, startColor) {
     var $redSlider = $('.color-picker .red .slider');
     var $greenSlider = $('.color-picker .green .slider');
     var $blueSlider = $('.color-picker .blue .slider');
@@ -9,6 +9,9 @@ ClixrIo.Mixins.MenuUtils = {
       min: 0,
       max: 256
     });
+    $redSlider.slider('value', parseInt(startColor.match(/\d+/g)[0]));
+    $blueSlider.slider('value', parseInt(startColor.match(/\d+/g)[1]));
+    $greenSlider.slider('value', parseInt(startColor.match(/\d+/g)[2]));
   },
 
   setupSubmenus: function (mainMenu, toggles) {

@@ -6,6 +6,10 @@ $lightish-blue: #ddf;
 	background-image: none;
 }
 
+.ui-widget-content {
+	background-image: none;
+}
+
 .drag-handle {
 	z-index: 5000;
 	height: 9px;
@@ -29,7 +33,7 @@ $lightish-blue: #ddf;
 	outline: 0;
 }
 
-.div-edit-menu {
+@mixin basic-window {
 	transition: opacity 200ms;
 	opacity: 0;
 	z-index: 5000;
@@ -37,50 +41,12 @@ $lightish-blue: #ddf;
 	background-color: white;
 	border-radius: 10px;
 	margin: 30px;
-	padding: 7px;
 	cursor: pointer;
 	background-clip: border-box;
 	box-shadow: $basic-shadow;
-	font-size: 20px;
-}
 
-#wysihtml5-toolbar {
-	transition: opacity 200ms;
-	opacity: 0;
-	z-index: 5000;
-	position: fixed;
-	background-color: white;
-	border-radius: 10px;
-	margin: 30px;
-	padding: 7px;
-	cursor: pointer;
-	background-clip: border-box;
-	box-shadow: $basic-shadow;
-	font-size: 20px;
-
-	.foreground-dropdown {
-		z-index: 5001;
-	}
-
-	> ul {
-		padding: 0;
-		margin: 0;
-
-		> li {
-			float: left;
-		}
-
-	}
-
-	li {
-		padding: 5px;
-		box-shadow: 2px 2px 3px #818181;
-		margin: 3px;
-		transition: background-color 100ms;
-
-		&:hover {
-			background-color: $lightish-blue;
-		}
+	a {
+		width: 100%
 	}
 
 	> div {
@@ -98,28 +64,24 @@ $lightish-blue: #ddf;
 		transition: opacity 200ms;
 	}
 
-	.size-slider {
-		left: 364px;
-		top: 46px;
-    width: 10px;
-    height: 115px;
-    padding: 0 5px;
+	.slider span {
+		background-color: $border-grey;
+		border-radius: 12px;
+		// border: 2px solid #88b;
+		left: -4px;
+		width: 14px;
+		height: 14px;
+		box-shadow: 1px 1px 2px #333;
 		background-image: none;
-
-		> div {
-			background-color: #aaa;
-
-			width: 80%;
-			margin: 5px auto;
-			height: 90%;
-
-			> div {
-				background-color: transparent;
-				background-image: none;
-				border: none;
-				height: 90%;
-			}
-		}
+		background-color:black;
+		background: rgba(98,112,105,1);
+		background: -moz-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
+		background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(98,112,105,1)), color-stop(16%, rgba(98,112,105,1)), color-stop(100%, rgba(0,0,0,1)));
+		background: -webkit-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
+		background: -o-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
+		background: -ms-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
+		background: linear-gradient(135deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#627069', endColorstr='#000000', GradientType=1 );
 	}
 
 	.color-picker {
@@ -181,24 +143,89 @@ $lightish-blue: #ddf;
 		}
 	}
 
-	.slider span {
-		background-color: $border-grey;
-		border-radius: 12px;
-		// border: 2px solid #88b;
-		left: -4px;
-		width: 14px;
-		height: 14px;
-		box-shadow: 1px 1px 2px #333;
+}
+
+.edit-menu {
+	@include basic-window;
+	padding: 15px;
+
+  li {
+		padding: 5px 0;
+		border-top: 1px solid $border-grey ;
+
+		&:first-child {
+			border-top: none;
+		}
+
+		&:hover {
+			background-color: $menu-select;
+		}
+	}
+
+	.overlapping-items {
+
+		li {
+			padding: 10px 0;
+			width: 130px;
+
+			> div {
+				float: left;
+				margin: 0 5px;
+			}
+		}
+
+	}
+}
+
+#wysihtml5-toolbar {
+	@include basic-window;
+	font-size: 20px;
+	margin: 30px;
+	padding: 7px;
+
+	> ul {
+		padding: 0;
+		margin: 0;
+
+		> li {
+			float: left;
+		}
+
+	}
+
+	li {
+		padding: 5px;
+		box-shadow: 2px 2px 3px #818181;
+		margin: 3px;
+
+		&:hover {
+			background-color: $lightish-blue;
+		}
+	}
+
+
+	.size-slider {
+		left: 364px;
+		top: 46px;
+    width: 10px;
+    height: 115px;
+    padding: 0 5px;
 		background-image: none;
-		background-color:black;
-		background: rgba(98,112,105,1);
-		background: -moz-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
-		background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(98,112,105,1)), color-stop(16%, rgba(98,112,105,1)), color-stop(100%, rgba(0,0,0,1)));
-		background: -webkit-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
-		background: -o-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
-		background: -ms-linear-gradient(-45deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
-		background: linear-gradient(135deg, rgba(98,112,105,1) 0%, rgba(98,112,105,1) 16%, rgba(0,0,0,1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#627069', endColorstr='#000000', GradientType=1 );
+
+		> div {
+			background-color: #aaa;
+
+			width: 80%;
+			margin: 5px auto;
+			height: 90%;
+
+			> div {
+				background-color: transparent;
+				background-image: none;
+				border: none;
+				height: 90%;
+			}
+		}
 	}
 
 	.font-menu {
