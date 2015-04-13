@@ -29,6 +29,21 @@ $lightish-blue: #ddf;
 	outline: 0;
 }
 
+.div-edit-menu {
+	transition: opacity 200ms;
+	opacity: 0;
+	z-index: 5000;
+	position: fixed;
+	background-color: white;
+	border-radius: 10px;
+	margin: 30px;
+	padding: 7px;
+	cursor: pointer;
+	background-clip: border-box;
+	box-shadow: $basic-shadow;
+	font-size: 20px;
+}
+
 #wysihtml5-toolbar {
 	transition: opacity 200ms;
 	opacity: 0;

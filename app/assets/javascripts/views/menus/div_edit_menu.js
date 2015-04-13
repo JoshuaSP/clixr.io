@@ -1,6 +1,7 @@
 ClixrIo.Views.DivEditMenu = Backbone.View.extend(
   _.extend({}, ClixrIo.Mixins.EditElementMenu, ClixrIo.Mixins.MenuUtils, {
     template: 'menus/div_edit_menu',
+    className: 'div-edit-menu',
 
     styles: [
       'user-div-style-1',
