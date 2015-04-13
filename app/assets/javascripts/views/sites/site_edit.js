@@ -36,8 +36,16 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   selectElement: function(event) {
     var newView = this.findView($(event.currentTarget));
-    newView.alternates = this.findAlternates(event, newView);
+    // newView.alternates = this.findAlternates(event, newView);
+    var intersectors = this._findIntersectors(newView.$el, '.user-element');
+    newView.intersectingViews = this.findViews(intersectors);
     this.selectView(newView);
+  },
+
+  findViews: function($els) {
+    return $els.map(function($el) {
+      return this.findView($el);
+    }.bind(this));
   },
 
   findView: function($el) {
@@ -45,24 +53,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       .concat(this.subviews('.user-site-elements'));
     return _(allViews).find(function(subview) {
       return subview.$el.is($el);
-    });
-  },
-
-  findAlternates: function(event, selectedView) {
-    return _.chain(this.elementStack(event)).map(function($el) {
-      return this.findView($el);
-    }.bind(this)).reject(function($el) {
-      return $el === selectedView;
-    }).value();
-  },
-
-  elementStack: function (event) {
-    var view = this;
-    return this.$('.user-element').filter(function (index, el) {
-      $el = $(el)
-      var xCoords = [$el.offset().left, $el.offset().left + $el.css('width')];
-      var yCoords = [$el.offset().top, $el.offset().top + $el.css('height')];
-      return view._between(xCoords, event.pageX) && view._between(yCoords, event.pageY);
     });
   },
 
@@ -116,7 +106,24 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.currentMenu = newMenu;
   },
 
-  _between: function (coords, x) {
-    return (x >= coords[0] && x <= coords[1])
+  _findIntersectors: function($target, intersectorsSelector) {
+    var intersectors = [];
+
+    var tAxis = $target.offset();
+    var t_x = [tAxis.left, tAxis.left + $target.outerWidth()];
+    var t_y = [tAxis.top, tAxis.top + $target.outerHeight()];
+
+    $(intersectorsSelector).each(function() {
+      var $this = $(this);
+      var thisPos = $this.offset();
+      var i_x = [thisPos.left, thisPos.left + $this.outerWidth()]
+      var i_y = [thisPos.top, thisPos.top + $this.outerHeight()];
+
+      if ( t_x[0] < i_x[1] && t_x[1] > i_x[0] &&
+         t_y[0] < i_y[1] && t_y[1] > i_y[0]) {
+        intersectors.push($this);
+      }
+    });
+    return intersectors;
   }
 });

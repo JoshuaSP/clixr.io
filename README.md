@@ -101,6 +101,15 @@ clixr.io is a drag-and-drop webpage editor inspired by wix.com. Users can:
 
   We will create link target menus, button and menu style menus, and create some preset CSS classes for users to style their buttons and menus.
 
+  Changing the edit menu from the wireframe:  Now we will have order:
+
+    - Edit Text/Switch Image/Choose Link Target
+    - Choose Style/Resize Property
+    - Choose Color
+    - Page order
+    - Delete Item
+
+
 [Details][phase-four]
 
 ### Phase 5: (~1-2 days) Site Menu/Pages

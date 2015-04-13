@@ -11,11 +11,11 @@ ClixrIo.Mixins.MenuUtils = {
     });
   },
 
-  setupSubmenus: function (context, toggles) {
+  setupSubmenus: function (mainMenu, toggles) {
     for (var source in toggles) {
-      var target = context.find(toggles[source]);
+      var target = mainMenu.find(toggles[source]);
       (function (target) {
-        context.find(source).click(function () {
+        mainMenu.find(source).click(function () {
           if (target.css('opacity') == 1) {
             target.css('opacity', 0);
             setTimeout(function() {
