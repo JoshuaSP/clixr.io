@@ -42,11 +42,11 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     horizontalLine: function () {
       var div = new ClixrIo.Models.Element({ type: 'div' });
       var divView = new ClixrIo.Views.Div({ model: div });
-      divView.setCss("left", "0px");
-      divView.setCss("top", "200px");
-      divView.setCss('width', '980px');
-      divView.setCss('height', '2px');
-      divView.setCss('background-color', 'black');
+      divView.$el.css("left", "0px");
+      divView.$el.css("top", "200px");
+      divView.$el.css('width', '980px');
+      divView.$el.css('height', '2px');
+      divView.$el.css('background-color', 'black');
       this._addAndSelect(divView);
     },
 
@@ -54,9 +54,9 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       var div = new ClixrIo.Models.Element({ type: 'div' });
       var divView = new ClixrIo.Views.Div({ model: div });
       this._placeCenter(divView);
-      divView.setCss('width', '200px');
-      divView.setCss('height', '200px');
-      divView.setCss('background-color', '#7093ae');
+      divView.$el.css('width', '200px');
+      divView.$el.css('height', '200px');
+      divView.$el.css('background-color', '#7093ae');
       this._addAndSelect(divView);
     },
 
@@ -70,8 +70,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       var text = new ClixrIo.Models.Element({ type: 'text' });
       var textView = new ClixrIo.Views.Text({ model: text });
       this._placeCenter(textView);
-      textView.setCss('width', '200px');
-      textView.setCss('height', '200px');
+      textView.$el.css('width', '200px');
+      textView.$el.css('height', '200px');
       this._addAndSelect(textView);
     },
 
@@ -91,15 +91,15 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         collection: this.collection
       });
       this._placeCenter(menuView);
-      menuView.setCss('width', '400px');
-      menuView.setCss('height', '75px');
+      menuView.$el.css('width', '400px');
+      menuView.$el.css('height', '75px');
       this._addAndSelect(menuView);
     },
 
 
     _placeCenter: function (view) {
-      view.setCss("left", "490px");
-      view.setCss("top", "200px");
+      view.$el.css("left", "490px");
+      view.$el.css("top", "200px");
     }
   })
 );

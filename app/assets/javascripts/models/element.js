@@ -1,5 +1,23 @@
 ClixrIo.Models.Element = Backbone.Model.extend ({
+  cssProperties: [
+    'width',
+    'height',
+    'z-index',
+    'top',
+    'left',
+    'background-color'
+  ],
+
   save: function () {
-    this.set('css', JSON.stringify(this.css));
+    var css = {};
+    this.cssProperties.forEach(function(property) {
+      if (this.$el.css(property)) {
+        css[property] = this.$el.css(property);
+      }
+    }.bind(this));
+    this.set('css', JSON.stringify(css));
+    this.set('class', _(this.$el.attr('class').split(" ")).without("user-element").join(" "));
+    this.set('content', this.$el.find('.text-content').html());
+    Backbone.Model.prototype.save.apply(this);
   }
 });
