@@ -1,8 +1,5 @@
 ClixrIo.Mixins.EditElementMenu = {
 
-  initialize: function () {
-    $('.floating-menus').append(this.$el.render())
-  },
 
   overlappingItems: function () {
 

@@ -8,16 +8,50 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend({
       'user-div-style-3'
     ],
 
+    initialize: function (options) {
+      this.$targetEl = options.$targetEl;
+      $('.floating-menus').append(this.$el.render());
+      this.setupSubmenus(this.$el, {
+        '.style-button': '.style-menu',
+        '.color-button': '.color-picker',
+        '.overlapping-button': '.overlapping-items'
+      });
+      this._setupColorPicker();
+      this._styleMenu();
+    },
 
+    styleMenu: function () {
+      var view = this;
+      this.$el.find('.style-menu li').each(function(index) {
+        var style = view.styles[index];
+        $(this).click( function () {
+          var currentStyle = view.$targetEl.attr('class').match(/user-div-style-\d+/)[0];
+          view.$targetEl.removeClass(currentStyle);
+          view.$targetEl.addClass(style);
+        });
+      });
+    },
+
+    setupColorPicker: function () {
+      var slideFunctionCreator = function ($redSlider, $greenSlider, $blueSlider) {
+        return function (event, ui) {
+          this.$targetEl.css(
+            "background-color",
+            "rgb(" + $redSlider.slider("value") + "," +
+            $greenSlider.slider("value") + "," +
+            $blueSlider.slider("value") + ")"
+          );
+        };
+      };
+      this.colorPicker(slideFunctionCreator);
+    },
 
     render: function () {
-      content = JST[template]({
-        styleMenu: JST['menus/style'](this.styles),
+      var content = JST[template]({
+        styleMenu: JST['menus/style_menu']({ styles: this.styles }),
         colorPicker: JST['menus/color_picker'](),
-        overlappingItems: JST['menus/overlapping_items']()
-      })
+        overlappingItems: JST['menus/overlapping_items_menu'](this.intersectingViews)
+      });
     }
-
-
   })
 });
