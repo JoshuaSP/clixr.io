@@ -8,10 +8,12 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
       'user-div-style-3'
     ],
 
+    intersectingViews: [],
+
     initialize: function (options) {
       this.$targetEl = options.$targetEl;
       this.siteView = options.siteView;
-      $('.floating-menus').append(this.$el.render());
+      $('.floating-menus').append(this.render().$el);
       this.setupSubmenus(this.$el, {
         '.style-button': '.style-menu',
         '.color-button': '.color-picker',
@@ -23,6 +25,10 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
     },
 
     overlappingItems: function () {
+      if (this.intersectingViews.length < 2) {
+        this.$('.overlapping-button').remove();
+        return
+      }
       this.overlappingItemsMenu = new ClixrIo.Views.OverlappingItemsMenu({
         collection: new ClixrIo.Collections.Elements(
           this.intersectingViews.map(function(view) {
@@ -65,6 +71,7 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
         colorPicker: JST['menus/color_picker'](),
       });
       this.$el.html(content);
+      return this;
     },
 
     remove: function () {

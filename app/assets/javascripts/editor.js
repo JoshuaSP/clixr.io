@@ -5,7 +5,9 @@
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./mixins
-//= require_tree ./views
+//= require_tree ./views/menus
+//= require_tree ./views/elements
+//= require_tree ./views/sites
 //= require parser_rules/advanced_unwrap
 //= require wysihtml
 //= require wysihtml-toolbar
