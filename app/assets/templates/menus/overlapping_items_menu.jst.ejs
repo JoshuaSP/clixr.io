@@ -3,8 +3,8 @@
     <%= item.view.icon(15) %>
     <div>
       <%= item.get('type') %>
-        <% if (item.get('content')) { %>
-          <%= ": " + item.escape('content').replace(/<.>?/g, "").slice(0, 9) %>
+        <% if (item.view.$('.text-content').length) { %>
+          <%= ": " + item.view.$('.text-content').html().replace(/<.*?>/g, "").slice(0, 13) %>
         <% } %>
     </div>
   </li>

@@ -13,26 +13,22 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   closeEditMenu: function () {
     if (this.editMenuView) {
       this.editMenuView.$el.css('opacity', 0);
+      this.editMenuView.$toolbar.css('opacity', 0);
       setTimeout(function () {
+        this.editMenuView.$toolbar.remove();
         this.editMenuView.remove();
         this.editMenuView = null;
       }.bind(this), 200);
-      if (this.editMenuView.toolbar) {
-        var toolbar = this.editMenuView.toolbar;
-        toolbar.css('opacity', 0);
-        setTimeout(function () {
-          toolbar.remove();
-        }, 200);
-        if (!this.editMenuView.toolbarVisible) this.$el.draggable('destroy');
-        this.$textbox.attr("contenteditable", "false");
-        this.$textbox.attr('id','');
-      }
+      this.$textbox.attr('id','');
     }
   },
 
   deselect: function () {
     this.selected = false;
     this.$el.resizable('destroy');
+    this.$el.draggable();
+    this.$el.draggable('destroy');
+    this.$textbox.attr("contenteditable", "false");
     this.$('.drag-handle').remove();
     this.$el.removeClass("selected-element");
     this.closeEditMenu();

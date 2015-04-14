@@ -17,8 +17,11 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       textEdit.setupSubmenus(textEdit.$el, {
         '.overlapping-button': '.overlapping-items'
       });
-      var $textbox = textEdit.$targetEl.find('.text-content')
+      var $textbox = textEdit.$targetEl.find('.text-content');
       $textbox.attr('id', 'texteditor');
+      // $textbox.change(function() {
+      //   this.model.set('content', $textbox.html());
+      // }.bind(this));
       textEdit._setupToolbar();
       textEdit.editor = new wysihtml5.Editor("texteditor", {
          toolbar: "wysihtml5-toolbar",
@@ -37,7 +40,7 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
           this.toolbarVisible = true;
           this.$targetEl.draggable('destroy');
           $textbox.attr("contenteditable", "true");
-          this.$toolbar.find('a[data-wysihtml5-command-value="p"]').trigger('click');
+          $('a[data-wysihtml5-command-value="p"]')[0].click();
         }
       }.bind(this));
       textEdit.delegateEvents();
