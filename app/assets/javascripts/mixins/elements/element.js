@@ -35,7 +35,6 @@ ClixrIo.Views.Element = Backbone.View.extend({
       start: function () {
         $el.addClass('bring-to-front');
       },
-
       stop: function () {
         $el.removeClass('bring-to-front');
       }

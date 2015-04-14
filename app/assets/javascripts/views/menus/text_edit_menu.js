@@ -10,28 +10,38 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
     },
 
     initialize: function (options) {
-      _.extend(this, options)
-      $('.floating-menus').append(this.render().$el);
-      this.overlappingItems();
-      this.setupSubmenus(this.$el, {
-        '.tolbar-button': '#wysihtml5-toolbar',
+      var textEdit = this;
+      _.extend(textEdit, options);
+      $('.floating-menus').append(textEdit.render().$el);
+      textEdit.overlappingItems();
+      textEdit.setupSubmenus(textEdit.$el, {
         '.overlapping-button': '.overlapping-items'
       });
-      this.$targetEl.draggable('destroy');
-      this.$targetEl.find('.text-content').attr('id', 'texteditor');
-      this._setupToolbar();
-      this.editor = new wysihtml5.Editor("texteditor", {
+      textEdit.$targetEl.find('.text-content').attr('id', 'texteditor');
+      textEdit._setupToolbar();
+      textEdit.editor = new wysihtml5.Editor("texteditor", {
          toolbar: "wysihtml5-toolbar",
          parserRules: wysihtml5ParserRules, // defined in parser rules set
       });
-      this._hookupSliders(this.editor);
-      this.delegateEvents();
+      textEdit.setupSubmenus(textEdit.$el, {
+        '.toolbar-button': '#wysihtml5-toolbar',
+      });
+      textEdit._hookupSliders(textEdit.editor);
+      textEdit.$('.toolbar-button').click(function() {
+        if (textEdit.toolbarVisible) {
+          textEdit.toolbarVisible = false;
+          textEdit.$targetEl.draggable();
+        } else {
+          textEdit.toolbarVisible = true;
+          textEdit.$targetEl.draggable('destroy');
+        }
+      });
+      textEdit.delegateEvents();
     },
 
     render: function () {
       var content = this.template({
-        global: this.global(),
-        toolbar: JST['menus/text-toolbar']
+        global: this.global()
       });
       this.$el.html(content);
       return this;
@@ -67,7 +77,7 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       this.toolbar.position({
         my: "center",
         at: "center top-45px",
-        of: this.$el
+        of: this.$targetEl
       });
       ClixrIo.Mixins.MenuUtils.setupSubmenus(this.toolbar, {
         '.font-button': '.font-menu',

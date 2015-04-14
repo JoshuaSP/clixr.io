@@ -6,6 +6,12 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
       template: JST['menus/div_edit_menu'],
       className: 'edit-menu',
 
+      styles: [
+        'user-div-style-1',
+        'user-div-style-2',
+        'user-div-style-3'
+      ],
+
       initialize: function (options) {
         _.extend(this, options)
         $('.floating-menus').append(this.render().$el);

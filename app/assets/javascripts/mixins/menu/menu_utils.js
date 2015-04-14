@@ -9,14 +9,16 @@ ClixrIo.Mixins.MenuUtils = {
       min: 0,
       max: 256
     });
-    $redSlider.slider('value', parseInt(startColor.match(/\d+/g)[0]));
-    $blueSlider.slider('value', parseInt(startColor.match(/\d+/g)[1]));
-    $greenSlider.slider('value', parseInt(startColor.match(/\d+/g)[2]));
+    if (startColor) {
+      $redSlider.slider('value', parseInt(startColor.match(/\d+/g)[0]));
+      $blueSlider.slider('value', parseInt(startColor.match(/\d+/g)[1]));
+      $greenSlider.slider('value', parseInt(startColor.match(/\d+/g)[2]));
+    }
   },
 
   setupSubmenus: function (mainMenu, toggles) {
     for (var source in toggles) {
-      var target = mainMenu.find(toggles[source]);
+      var target = $(toggles[source]);
       (function (target) {
         mainMenu.find(source).click(function () {
           if (target.css('opacity') == 1) {

@@ -10,19 +10,24 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     this.$textbox = this.$('.text-content');
   },
 
-  deselectElement: function () {
+  icon: function (options) {
+    return '<i class="fa fa-text"></i>';
+  },
+
+  deselect: function () {
     this.selected = false;
     this.$el.resizable('destroy');
     this.$('.drag-handle').remove();
     this.$el.removeClass("selected-element");
+    this.closeEditMenu();
     if (this.toolbar) {
       this.$textbox.attr('id','');
-      this.$textbox.attr("contenteditable", "false")
-      this.toolbar.css('opacity',0)
+      this.$textbox.attr("contenteditable", "false");
+      this.toolbar.css('opacity',0);
       setTimeout(function() {
         this.toolbar.remove();
         this.toolbar = null;
-      }.bind(this), 200)
+      }.bind(this), 200);
       this.editor = null;
     } else {
       this.$el.draggable('destroy');
