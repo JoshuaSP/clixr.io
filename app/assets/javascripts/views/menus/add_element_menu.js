@@ -40,11 +40,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     horizontalLine: function () {
-      var div = new ClixrIo.Models.Element({
-        siteView: this.siteView,
-        type: 'Horizontal Line'
-      });
-      var divView = new ClixrIo.Views.HorizontalLine({ model: div });
+      var div = new ClixrIo.Models.Element({ type: 'Horizontal Line' });
+      var divView = new ClixrIo.Views.HorizntalLine({ model: div });
       divView.$el.css("left", "0px");
       divView.$el.css("top", "200px");
       divView.$el.css('width', '980px');
@@ -54,10 +51,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     box: function () {
-      var div = new ClixrIo.Models.Element({
-        siteView: this.siteView,
-        type: 'Box'
-      });
+      var div = new ClixrIo.Models.Element({ type: 'Box' });
       var divView = new ClixrIo.Views.Box({ model: div });
       this._placeCenter(divView);
       divView.$el.css('width', '200px');
@@ -75,10 +69,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     text: function () {
-      var text = new ClixrIo.Models.Element({
-        siteView: this.siteView,
-        type: 'Text'
-      });
+      var text = new ClixrIo.Models.Element({ type: 'Text' });
       var textView = new ClixrIo.Views.Text({ model: text });
       this._placeCenter(textView);
       textView.$el.css('width', '200px');
@@ -88,8 +79,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     image: function () {
       var image = new ClixrIo.Models.Element({
-        siteView: this.siteView,
-        type: 'Image'
+        type: 'Image',
+        resize_property: 'scale'
       });
       filepicker.pick(function(blob) {
         image.set('url', blob.url);
@@ -103,10 +94,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         },
 
     menu: function () {
-      var menu = new ClixrIo.Models.Element({
-        siteView: this.siteView,
-        type: 'Menu'
-      });
+      var menu = new ClixrIo.Models.Element({ type: 'Menu' });
       var menuView = new ClixrIo.Views.Menu({
         model: menu,
         collection: this.collection

@@ -44,7 +44,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
 
   resizable: function () {
 		var $handles = this._addResizeHandles();
-    $el.resizable({ handles: $handles });
+    this.$el.resizable({ handles: $handles });
   },
 
   global: function () {
@@ -89,12 +89,13 @@ ClixrIo.Views.Element = Backbone.View.extend({
 		this.$el.resizable('destroy').draggable('destroy');
 	},
 
-	_addResizeHandles: function () {
+	_addResizeHandles: function (hndls) {
+    var handles = hndls || this.handles;
     var $handles = {};
-    for (var handle in this.handles) {
+    for (var handle in handles) {
       var circle = $('<div class="drag-handle">');
       circle.addClass("ui-resizable-handle ui-resizable-" + handle);
-      circle.css(this.handles[handle]);
+      circle.css(handles[handle]);
       $handles[handle] = circle;
 			this.$el.append(circle);
     }
