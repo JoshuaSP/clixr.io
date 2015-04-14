@@ -41,7 +41,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     horizontalLine: function () {
       var div = new ClixrIo.Models.Element({ type: 'Horizontal Line' });
-      var divView = new ClixrIo.Views.Div({ model: div });
+      var divView = new ClixrIo.Views.HorizontalLine({ model: div });
       divView.$el.css("left", "0px");
       divView.$el.css("top", "200px");
       divView.$el.css('width', '980px');
@@ -52,7 +52,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     box: function () {
       var div = new ClixrIo.Models.Element({ type: 'Box' });
-      var divView = new ClixrIo.Views.Div({ model: div });
+      var divView = new ClixrIo.Views.Box({ model: div });
       this._placeCenter(divView);
       divView.$el.css('width', '200px');
       divView.$el.css('height', '200px');

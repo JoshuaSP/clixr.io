@@ -83,8 +83,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   elementViews: {
-    'Box': ClixrIo.Views.Div,
-    'Horizontal Line': ClixrIo.Views.Div,
+    'Box': ClixrIo.Views.Box,
+    'Horizontal Line': ClixrIo.Views.HorizontalLine,
     'Text': ClixrIo.Views.Text,
     'Menu': ClixrIo.Views.Menu,
     'Image': ClixrIo.Views.Image,
