@@ -1,3 +1,11 @@
 <% items.each(function (item) { %>
-  <li class="clearfix"> <%= item.view.icon(15) %> <div> <%= item.get('type') %> </div> </li>
+  <li class="clearfix">
+    <%= item.view.icon(15) %>
+    <div>
+      <%= item.get('type') %>
+        <% if (item.get('content')) { %>
+          <%= ": " + item.escape('content').replace(/<.>?/g, "").slice(0, 9) %>
+        <% } %>
+    </div>
+  </li>
 <% }) %>

@@ -17,7 +17,8 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       textEdit.setupSubmenus(textEdit.$el, {
         '.overlapping-button': '.overlapping-items'
       });
-      textEdit.$targetEl.find('.text-content').attr('id', 'texteditor');
+      var $textbox = textEdit.$targetEl.find('.text-content')
+      $textbox.attr('id', 'texteditor');
       textEdit._setupToolbar();
       textEdit.editor = new wysihtml5.Editor("texteditor", {
          toolbar: "wysihtml5-toolbar",
@@ -29,14 +30,29 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       textEdit._hookupSliders(textEdit.editor);
       textEdit.$('.toolbar-button').click(function() {
         if (textEdit.toolbarVisible) {
-          textEdit.toolbarVisible = false;
-          textEdit.$targetEl.draggable();
+          this.toolbarVisible = false;
+          this.$targetEl.draggable();
+          $textbox.attr("contenteditable", "false");
         } else {
-          textEdit.toolbarVisible = true;
-          textEdit.$targetEl.draggable('destroy');
+          this.toolbarVisible = true;
+          this.$targetEl.draggable('destroy');
+          $textbox.attr("contenteditable", "true");
+          this.$toolbar.find('a[data-wysihtml5-command-value="p"]').trigger('click');
         }
-      });
+      }.bind(this));
       textEdit.delegateEvents();
+    },
+
+    remove: function () {
+      if (this.$toolbar) {
+        setTimeout(function() {
+          this.$toolbar.remove();
+          this.$toolbar = null;
+        }.bind(this), 200);
+        this.$toolbar.css('opacity', 0);
+        if (this.toolbarVisible) this.$el.draggable('destroy');
+      }
+      ClixrIo.Mixins.EditElementMenu.remove.apply(this);
     },
 
     render: function () {
@@ -70,16 +86,16 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
     },
 
     _setupToolbar: function () {
-      this.toolbar = $(JST['menus/text_toolbar']({ colorPicker: JST['menus/color_picker']() }));
+      this.$toolbar = $(JST['menus/text_toolbar']({ colorPicker: JST['menus/color_picker']() }));
       var menusContainer = $('.floating-menus');
-      menusContainer.append(this.toolbar);
-      this.toolbar.draggable();
-      this.toolbar.position({
+      menusContainer.append(this.$toolbar);
+      this.$toolbar.draggable();
+      this.$toolbar.position({
         my: "center",
         at: "center top-45px",
         of: this.$targetEl
       });
-      ClixrIo.Mixins.MenuUtils.setupSubmenus(this.toolbar, {
+      ClixrIo.Mixins.MenuUtils.setupSubmenus(this.$toolbar, {
         '.font-button': '.font-menu',
         '.size-button': '.size-slider',
         '.color-button': '.color-picker',
