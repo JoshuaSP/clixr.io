@@ -39,9 +39,13 @@ ClixrIo.Views.Element = Backbone.View.extend({
         $el.removeClass('bring-to-front');
       }
     });
+    this.resizable();
+	},
+
+  resizable: function () {
 		var $handles = this._addResizeHandles();
     $el.resizable({ handles: $handles });
-	},
+  },
 
   global: function () {
     return this.model.collection === this.siteView.model.elements();
