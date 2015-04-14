@@ -14,7 +14,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.model.fetch({
       success: this._setupPage.bind(this)
     });
-    $.cloudinary.config({ cloud_name: 'clixr-io', api_key: '442135653978222'});
   },
 
   _setupPage: function () {

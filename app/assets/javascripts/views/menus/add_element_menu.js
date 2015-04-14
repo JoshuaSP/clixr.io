@@ -78,12 +78,19 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     image: function () {
+      // var imageModal = new ClixrIo.Views.ImageModal ({
+      //   model: image,
+      //   success: function() {},
+      // });
+      // $('.modals').append(imageModal.render().$el);
+      // imageModal.$el.css('opacity', 1)
       var image = new ClixrIo.Models.Element({ type: 'Image' });
-      var imageModal = new ClixrIo.Views.ImageModal ({
-        model: image,
-        success: function() {},
-      });
-      $('.modals').append(imageModal.render().$el);
+      filepicker.pick(function(blob) {
+        image.set('url', blob.url);
+        var imageView = new ClixrIo.Views.Image({ model: image });
+        this._placeCenter(imageView);
+        this._addAndSelect(imageView);
+      }.bind(this));
     },
 
     menu: function () {

@@ -261,3 +261,18 @@ $lightish-blue: #ddf;
 		}
 	}
 }
+
+.modals {
+	position: fixed;
+	width: 100vw;
+	height: 1px;
+}
+
+.image-modal {
+	@include basic-window;
+	position: relative;
+	width: 40%;
+	min-width: 200px;
+	height: 200px;
+	margin: 100px auto 0;
+}

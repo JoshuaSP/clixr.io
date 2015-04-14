@@ -11,6 +11,5 @@
 //= require parser_rules/advanced_unwrap
 //= require wysihtml
 //= require wysihtml-toolbar
-//= require cloudinary
 //= require_tree ../../../vendor/assets/javascripts/editor
 // ^^^ eventually remove & replace with CDN version

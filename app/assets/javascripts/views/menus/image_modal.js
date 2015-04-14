@@ -23,6 +23,10 @@ ClixrIo.Views.ImageModal = Backbone.View.extend({
     }, 0);
   },
 
+  uploadFile: function () {
+
+  },
+
   selectUrl: function () {
     this.model.set('url', this.$('input').val());
     this.render();
@@ -40,4 +44,4 @@ ClixrIo.Views.ImageModal = Backbone.View.extend({
     $(document).off();
   }
 
-})
+});
