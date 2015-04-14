@@ -89,6 +89,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         image.set('url', blob.url);
         var imageView = new ClixrIo.Views.Image({ model: image });
         this._placeCenter(imageView);
+        imageView.$el.css('width', '200px');      
         this._addAndSelect(imageView);
       }.bind(this));
     },

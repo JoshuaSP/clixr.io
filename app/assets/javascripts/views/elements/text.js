@@ -31,6 +31,9 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     this.$textbox.attr("contenteditable", "false");
     this.$('.drag-handle').remove();
     this.$el.removeClass("selected-element");
+    if (!this.$textbox.html()) {
+      this.deleteElement();
+    }
     this.closeEditMenu();
   },
 
