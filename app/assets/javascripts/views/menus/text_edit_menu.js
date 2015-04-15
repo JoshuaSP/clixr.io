@@ -43,7 +43,7 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
     },
 
     overlapListen: function () {
-      $textbox.on('keyup', function () {
+      this.$targetEl.find('.text-content').on('keyup', function () {
         this.overlappingItemsMenu.render();
       }.bind(this));
     },
@@ -57,7 +57,7 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         this.$toolbar.css('opacity', 0);
         if (this.toolbarVisible) this.$el.draggable('destroy');
       }
-      textEdit.$targetEl.find('.text-content').off();
+      this.$targetEl.find('.text-content').off();
       ClixrIo.Mixins.EditElementMenu.remove.apply(this);
     },
 
