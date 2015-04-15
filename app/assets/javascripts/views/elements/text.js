@@ -1,6 +1,6 @@
 ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   tagName: 'div',
-  template: JST['elements/text_element'],
+  template: JST['elements/text'],
   editMenu: ClixrIo.Views.TextEditMenu,
 
   initialize: function (options) {

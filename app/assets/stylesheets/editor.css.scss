@@ -150,6 +150,11 @@ $lightish-blue: #ddf;
 	padding: 15px;
 	width: 165px;
 
+	input {
+		margin: 6px 0 3px;
+		width: 96%;
+	}
+
 	.color-picker {
 		left: -200px;
 		top: 5px;
@@ -177,6 +182,10 @@ $lightish-blue: #ddf;
 
 		&:hover {
 			background-color: $menu-select;
+		}
+
+		&.button-text:hover {
+			background-color: inherit;
 		}
 	}
 

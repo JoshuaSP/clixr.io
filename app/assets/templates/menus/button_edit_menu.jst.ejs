@@ -1,6 +1,9 @@
 <i class="fa fa-close"></i>
 <li class="style-button">Style</li>
-<li class='button-text'><input type="text"><%= this.model.get('content').replace(/<.*?>/g, "") %></input></li>
+<li class='button-text'>
+  Button Text:
+  <input type="text" value="<%= this.model.get('content').replace(/<.*?>/g,'') %>">
+</li>
 <li class="overlapping-button">Overlapping Items</li>
 <li class="site-page-toggle">Put On Every Page
   <% if (global) { %>
