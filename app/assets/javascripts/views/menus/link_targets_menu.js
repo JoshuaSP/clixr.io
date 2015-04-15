@@ -23,15 +23,26 @@ ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
   },
 
   setTarget: function(event) {
-    var $inputbox, $operator = $(event.currentTarget);
+    var address, $inputbox, $operator = $(event.currentTarget);
     if ($operator.closest('.external-url-button').length) {
       $inputbox = $operator.closest('.external-url-button').find('input');
-      var address = $inputbox.val();
+      address = $inputbox.val();
       if (!address.match(/^http/)) address = "http://" + address;
+      if (!address.match(/^(https?:\/\/)?\w+\.(\w+\.)*\w+(\/\w+)*\/?(\w+\.\w+)?$/)) {
+        $inputbox.addClass('input-bad');
+      } else {
+        $inputbox.removeClass('input-bad');
+      }
       this.setFunction(address);
     } else if ($operator.closest('.email-link-button').length) {
       $inputbox = $operator.closest('.email-link-button').find('input');
-      this.setFunction("mailto:" + $inputbox.val());
+      address = $inputbox.val();
+      if (!address.match(/[\w\.]+@\w+\.(\w+\.)*\w+/)) {
+        $inputbox.addClass('input-bad');
+      } else {
+        $inputbox.removeClass('input-bad');
+      }
+      this.setFunction("mailto:" + address);
     } else {
       this.setFunction("#" + this.collection.at($operator.index() - 5).get('address'));
     }

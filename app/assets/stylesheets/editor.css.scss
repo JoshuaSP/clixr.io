@@ -1,6 +1,9 @@
 $select-color: #7effeb;
 $handle-bg-color: white;
 $lightish-blue: #ddf;
+$user-text-grey: #444;
+$focus-good: #322fa1;
+$focus-bad: #cf383a;
 
 .ui-widget-content .ui-icon {
 	background-image: none;
@@ -195,6 +198,7 @@ $lightish-blue: #ddf;
 
 			input {
 				cursor: text;
+				color: $user-text-grey;
 			}
 		}
 	}
@@ -310,4 +314,54 @@ $lightish-blue: #ddf;
 	padding: 15px;
 	width: 190px;
 	word-wrap: break-word;
+
+	.target-name-header {
+		font-weight: bold;
+	}
+
+	li:first-of-type {
+		border-top: 1px solid $border-grey;
+		margin-top: 8px;
+	}
+
+	.target-name {
+		color: $user-text-grey;
+	}
+
+	// input {
+	// 	transition: outline 500ms;
+	//
+	// 	&:focus {
+	// 		outline: 2px solid $focus-good;
+	//
+	// 		&.input-bad {
+	// 			outline: 2px solid $focus-bad;
+	// 		}
+	// 	}
+	// }
+}
+
+input[type=text] {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #ccc;
+
+	&:focus {
+	  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	  padding: 3px 0px 3px 3px;
+	  margin: 5px 1px 3px 0px;
+	  border: 1px solid rgba(81, 203, 238, 1);
+
+		&.input-bad {
+			box-shadow: 0 0 5px $focus-bad;
+			padding: 3px 0px 3px 3px;
+			margin: 5px 1px 3px 0px;
+			border: 1px solid $focus-bad;
+		}
+	}
 }
