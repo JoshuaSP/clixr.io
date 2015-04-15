@@ -32,7 +32,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
     $el.addClass("selected-element");
 		this.selected = true;
     $el.draggable({
-      delay: 300,
+      distance: 5,
       start: function () {
         $el.addClass('bring-to-front');
       },
@@ -86,7 +86,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
         if (this.selected) {
           $el.draggable('destroy');
           $el.draggable({
-            delay: 300,
+            distance: 5,
             start: function () {
               $el.addClass('bring-to-front');
             },

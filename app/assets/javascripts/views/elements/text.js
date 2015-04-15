@@ -13,13 +13,12 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   closeEditMenu: function () {
     if (this.editMenuView) {
       this.editMenuView.$el.css('opacity', 0);
-      this.editMenuView.$toolbar.css('opacity', 0);
+      this.editMenuView.toolbar.$el.css('opacity', 0);
       setTimeout(function () {
-        this.editMenuView.$toolbar.remove();
+        this.editMenuView.toolbar.remove();
         this.editMenuView.remove();
         this.editMenuView = null;
       }.bind(this), 200);
-      this.$textbox.attr('id','');
     }
   },
 

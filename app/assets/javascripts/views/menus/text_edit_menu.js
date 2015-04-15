@@ -12,22 +12,17 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       _.extend(this, options);
       $('.floating-menus').append(this.render().$el);
       this.overlappingItems();
-      var $textbox = this.$targetEl.find('.text-content');
+      this.$textbox = this.$targetEl.find('.text-content');
       this.toolbar = new ClixrIo.Views.TextEditToolbar({
-        $textbox: $textbox
+        $textbox: this.$textbox
       });
       this.$('.toolbar-button').click(function(event) {
         if (this.toolbar.isVisible()) {
           event.preventDefault();
-          this.$targetEl.draggable();
-          $textbox.css('cursor','move');
-          $textbox.attr("contenteditable", "false");
+          this.textboxUnedit();
         } else {
           event.preventDefault();
-          this.$targetEl.draggable('destroy');
-          $textbox.css('cursor','text');
-          $textbox.attr("contenteditable", "true");
-          $('a[data-wysihtml5-command-value="p"]')[0].click();
+          this.textboxEdit();
         }
       }.bind(this));
       this.setupSubmenus(this.$el, {
@@ -37,6 +32,22 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       this.delegateEvents();
     },
 
+    textboxEdit: function () {
+      this.$targetEl.draggable('destroy');
+      this.$textbox.css('cursor','text');
+      this.$textbox.attr("contenteditable", "true");
+      $('a[data-wysihtml5-command-value="p"]')[0].click();
+      if (this.$textbox.html().match(/my paragraph/)) {
+        this.$textbox.select();
+      }
+    },
+
+    textboxUnedit: function () {
+      this.$targetEl.draggable();
+      this.$textbox.css('cursor','move');
+      this.$textbox.attr("contenteditable", "false");
+    },
+
     overlapListen: function () {
       this.$targetEl.find('.text-content').on('keyup', function () {
         this.overlappingItemsMenu.render();
@@ -44,13 +55,10 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
     },
 
     remove: function () {
-      setTimeout(function() {
-        this.toolbar.remove();
-        this.toolbar = null;
-      }.bind(this), 200);
-      this.toolbar.css('opacity', 0);
       if (this.toolbar.isVisible()) this.$el.draggable('destroy');
-      this.$targetEl.find('.text-content').off();
+      this.$textbox.off();
+      this.$textbox.attr('id','');
+      this.textboxUnedit();
       ClixrIo.Mixins.EditElementMenu.remove.apply(this);
     },
 
@@ -60,6 +68,6 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       });
       this.$el.html(content);
       return this;
-    },
+    }
   })
 );
