@@ -18,7 +18,7 @@ ClixrIo.Mixins.ZIndex = {
       var otherIndex = zis.indexOf(otherView);
       if (myIndex < otherIndex) {
         zis.splice(myIndex, 1);
-        zis.splice(otherIndex + 1, 0, view);
+        zis.splice(otherIndex, 0, view);
       }
       zIndex.refresh();
     };
