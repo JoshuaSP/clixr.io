@@ -18,9 +18,6 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       });
       var $textbox = textEdit.$targetEl.find('.text-content');
       $textbox.attr('id', 'texteditor');
-      $textbox.on('keyup', function () {
-        this.overlappingItemsMenu.render();
-      }.bind(this));
       textEdit._setupToolbar();
       textEdit.editor = new wysihtml5.Editor("texteditor", {
          toolbar: "wysihtml5-toolbar",
@@ -43,6 +40,12 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         }
       }.bind(this));
       textEdit.delegateEvents();
+    },
+
+    overlapListen: function () {
+      $textbox.on('keyup', function () {
+        this.overlappingItemsMenu.render();
+      }.bind(this));
     },
 
     remove: function () {

@@ -62,21 +62,37 @@ ClixrIo.Views.Element = Backbone.View.extend({
       global: this.global,
       deleteElement: this.deleteElement.bind(this)
     });
+    this.editMenuView.$el.css('opacity', 1);
+    this.editMenuView.$el.draggable();
+    this.positionEditMenu();
+  },
+
+  positionEditMenu: function () {
     this.editMenuView.$el.position({
       my: "center",
       at: "left-150px center",
       of: this.$el
     });
-    this.editMenuView.$el.css('opacity', 1);
-    this.editMenuView.$el.draggable();
   },
 
   closeEditMenu: function () {
     if (this.editMenuView) {
       this.editMenuView.$el.css('opacity', 0);
       setTimeout(function () {
-        this.editMenuView.remove();
+        if (this.editMenuView) this.editMenuView.remove();
         this.editMenuView = null;
+        var $el = this.$el;
+        if (this.selected) {
+          $el.draggable('destroy');
+          $el.draggable({
+            start: function () {
+              $el.addClass('bring-to-front');
+            },
+            stop: function () {
+              $el.removeClass('bring-to-front');
+            }
+          });
+        }
       }.bind(this), 200);
     }
   },

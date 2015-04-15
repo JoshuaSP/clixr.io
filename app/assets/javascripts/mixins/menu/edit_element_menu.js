@@ -30,13 +30,21 @@ ClixrIo.Mixins.EditElementMenu = {
       collection: new ClixrIo.Collections.Elements(
         this.intersectingViews.map(function(view) {
             return view.model;
-          })
-      )
+        })
+      ),
+      siteView: this.siteView
     });
     this.$el.append(this.overlappingItemsMenu.render().$el);
-    this.$('.overlapping-button').click(function() {
-      this.overlappingItemsMenu.render();
-    }.bind(this));
+    this.overlapListen();
+  },
+
+  overlapListen: function () {
+    this.$targetEl.styleListener({
+      styles: ['width', 'height', 'background-color'],
+      changed: function () {
+        this.overlappingItemsMenu.render();
+      }.bind(this)
+    });
   },
 
   remove: function () {
