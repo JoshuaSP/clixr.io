@@ -11,22 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415041812) do
+ActiveRecord::Schema.define(version: 20150415221408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "elements", force: :cascade do |t|
-    t.integer  "placeable_id",    null: false
-    t.string   "placeable_type",  null: false
-    t.string   "type",            null: false
+    t.integer  "placeable_id",   null: false
+    t.string   "placeable_type", null: false
+    t.string   "type",           null: false
     t.string   "class"
-    t.string   "resize_property"
     t.text     "css"
     t.string   "url"
     t.text     "content"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "pages", force: :cascade do |t|
