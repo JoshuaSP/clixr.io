@@ -46,7 +46,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         'width': '150px',
         'height': '60px',
         'background-color': '#cc9966'
-      })
+      });
       buttonView.$el.addClass('user-button-style-1');
       this._addAndSelect(buttonView);
     },
@@ -103,6 +103,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
           model: image,
           width: '200px'
         });
+        imageView.$el.addClass('user-image-style-1');
         this._placeCenter(imageView);
         this._addAndSelect(imageView);
       }.bind(this));

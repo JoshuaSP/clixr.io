@@ -1,6 +1,7 @@
 ClixrIo.Views.ImageEditMenu = Backbone.View.extend(
   _.extend({},
     ClixrIo.Mixins.EditElementMenu,
+    ClixrIo.Mixins.Styles,
     ClixrIo.Mixins.MenuUtils, {
       template: JST['menus/image_edit_menu'],
 
@@ -8,11 +9,18 @@ ClixrIo.Views.ImageEditMenu = Backbone.View.extend(
         'click .replace-button': 'replaceImage'
       },
 
+      styles: [
+        'user-image-style-1',
+        'user-image-style-2',
+        'user-image-style-3'
+      ],
+
       initialize: function(options) {
-        _.extend(this, options)
+        _.extend(this, options);
         $('.floating-menus').append(this.render().$el);
         this.overlappingItems();
         this.setupSubmenus(this.$el, {
+          '.style-button': '.style-menu',
           '.overlapping-button': '.overlapping-items'
         });
         this.delegateEvents();
@@ -30,7 +38,8 @@ ClixrIo.Views.ImageEditMenu = Backbone.View.extend(
         var content = this.template({
           commonButtons: this.commonButtons({
             global: this.global()
-          })
+          }),
+          styleMenu: JST['menus/style_menu']({ styles: this.styles })
         });
         this.$el.html(content);
         return this;

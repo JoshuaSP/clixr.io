@@ -36,6 +36,8 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
     });
     $icon.attr('src', this.model.get('url'));
     $icon.addClass('element-icon');
+    var style = this.$el.attr('class').match(/user\S*style-\d+/)[0];
+    $icon.addClass(style);
     return $icon.clone().wrap('<div/>').parent().html();
   }
 });
