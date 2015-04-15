@@ -36,12 +36,17 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     button: function () {
-
+      var button = new ClixrIo.Models.Element({ type: 'Button' });
+      var buttonView = new ClixrIo.Views.Button({ model: button });
+      buttonView.$el.css('width', '150px');
+      buttonView.$el.css('height', '60px');
+      buttonView.$el.css('background-color', '#cc9966');
+      buttonView.$el.addClass('user-button-style-1');
     },
 
     horizontalLine: function () {
       var div = new ClixrIo.Models.Element({ type: 'Horizontal Line' });
-      var divView = new ClixrIo.Views.HorizntalLine({ model: div });
+      var divView = new ClixrIo.Views.HorizontalLine({ model: div });
       divView.$el.css("left", "0px");
       divView.$el.css("top", "200px");
       divView.$el.css('width', '980px');

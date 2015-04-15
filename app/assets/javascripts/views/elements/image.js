@@ -50,7 +50,7 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
         },
         maxHeight: parseInt(this.$el.css('height')),
         maxWidth: parseInt(this.$el.css('width'))
-      });  /// okay I'm going to stop dealing with this for now.
+      });  /// TODO: get crop to work or scrap it
     }
   }
 });

@@ -6,7 +6,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   initialize: function (options) {
     ClixrIo.Views.Element.prototype.initialize.call(this, options);
     this.$el.addClass('text-element');
-    this.$el.html(this.template({ content: this.model.escape('content') }));
+    this.$el.html(this.template({ content: this.model.get('content') }));
     this.$textbox = this.$('.text-content');
   },
 

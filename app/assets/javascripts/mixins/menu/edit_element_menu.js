@@ -1,4 +1,5 @@
 ClixrIo.Mixins.EditElementMenu = {
+  className: 'edit-menu',
 
   events: {
     'click .site-page-toggle': 'sitePageToggle',

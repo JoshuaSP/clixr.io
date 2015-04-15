@@ -1,7 +1,6 @@
 ClixrIo.Views.TextEditMenu = Backbone.View.extend(
   _.extend({}, ClixrIo.Mixins.EditElementMenu, ClixrIo.Mixins.MenuUtils, {
     template: JST['menus/text_edit_menu'],
-    className: 'edit-menu',
 
     events: {
       'click .site-page-toggle': 'sitePageToggle',
