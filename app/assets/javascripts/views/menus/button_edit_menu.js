@@ -14,16 +14,28 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
       ],
 
       initialize: function (options) {
-        _.extend(this, options)
+        _.extend(this, options);
         $('.floating-menus').append(this.render().$el);
         this.styleMenu();
         this.overlappingItems();
+        this.linkTargets();
         this.setupSubmenus(this.$el, {
           '.style-button': '.style-menu',
-          '.overlapping-button': '.overlapping-items'
+          '.overlapping-button': '.overlapping-items',
+          '.target-button': '.link-targets'
         });  // TODO: maybe add some color-pickers later, see what we need after creating user styles
         this.setupTextbox();
         this.delegateEvents();
+      },
+
+      linkTargets: function () {
+        this.linkTargetsMenu = new ClixrIo.Views.linkTargetsMenu({
+          collection: this.siteView.collection,
+          setFunction: function (value) {
+            this.model.set('url', value);
+          }.bind(this)
+        });
+        this.$el.append(this.overlappingItemsMenu.render().$el);
       },
 
       setupTextbox: function (options) {

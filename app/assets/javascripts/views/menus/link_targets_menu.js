@@ -1,4 +1,4 @@
-ClixrIo.Mixins.LinkTargets = Backbone.CompositeView.Extend ({
+ClixrIo.Views.LinkTargets = Backbone.View.Extend ({
   events: {
     'click li': 'setTarget'
   },
@@ -11,6 +11,10 @@ ClixrIo.Mixins.LinkTargets = Backbone.CompositeView.Extend ({
     this.render();
   },
 
+  render: function () {
+    var content = this.template({ pages: this.collection });
+  },
+
   setTarget: function(event) {
     var $button = $(event.currentTarget);
     if ($button.hasClass('external-url-button')) {
@@ -20,11 +24,7 @@ ClixrIo.Mixins.LinkTargets = Backbone.CompositeView.Extend ({
     } else if ($button.hasClass('email-link-button')) {
       this.setFunction("mailto:" + $button.find('input').val());
     } else {
-      this.setFunction("#" + this.collection.at($button.index() - 2).get('url'));
+      this.setFunction("#" + this.collection.at($button.index() - 2).get('address'));
     }
-  },
-
-
-
-
-})
+  }
+});
