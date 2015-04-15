@@ -209,12 +209,7 @@ $focus-bad: #cf383a;
 			padding: 10px 0;
 			width: 160px;
 
-			> div {
-				float: left;
-				margin: 0 3px;
-			}
-
-			> i {
+			> div, i, img {
 				float: left;
 				margin: 0 3px;
 			}

@@ -106,7 +106,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         this._placeCenter(imageView);
         this._addAndSelect(imageView);
       }.bind(this));
-        },
+    },
 
     menu: function () {
       var menu = new ClixrIo.Models.Element({ type: 'Menu' });

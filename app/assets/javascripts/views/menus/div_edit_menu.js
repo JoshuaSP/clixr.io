@@ -27,9 +27,11 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
 
       render: function () {
         var content = this.template({
-          global: this.global(),
           styleMenu: JST['menus/style_menu']({ styles: this.styles }),
           colorPicker: JST['menus/color_picker'](),
+          commonButtons: this.commonButtons({
+            global: this.global()
+          })
         });
         this.$el.html(content);
         return this;

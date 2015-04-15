@@ -1,6 +1,6 @@
 ClixrIo.Mixins.EditElementMenu = {
   className: 'edit-menu',
-  editMenuTemplate: JST['menus/edit_menu'],
+  commonButtons: JST['menus/common_buttons'],
 
   events: {
     'click .site-page-toggle': 'sitePageToggle',

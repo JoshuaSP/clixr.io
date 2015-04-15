@@ -7,8 +7,6 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
     this.render();
     ClixrIo.Views.Element.prototype.initialize.call(this, options);
     if (options.width) this.$el.css('width', options.width);
-    // this.$('img').load(function() {
-    // }.bind(this))
   },
 
   render: function () {
@@ -18,13 +16,26 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
   },
 
   resizable: function () {
-    var $handles;
-    if (this.model.get('resize_property') === 'scale') {
-  		$handles = this._addResizeHandles();
-      this.$el.resizable({
-        aspectRatio: true,
-        handles: $handles
-      });
-    }
+    this.$el.resizable({
+      aspectRatio: true,
+      handles: this._addResizeHandles()
+    });
+  },
+
+  overlapListen: function () {
+  },
+
+  icon: function (dim) {
+    var origWidth = parseInt(this.$el.css('width'));
+    var origHeight = parseInt(this.$el.css('height'));
+    var maxDim = Math.max(origWidth, origHeight);
+    var $icon = $('<img>');
+    $icon.css({
+      'width': dim * origWidth / maxDim,
+      'height': dim * origHeight / maxDim,
+    });
+    $icon.attr('src', this.model.get('url'));
+    $icon.addClass('element-icon');
+    return $icon.clone().wrap('<div/>').parent().html();
   }
 });
