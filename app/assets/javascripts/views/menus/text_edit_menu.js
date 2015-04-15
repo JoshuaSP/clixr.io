@@ -18,9 +18,9 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       });
       var $textbox = textEdit.$targetEl.find('.text-content');
       $textbox.attr('id', 'texteditor');
-      // $textbox.change(function() {
-      //   this.model.set('content', $textbox.html());
-      // }.bind(this));
+      $textbox.on('keyup', function () {
+        this.overlappingItemsMenu.render();
+      }.bind(this));
       textEdit._setupToolbar();
       textEdit.editor = new wysihtml5.Editor("texteditor", {
          toolbar: "wysihtml5-toolbar",
@@ -54,6 +54,7 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         this.$toolbar.css('opacity', 0);
         if (this.toolbarVisible) this.$el.draggable('destroy');
       }
+      textEdit.$targetEl.find('.text-content').off();
       ClixrIo.Mixins.EditElementMenu.remove.apply(this);
     },
 

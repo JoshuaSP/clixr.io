@@ -195,9 +195,18 @@ $lightish-blue: #ddf;
 			padding: 10px 0;
 			width: 160px;
 
-			> div, i {
+			> div {
 				float: left;
-				margin: 0 5px;
+				margin: 0 3px;
+			}
+
+			> i {
+				float: left;
+				margin: 0 3px;
+			}
+
+			.fa-bars {
+				float: right;
 			}
 		}
 

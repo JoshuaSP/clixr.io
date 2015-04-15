@@ -41,15 +41,7 @@ ClixrIo.Mixins.EditElementMenu = {
 
   remove: function () {
     if (this.overlappingItemsMenu) this.overlappingItemsMenu.remove();
+    this.$targetEl.off();
     Backbone.View.prototype.remove.apply(this);
   }
 };
-
-// glyphs - reorder for overlapping items
-//   (or database?)
-// square-o to check-square-o for putonevery page
-// sitemap for putoneverypage
-// external-link choose link
-// image for choose image
-// font for change text
-// square for choose color (but inherit color)

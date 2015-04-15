@@ -23,6 +23,12 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
           '.overlapping-button': '.overlapping-items'
         });
         this.delegateEvents();
+        this.$targetEl.styleListener({
+          styles: ['width', 'height', 'background-color'],
+          changed: function () {
+            this.overlappingItemsMenu.render();
+          }.bind(this)
+        });
       },
 
       render: function () {

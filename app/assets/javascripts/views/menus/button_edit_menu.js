@@ -37,6 +37,7 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
         var content = this.template({
           global: this.global(),
           styleMenu: JST['menus/style_menu']({ styles: this.styles }),
+          linkTargets: JST['menus/link_targets']
         });
         this.$el.html(content);
         return this;
