@@ -29,6 +29,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     this.$el.draggable();
     this.$el.draggable('destroy');
     this.$textbox.attr("contenteditable", "false");
+    this.$textbox.css('cursor', '');
     this.$('.drag-handle').remove();
     this.$el.removeClass("selected-element");
     if (!this.$textbox.html()) {

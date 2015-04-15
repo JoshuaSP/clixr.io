@@ -1,34 +1,32 @@
-<div id="wysihtml5-toolbar">
-  <ul id="text-toolbar-items">
-    <li><a data-wysihtml5-command="bold" title="CTRL+B"><i class="fa fa-bold"></i></a></li>
-    <li><a data-wysihtml5-command="italic" title="CTRL+I"><i class="fa fa-italic"></i></a></li>
-    <li><a data-wysihtml5-command="underline" title="CTRL+U"><i class="fa fa-underline"></i></a></li>
-    <li><a data-wysihtml5-command="createLink"><i class="fa fa-link"></i></a></li>
-    <li><a data-wysihtml5-command="removeLink"><i class="fa fa-unlink"></i></a></li>
-    <li><a data-wysihtml5-command="alignLeftStyle"><i class="fa fa-align-left"></i></a></li>
-    <li><a data-wysihtml5-command="alignRightStyle"><i class="fa fa-align-right"></i></a></li>
-    <li><a data-wysihtml5-command="alignCenterStyle"><i class="fa fa-align-center"></i></a></li>
-    <li><a class="font-button" href="#">Font</a></li>
-    <li><a class="size-button" href="#">Size</a></li>
-    <li><a class="color-button" href="#">Color</a></li>
-    <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p"></a>
+<ul id="text-toolbar-items">
+  <li><a data-wysihtml5-command="bold" title="CTRL+B"><i class="fa fa-bold"></i></a></li>
+  <li><a data-wysihtml5-command="italic" title="CTRL+I"><i class="fa fa-italic"></i></a></li>
+  <li><a data-wysihtml5-command="underline" title="CTRL+U"><i class="fa fa-underline"></i></a></li>
+  <li><a data-wysihtml5-command="createLink"><i class="fa fa-link"></i></a></li>
+  <li><a data-wysihtml5-command="removeLink"><i class="fa fa-unlink"></i></a></li>
+  <li><a data-wysihtml5-command="alignLeftStyle"><i class="fa fa-align-left"></i></a></li>
+  <li><a data-wysihtml5-command="alignRightStyle"><i class="fa fa-align-right"></i></a></li>
+  <li><a data-wysihtml5-command="alignCenterStyle"><i class="fa fa-align-center"></i></a></li>
+  <li><a class="font-button" href="#">Font</a></li>
+  <li><a class="size-button" href="#">Size</a></li>
+  <li><a class="color-button" href="#">Color</a></li>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p"></a>
+</ul>
+<div class="font-menu">
+  <ul data-wysihtml5-command-group="formatBlock" class="include-user-fonts foreground-dropdown">
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p"><p>Font 1</p></li></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1"><h1>Font 2</h1></a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2"><h1>Font 3</h1></a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3"><h3>Font 4</h3></a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4"><h4>Font 5</h4></a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5"><h5>Font 6</h5></a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6"><h6>Font 7</h6></a></li>
   </ul>
-  <div class="font-menu">
-    <ul data-wysihtml5-command-group="formatBlock" class="include-user-fonts foreground-dropdown">
-      <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p"><p>Font 1</p></li></li>
-      <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1"><h1>Font 2</h1></a></li>
-      <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2"><h1>Font 3</h1></a></li>
-      <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3"><h3>Font 4</h3></a></li>
-      <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4"><h4>Font 5</h4></a></li>
-      <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5"><h5>Font 6</h5></a></li>
-      <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6"><h6>Font 7</h6></a></li>
-    </ul>
-  </div>
-  <div class="size-slider">
-    <div>
-      <div class="slider">
-      </div>
+</div>
+<div class="size-slider">
+  <div>
+    <div class="slider">
     </div>
   </div>
-  <%= colorPicker %>
 </div>
+<%= colorPicker %>

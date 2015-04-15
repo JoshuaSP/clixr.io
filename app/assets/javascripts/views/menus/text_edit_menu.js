@@ -16,21 +16,25 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       this.toolbar = new ClixrIo.Views.TextEditToolbar({
         $textbox: $textbox
       });
+      this.$('.toolbar-button').click(function(event) {
+        if (this.toolbar.isVisible()) {
+          event.preventDefault();
+          this.$targetEl.draggable();
+          $textbox.css('cursor','move');
+          $textbox.attr("contenteditable", "false");
+        } else {
+          event.preventDefault();
+          this.$targetEl.draggable('destroy');
+          $textbox.css('cursor','text');
+          $textbox.attr("contenteditable", "true");
+          $('a[data-wysihtml5-command-value="p"]')[0].click();
+        }
+      }.bind(this));
       this.setupSubmenus(this.$el, {
         '.overlapping-button': '.overlapping-items',
         '.toolbar-button': '#wysihtml5-toolbar'
       });
       this.delegateEvents();
-      this.$('.toolbar-button').click(function() {
-        if (this.toolbar.isVisible()) {
-          this.$targetEl.draggable();
-          $textbox.attr("contenteditable", "false");
-        } else {
-          this.$targetEl.draggable('destroy');
-          $textbox.attr("contenteditable", "true");
-          $('a[data-wysihtml5-command-value="p"]')[0].click();
-        }
-      }.bind(this));
     },
 
     overlapListen: function () {
