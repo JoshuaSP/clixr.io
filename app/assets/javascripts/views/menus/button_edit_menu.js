@@ -3,7 +3,6 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
     ClixrIo.Mixins.EditElementMenu,
     ClixrIo.Mixins.MenuUtils,
     ClixrIo.Mixins.Styles,
-    ClixrIo.Mixins.LinkTargets,
     {
       template: JST['menus/button_edit_menu'],
 
@@ -29,13 +28,16 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
       },
 
       linkTargets: function () {
-        this.linkTargetsMenu = new ClixrIo.Views.linkTargetsMenu({
-          collection: this.siteView.collection,
+        this.linkTargetsMenu = new ClixrIo.Views.LinkTargetsMenu({
+          collection: this.siteView.model.pages(),
           setFunction: function (value) {
             this.model.set('url', value);
+          }.bind(this),
+          targetFunction: function () {
+            return this.model.get('url')
           }.bind(this)
         });
-        this.$el.append(this.overlappingItemsMenu.render().$el);
+        this.$el.append(this.linkTargetsMenu.render().$el);
       },
 
       setupTextbox: function (options) {

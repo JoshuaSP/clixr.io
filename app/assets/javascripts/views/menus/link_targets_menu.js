@@ -1,30 +1,40 @@
-ClixrIo.Views.LinkTargets = Backbone.View.Extend ({
+ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
   events: {
-    'click li': 'setTarget'
+    'click li': 'setTarget',
+    'keyup input': 'setTarget'
   },
 
   template: JST['menus/link_targets_menu'],
   className: 'link-targets',
+  tagName: 'ul',
 
   initialize: function (options) {
-    this.setFunction = options.setFunction;
+    _.extend(this, options);
     this.render();
   },
 
   render: function () {
-    var content = this.template({ pages: this.collection });
+    var content = this.template({
+      pages: this.collection,
+      linkTarget: this.targetFunction()
+    });
+    this.$el.html(content);
+    return this;
   },
 
   setTarget: function(event) {
-    var $button = $(event.currentTarget);
-    if ($button.hasClass('external-url-button')) {
-      var address = $button.find('input').val();
+    var $inputbox, $operator = $(event.currentTarget);
+    if ($operator.closest('.external-url-button').length) {
+      $inputbox = $operator.closest('.external-url-button').find('input');
+      var address = $inputbox.val();
       if (!address.match(/^http/)) address = "http://" + address;
       this.setFunction(address);
-    } else if ($button.hasClass('email-link-button')) {
-      this.setFunction("mailto:" + $button.find('input').val());
+    } else if ($operator.closest('.email-link-button').length) {
+      $inputbox = $operator.closest('.email-link-button').find('input');
+      this.setFunction("mailto:" + $inputbox.val());
     } else {
-      this.setFunction("#" + this.collection.at($button.index() - 2).get('address'));
+      this.setFunction("#" + this.collection.at($operator.index() - 5).get('address'));
     }
+    this.$el.find('.target-name').text(this.targetFunction());
   }
 });

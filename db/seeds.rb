@@ -16,17 +16,21 @@ Site.create!({
 Page.create!([{
   site_id: 1,
   title: "Page 1",
+  address: "page-1",
   ord: 0
 }, {
   site_id: 1,
   title: "Second Page",
+  address: "second-page",
   ord: 1
 }, {
   site_id: 1,
   title: "Page C",
+  address: "page-c",
   ord: 2
 }, {
   site_id: 1,
   title: "IVeme Page",
+  address: "iveme-page",
   ord: 3
 }])

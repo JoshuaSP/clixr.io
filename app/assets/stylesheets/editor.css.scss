@@ -145,6 +145,8 @@ $lightish-blue: #ddf;
 
 }
 
+
+
 .edit-menu {
 	@include basic-window;
 	padding: 15px;
@@ -184,8 +186,16 @@ $lightish-blue: #ddf;
 			background-color: $menu-select;
 		}
 
-		&.button-text:hover {
-			background-color: inherit;
+		&.button-text {
+			cursor: default;
+
+			&:hover {
+				background-color: inherit;
+			}
+
+			input {
+				cursor: text;
+			}
 		}
 	}
 
@@ -293,4 +303,11 @@ $lightish-blue: #ddf;
 	min-width: 200px;
 	height: 200px;
 	margin: 100px auto 0;
+}
+
+.link-targets {
+	@include basic-window;
+	padding: 15px;
+	width: 190px;
+	word-wrap: break-word;
 }
