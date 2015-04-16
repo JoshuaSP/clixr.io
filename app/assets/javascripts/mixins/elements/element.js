@@ -81,19 +81,6 @@ ClixrIo.Views.Element = Backbone.View.extend({
       setTimeout(function () {
         if (this.editMenuView) this.editMenuView.remove();
         this.editMenuView = null;
-        var $el = this.$el;
-        if (this.selected) {
-          $el.draggable('destroy');
-          $el.draggable({
-            distance: 5,
-            start: function () {
-              $el.addClass('bring-to-front');
-            },
-            stop: function () {
-              $el.removeClass('bring-to-front');
-            }
-          });
-        }
       }.bind(this), 200);
     }
   },
@@ -104,6 +91,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.closeEditMenu();
 		this.$el.removeClass("selected-element");
 		this.$el.resizable('destroy').draggable('destroy');
+    this.$el.off();
 	},
 
 	_addResizeHandles: function (hndls) {

@@ -23,18 +23,19 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   },
 
   deselect: function () {
+    this.closeEditMenu();
     this.selected = false;
     this.$el.resizable('destroy');
     this.$el.draggable();
     this.$el.draggable('destroy');
     this.$textbox.attr("contenteditable", "false");
-    this.$textbox.css('cursor', '');
+    this.$textbox.css('cursor', 'default');
+    this.$textbox.addClass('noselect');
     this.$('.drag-handle').remove();
     this.$el.removeClass("selected-element");
     if (!this.$textbox.html()) {
       this.deleteElement();
     }
-    this.closeEditMenu();
   },
 
   icon: function () {

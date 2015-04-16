@@ -56,7 +56,7 @@ Backbone.CompositeView = Backbone.View.extend({
   moveSubview: function (fromSelector, toSelector, subview) {
     var fromSubviews = this.subviews(fromSelector);
     fromSubviews.splice(fromSubviews.indexOf(subview), 1);
-    this.attachSubview(toSelector, subview);
+    this.addSubview(toSelector, subview);
   },
 
   subviews: function (selector) {

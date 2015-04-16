@@ -101,8 +101,39 @@ body {
       display: none;
     }
 
+    // ul {
+    //   display: none;
+    // }
+
     ul {
-      display: none;
+      margin: -1px 0 5px 0;
+      padding: 0px;
+      display: block;
+    }
+
+    li {
+      display: block;
+      padding: 0 9px;
+
+      &:first-child {
+        border-top: 1px solid $border-grey;
+        padding-top: 3px
+      }
+
+      i {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      label {
+        margin-top: 11px;
+        margin-bottom: px;
+        font-size: 15px;
+      }
+
+      &:hover {
+        color: #aaa;
+      }
     }
 
     &.expanded-menu {
@@ -130,37 +161,6 @@ body {
       > div > label {
         left: 2px;
         transition-delay: 0, 400ms;
-      }
-
-      ul {
-        margin: -1px 0 5px 0;
-        padding: 0px;
-        display: block;
-      }
-
-      li {
-        display: block;
-        padding: 0 9px;
-
-        &:first-child {
-          border-top: 1px solid $border-grey;
-          padding-top: 3px
-        }
-
-        i {
-          margin-top: 8px;
-          margin-bottom: 8px;
-        }
-
-        label {
-          margin-top: 11px;
-          margin-bottom: px;
-          font-size: 15px;
-        }
-
-        &:hover {
-          color: #aaa;
-        }
       }
     }
   }
@@ -212,9 +212,10 @@ nav {
 }
 
 .page-select {
-  transition-property: max-height box-shadow;
+  transition-property: max-height box-shadow opacity;
   transition-timing-function: easeInOutSine;
-  transition-duration: 400ms;
+  transition-duration: 300ms;
+  transition-timing: ease;
   background-color: $window-background;
   border-radius: $site-border-radius;
   padding: 13px 10px 1px 10px;
@@ -234,9 +235,9 @@ nav {
   }
 
   hr {
-    height: 2px;
-    color: #000;
-    background-color: #000;
+    height: 0px;
+    color: $border-grey;
+    background-color: $border-grey;
     margin: 6px 0;
   }
 
@@ -248,10 +249,9 @@ nav {
   li {
 		padding: 5px 0;
     font-size: 0.8em;
-		border-top: 1px solid $border-grey ;
 
 		&:first-of-type {
-			border-top: none;
+  		border-top: 1px solid $border-grey ;
 		}
 
 		&:hover {

@@ -76,7 +76,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     _addAndSelect: function(view) {
       view.siteView = this.siteView;
       this.model.elements().add(view.model);
-      this.siteView.addSubview('.user-page-elements', view);
+      this.siteView.addSubview(this.siteView.pageSelector(this.model), view);
       this.siteView.selectView(view);
     },
 

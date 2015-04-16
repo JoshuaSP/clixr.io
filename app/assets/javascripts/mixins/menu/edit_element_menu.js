@@ -11,17 +11,16 @@ ClixrIo.Mixins.EditElementMenu = {
   intersectingViews: [],
 
   sitePageToggle: function () {
+    var currentPageSelector = this.siteView.pageSelector(this.siteView.currentPage);
     if (this.global()) {
       this.model.collection.remove(this.model);
       this.siteView.currentPage.elements().add(this.model);
-      var currentPageSelector = '.user-page-elements[data-page-ord=' + currentPage.get('ord') + ']'
-      this.siteView.moveSubview(currentPageSelector, '.user-site-elements', this.model.view);
+      this.siteView.moveSubview('.user-site-elements', currentPageSelector, this.model.view);
       this.$('.site-page-toggle i').removeClass('fa-check-square-o').addClass('fa-square-o');
     } else {
       this.model.collection.remove(this.model);
       this.siteView.model.elements().add(this.model);
-      var currentPageSelector = '.user-page-elements[data-page-ord=' + currentPage.get('ord') + ']'
-      this.siteView.moveSubview('.user-site-elements', currentPageSelector, this.model.view);
+      this.siteView.moveSubview(currentPageSelector, '.user-site-elements', this.model.view);
       this.$('.site-page-toggle i').addClass('fa-check-square-o').removeClass('fa-square-o');
     }
   },
@@ -54,7 +53,6 @@ ClixrIo.Mixins.EditElementMenu = {
 
   remove: function () {
     if (this.overlappingItemsMenu) this.overlappingItemsMenu.remove();
-    this.$targetEl.off();
     Backbone.View.prototype.remove.apply(this);
   }
 };

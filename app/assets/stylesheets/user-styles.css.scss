@@ -5,6 +5,8 @@
 
 .user-page-elements {
   display: none;
+  transition-property: -webkit-filter, opacity;
+  transition-duration: 400ms, 600ms;
 
   &.current {
     display: block;

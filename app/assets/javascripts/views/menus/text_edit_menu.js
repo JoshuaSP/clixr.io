@@ -20,6 +20,8 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         if (this.toolbar.isVisible()) {
           event.preventDefault();
           this.textboxUnedit();
+          this.$textbox.css('cursor','move');
+          this.$targetEl.draggable();
         } else {
           event.preventDefault();
           this.textboxEdit();
@@ -36,16 +38,13 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       this.$targetEl.draggable('destroy');
       this.$textbox.css('cursor','text');
       this.$textbox.attr("contenteditable", "true");
+      this.$textbox.removeClass('noselect')
       $('a[data-wysihtml5-command-value="p"]')[0].click();
-      if (this.$textbox.html().match(/my paragraph/)) {
-        this.$textbox.select();
-      }
     },
 
     textboxUnedit: function () {
-      this.$targetEl.draggable();
-      this.$textbox.css('cursor','move');
       this.$textbox.attr("contenteditable", "false");
+      this.$textbox.addClass('noselect')
     },
 
     overlapListen: function () {
@@ -55,8 +54,6 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
     },
 
     remove: function () {
-      if (this.toolbar.isVisible()) this.$el.draggable('destroy');
-      this.$textbox.off();
       this.$textbox.attr('id','');
       this.textboxUnedit();
       ClixrIo.Mixins.EditElementMenu.remove.apply(this);

@@ -16,7 +16,7 @@ ClixrIo.Models.Element = Backbone.Model.extend ({
       }
     }.bind(this));
     this.set('css', JSON.stringify(css));
-    this.set('class', _(this.$el.attr('class').split(" ")).without("user-element").join(" "));
+    this.set('class', _(this.$el.attr('class').split(" ")).without("user-element", "noselect").join(" "));
     this.set('content', this.$el.find('.text-content').html());
     Backbone.Model.prototype.save.apply(this);
   }

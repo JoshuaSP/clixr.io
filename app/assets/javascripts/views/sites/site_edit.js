@@ -10,6 +10,21 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     "click .user-element": "selectElement",
   },
 
+  elementViews: {
+    'Box': ClixrIo.Views.Box,
+    'Horizontal Line': ClixrIo.Views.HorizontalLine,
+    'Text': ClixrIo.Views.Text,
+    'Menu': ClixrIo.Views.Menu,
+    'Image': ClixrIo.Views.Image,
+    'Button': ClixrIo.Views.Button
+  },
+
+  transition: {
+    'None': "switchInOut",
+    'Fade': "fadeInOut",
+    'Blur': "blurInOut"
+  },
+
   initialize: function () {
     this.model.fetch({
       success: this._setupPage.bind(this)
@@ -28,24 +43,50 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     });
   },
 
+  changePageName: function () {
+    var $pageContainer = $('.page-select');
+    $pageContainer.css('opacity', 0);
+    setTimeout(function () {
+      $pageContainer.css('opacity', 1);
+      $('.current-page-name').html(this.currentPage.escape('title'));
+    }.bind(this), 300);
+  },
+
   switchInOut: function (newPage) {
     this.$currentPage().removeClass('current');
     this.currentPage = newPage;
+    this.addElementMenu.model = this.currentPage;
+    this.changePageName()
     this.$currentPage().addClass('current');
   },
 
   fadeInOut: function (newPage) {
-
+    this.$('.user-page-elements').css('opacity', 0);
+    var $oldpage = this.$currentPage();
+    this.currentPage = newPage;
+    this.addElementMenu.model = this.currentPage;
+    this.changePageName();
+    this.$currentPage().addClass('current');
+    setTimeout(function () {
+      this.$currentPage().css('opacity', 1);
+    }.bind(this));
+    setTimeout(function() {
+      $oldpage.removeClass('current');
+    }.bind(this), 600);
   },
 
   blurInOut: function (newPage) {
-
-  },
-
-  transition: {
-    'None': "switchInOut",
-    'Fade': "fadeInOut",
-    'Blur': "blurInOut"
+    this.$('.user-page-elements').css('-webkit-filter', 'blur(50px)')
+    setTimeout(function() {
+      this.$currentPage().removeClass('current');
+      this.currentPage = newPage;
+      this.addElementMenu.model = this.currentPage;
+      this.changePageName()
+      this.$currentPage().addClass('current');
+      setTimeout(function(){
+        this.$('.user-page-elements').css('-webkit-filter', 'blur(0px)')
+      }.bind(this), 4)
+    }.bind(this), 400)
   },
 
   pageSelect: function (event) {
@@ -68,7 +109,11 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   $currentPage: function () {
-    return $('.user-page-elements[data-page-ord=' + this.currentPage.get('ord') + ']');
+    return $(this.pageSelector(this.currentPage));
+  },
+
+  pageSelector: function (page) {
+    return '.user-page-elements[data-page-ord=' + page.get('ord') + ']';
   },
 
   collapseMenus: function () {
@@ -91,7 +136,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   findView: function($el) {
-    var allViews = this.subviews('.user-page-elements')
+    var allViews = this.subviews(this.pageSelector(this.currentPage))
       .concat(this.subviews('.user-site-elements'));
     return _(allViews).find(function(subview) {
       return subview.$el.is($el);
@@ -114,7 +159,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.$el.html(content);
     this._renderElements('.user-site', this.model.elements());
     this.model.pages().forEach(function(page) {
-      this._renderElements('.user-page-elements[data-page-ord=' + page.get('ord') + ']', page.elements())
+      this._renderElements(this.pageSelector(page), page.elements())
     }.bind(this))
     return this;
   },
@@ -127,15 +172,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       });
       this.addSubview(selector, elementView);
     }.bind(this));
-  },
-
-  elementViews: {
-    'Box': ClixrIo.Views.Box,
-    'Horizontal Line': ClixrIo.Views.HorizontalLine,
-    'Text': ClixrIo.Views.Text,
-    'Menu': ClixrIo.Views.Menu,
-    'Image': ClixrIo.Views.Image,
-    'Button': ClixrIo.Views.Button
   },
 
   showPageMenu: function (event) {

@@ -3,8 +3,7 @@
     clixr.io
   </div>
   <div class="page-select">
-    Page: <%= currentPage.escape('title') %>
-    <hr>
+    <span class="page-identifier">Page:</span> <span class="current-page-name"><%= currentPage.escape('title') %></span>
     <ul>
       <% this.model.pages().forEach(function(page, index) { %>
         <li><%= page.escape('title') %></li>
