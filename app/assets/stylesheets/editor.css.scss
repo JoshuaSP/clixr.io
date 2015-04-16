@@ -205,13 +205,19 @@ $focus-bad: #cf383a;
 
 	.overlapping-items {
 
-		li {
+		> li {
 			padding: 10px 0;
 			width: 160px;
 
-			> div, i, img {
+			> div, i, img, ul {
 				float: left;
 				margin: 0 3px;
+			}
+
+			> ul > li {
+				margin: 0;
+				padding: 0;
+				border: none;
 			}
 
 			.fa-bars {
@@ -322,18 +328,6 @@ $focus-bad: #cf383a;
 	.target-name {
 		color: $user-text-grey;
 	}
-
-	// input {
-	// 	transition: outline 500ms;
-	//
-	// 	&:focus {
-	// 		outline: 2px solid $focus-good;
-	//
-	// 		&.input-bad {
-	// 			outline: 2px solid $focus-bad;
-	// 		}
-	// 	}
-	// }
 }
 
 input[type=text] {

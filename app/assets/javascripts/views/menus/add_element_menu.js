@@ -116,8 +116,9 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         collection: this.collection
       });
       this._placeCenter(menuView);
-      menuView.$el.css('width', '400px');
-      menuView.$el.css('height', '75px');
+      menuView.$el.addClass('user-menu-style-1');
+      menuView.$el.css('width', '450px');
+      menuView.$el.css('height', '50px');
       this._addAndSelect(menuView);
     },
 

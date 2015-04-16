@@ -13,14 +13,13 @@ ClixrIo.Views.Element = Backbone.View.extend({
 	className: "user-element",
 
   initialize: function (options) {
-    this.siteView = options.siteView;
     this.$el.addClass(this.model.get('class'));
     var css = this.model.get('css') ? $.parseJSON(this.model.get('css')) : {} ;
     css.position = "absolute";
-    this.model.$el = this.$el;
-    this.model.view = this;
     css['z-index'] = ClixrIo.Mixins.ZIndex.register(this, css['z-index']);
     this.$el.css(css);
+    this.model.$el = this.$el;
+    this.model.view = this;
   },
 
   select: function () {
