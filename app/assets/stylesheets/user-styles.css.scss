@@ -3,6 +3,14 @@
   cursor: move;
 }
 
+.user-page-elements {
+  display: none;
+
+  &.current {
+    display: block;
+  }
+}
+
 .bring-to-front {
   z-index: 10000 !important;
 }

@@ -28,8 +28,12 @@
 
     <div class="user-page">
       <div class="user-page-gridlines">
-        <div class="user-page-elements">
+        <div class="user-page-elements current" data-page-ord=0>
         </div>
+        <% for (var i = 1; i < this.model.pages().length; i++) { %>
+          <div class="user-page-elements" data-page-ord=<%= i %>>
+          </div>
+        <% } %>
         <div class="user-site-elements">
         </div>
       </div>

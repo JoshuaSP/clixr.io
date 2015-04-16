@@ -26,26 +26,12 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       collection: this.model.pages(),
       model: this.currentPage
     });
-    this._renderElements('.user-page-elements', this.currentPage.elements());
-  },
-
-  swapCurrentPageElements: function () {
-    if (this.subviews()['user-page-elements']) {
-      this.subviews()['user-page-elements'].forEach(function(subview) {
-        this.remove();
-      });
-    }
-    this.subviews()['user-page-elements'] = this.subviews()['new-user-page-elements'];
-    this.subviews()['new-user-page-elements'] = [];
-    $('.user-page-elements').remove();
-    $('.new-user-page-elements').removeClass('new-user-page-elements')
-      .addClass('user-page-elements');
   },
 
   switchInOut: function (newPage) {
-    this.swapCurrentPageElements();
+    this.$currentPage().removeClass('current');
     this.currentPage = newPage;
-    $('.user-page-elements').css('display', 'block');
+    this.$currentPage().addClass('current');
   },
 
   fadeInOut: function (newPage) {
@@ -78,14 +64,11 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     if (newPage === this.currentPage) return;
     if (this.selectedView) this.selectedView.deselect();
     this.selectedView = null;
-    var $newPage = $('<div class="new-user-page-elements">');
-    $newPage.css({
-      display: 'none',
-      position: 'absolute'
-    });
-    $('.user-page-gridlines').append($newPage);
-    this._renderElements('new-user-page-elements', newPage.elements());
     this[this.transition[this.model.get('transition')]](newPage);
+  },
+
+  $currentPage: function () {
+    return $('.user-page-elements[data-page-ord=' + this.currentPage.get('ord') + ']');
   },
 
   collapseMenus: function () {
@@ -129,7 +112,10 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       currentPage: this.currentPage
     });
     this.$el.html(content);
-    this._renderElements('.user-site-elements', this.model.elements());
+    this._renderElements('.user-site', this.model.elements());
+    this.model.pages().forEach(function(page) {
+      this._renderElements('.user-page-elements[data-page-ord=' + page.get('ord') + ']', page.elements())
+    }.bind(this))
     return this;
   },
 
