@@ -29,9 +29,59 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this._renderElements('.user-page-elements', this.currentPage.elements());
   },
 
-  showPageList: function (event) {
-    $pageBox = $('.page-select')
-    .addClass('expanded-menu')
+  swapCurrentPageElements: function () {
+    this.subviews['user-page-elements'].forEach(function(subview) {
+      this.remove();
+    });
+    this.subviews['user-page-elements'] = this.subviews['new-user-page-elements'];
+    this.subviews['new-user-page-elements'] = [];
+    $('.user-page-elements').remove();
+    $('.new-user-page-elements').removeClass('new-user-page-elements')
+      .addClass('user-page-elements');
+  },
+
+  switchInOut: function (newPage) {
+    this.swapCurrentPageElements();
+    this.currentPage = newPage;
+    $('.user-page-elements').css('display', 'block');
+  },
+
+  fadeInOut: function (newPage) {
+
+  },
+
+  blurInOut: function (newPage) {
+
+  },
+
+  transition: {
+    '': "switchInOut",
+    'Fade': "fadeInOut",
+    'Blur': "blurInOut"
+  },
+
+  pageSelect: function (event) {
+    var $pageBox = $('.page-select');
+    var $selected = $(event.target);
+    if (!$pageBox.hasClass('expanded-menu')) {
+      $pageBox.addClass('expanded-menu');
+    } else {
+      if ($selected.prop('tagName') === 'LI') this.selectPage($selected.index());
+      $pageBox.removeClass('expanded-menu');
+    }
+  },
+
+  selectPage: function (pageIndex) {
+    var newPage = this.model.pages().at(pageIndex)
+    if (newPage === this.currentPage) return;
+    var $newPage = $('<div class=".new-user-page-elements">');
+    $newPage.css({
+      display: 'none',
+      position: 'absolute'
+    });
+    $('.user-page-gridlines').append($newPage);
+    this._renderElements('new-user-page-elements', newPage.elements());
+    this[this.transition[this.model.get('transition')]](newPage)
   },
 
   collapseMenus: function () {
