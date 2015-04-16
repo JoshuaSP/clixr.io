@@ -30,11 +30,13 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   swapCurrentPageElements: function () {
-    this.subviews['user-page-elements'].forEach(function(subview) {
-      this.remove();
-    });
-    this.subviews['user-page-elements'] = this.subviews['new-user-page-elements'];
-    this.subviews['new-user-page-elements'] = [];
+    if (this.subviews()['user-page-elements']) {
+      this.subviews()['user-page-elements'].forEach(function(subview) {
+        this.remove();
+      });
+    }
+    this.subviews()['user-page-elements'] = this.subviews()['new-user-page-elements'];
+    this.subviews()['new-user-page-elements'] = [];
     $('.user-page-elements').remove();
     $('.new-user-page-elements').removeClass('new-user-page-elements')
       .addClass('user-page-elements');
@@ -55,7 +57,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   transition: {
-    '': "switchInOut",
+    'None': "switchInOut",
     'Fade': "fadeInOut",
     'Blur': "blurInOut"
   },
@@ -72,16 +74,18 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   selectPage: function (pageIndex) {
-    var newPage = this.model.pages().at(pageIndex)
+    var newPage = this.model.pages().at(pageIndex);
     if (newPage === this.currentPage) return;
-    var $newPage = $('<div class=".new-user-page-elements">');
+    if (this.selectedView) this.selectedView.deselect();
+    this.selectedView = null;
+    var $newPage = $('<div class="new-user-page-elements">');
     $newPage.css({
       display: 'none',
       position: 'absolute'
     });
     $('.user-page-gridlines').append($newPage);
     this._renderElements('new-user-page-elements', newPage.elements());
-    this[this.transition[this.model.get('transition')]](newPage)
+    this[this.transition[this.model.get('transition')]](newPage);
   },
 
   collapseMenus: function () {
@@ -130,12 +134,13 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   _renderElements: function (selector, elements) {
-    _(elements).each(function (element) {
+    elements.each(function (element) {
       var elementView = new this.elementViews[element.get('type')]({
-        siteView: this
+        siteView: this,
+        model: element
       });
       this.addSubview(selector, elementView);
-    });
+    }.bind(this));
   },
 
   elementViews: {

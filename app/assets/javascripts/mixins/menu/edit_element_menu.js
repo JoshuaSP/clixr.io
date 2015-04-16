@@ -14,10 +14,12 @@ ClixrIo.Mixins.EditElementMenu = {
     if (this.global()) {
       this.model.collection.remove(this.model);
       this.siteView.currentPage.elements().add(this.model);
+      this.siteView.moveSubview('.user-page-elements', '.user-site-elements', this.model.view);
       this.$('.site-page-toggle i').removeClass('fa-check-square-o').addClass('fa-square-o');
     } else {
       this.model.collection.remove(this.model);
       this.siteView.model.elements().add(this.model);
+      this.siteView.moveSubview('.user-site-elements', '.user-page-elements', this.model.view);
       this.$('.site-page-toggle i').addClass('fa-check-square-o').removeClass('fa-square-o');
     }
   },
