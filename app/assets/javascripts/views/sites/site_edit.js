@@ -6,8 +6,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   events: {
     "click .page-menu-button": "showPageMenu",
     "click .add-element-button": "showAddElementMenu",
-    "click .user-page-elements .user-element": "selectElement",
-    "click .user-site-elements .user-element": "selectElement"
+    "click .page-select": "showPageList",
+    "click .user-element": "selectElement"
   },
 
   initialize: function () {
@@ -27,6 +27,10 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       model: this.currentPage
     });
     this._renderElements('.user-page-elements', this.currentPage.elements());
+  },
+
+  showPageList: function (event) {
+    $('.page-select').addClass('expanded-menu')
   },
 
   collapseMenus: function () {
@@ -65,10 +69,12 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   renderSite: function () {
-    var content = this.template({ site: this.model });
-    this._renderElements('.user-site-elements', this.model.elements());
+    var content = this.template({
+      site: this.model,
+      currentPage: this.currentPage
+    });
     this.$el.html(content);
-    // this.onRender();
+    this._renderElements('.user-site-elements', this.model.elements());
     return this;
   },
 

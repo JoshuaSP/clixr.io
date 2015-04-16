@@ -2,7 +2,16 @@
   <div class="logo">
     clixr.io
   </div>
+  <div class="page-select">
+    Page: <%= currentPage.escape('title') %>
+    <hr>
+    <ul>
+      <% this.model.pages().forEach(function(page, index) { %>
+        <li><%= page.escape('title') %></li>
+      <% }) %>
+    </ul>
 
+  </div>
 </nav>
 
 <div class="function-buttons">

@@ -31,7 +31,7 @@ body {
   position: fixed;
   width: 100%;
   box-shadow: $basic-shadow;
-  z-index: 10000;
+  z-index: 10001;
 }
 
 .function-buttons {
@@ -180,4 +180,53 @@ nav {
 
 .user-site-elements {
   position: absolute;
+}
+
+.page-select {
+  transition-property: max-height box-shadow;
+  transition-timing-function: easeInOutSine;
+  transition-duration: 400ms;
+  background-color: white;
+  border-radius: 10px 0 10px 0;
+  padding: 13px 10px 1px 10px;
+  cursor: pointer;
+  background-clip: border-box;
+  position: fixed;
+  max-height: 20px;
+  left: 187px;
+  top: 6px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 7px 7px 2px 8px;
+
+  &.expanded-menu {
+    box-shadow: $basic-shadow;
+    max-height: 400px;
+  }
+
+  hr {
+    height: 2px;
+    color: #000;
+    background-color: #000;
+    margin: 6px 0;
+  }
+
+  ul {
+    margin: 4px 0;
+    padding: 0 5px;
+  }
+
+  li {
+		padding: 5px 0;
+    font-size: 0.8em;
+		border-top: 1px solid $border-grey ;
+
+		&:first-of-type {
+			border-top: none;
+		}
+
+		&:hover {
+			background-color: $menu-select;
+		}
+  }
 }
