@@ -6,8 +6,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   events: {
     "click .page-menu-button": "showPageMenu",
     "click .add-element-button": "showAddElementMenu",
-    "click .page-select": "showPageList",
-    "click .user-element": "selectElement"
+    "click .page-select": "pageSelect",
+    "click .user-element": "selectElement",
   },
 
   initialize: function () {
@@ -30,7 +30,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   showPageList: function (event) {
-    $('.page-select').addClass('expanded-menu')
+    $pageBox = $('.page-select')
+    .addClass('expanded-menu')
   },
 
   collapseMenus: function () {

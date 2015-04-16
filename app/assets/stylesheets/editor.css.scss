@@ -5,6 +5,18 @@ $user-text-grey: #444;
 $focus-good: #322fa1;
 $focus-bad: #cf383a;
 
+
+body {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #505050;
+}
+
+.logo {
+	text-transform: none;
+}
+
+
 .ui-widget-content .ui-icon {
 	background-image: none;
 }
@@ -41,8 +53,8 @@ $focus-bad: #cf383a;
 	opacity: 0;
 	z-index: 5000;
 	position: fixed;
-	background-color: white;
-	border-radius: 10px 0 10px 0;
+	background-color: $window-background;
+	border-radius: $site-border-radius;
 	margin: 30px;
 	cursor: pointer;
 	background-clip: border-box;
@@ -57,8 +69,8 @@ $focus-bad: #cf383a;
 		display: none;
 		z-index: 10000;
 		position: absolute;
-		background-color: white;
-		border-radius: 10px 0 10px 0;
+		background-color: $window-background;
+		border-radius: $site-border-radius;
 		margin: 30px;
 		padding: 7px;
 		cursor: pointer;

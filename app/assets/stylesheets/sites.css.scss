@@ -2,12 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$navbar-color: #77597f;
+$navbar-color: #7E6E7E;
 $logo-color: #fff;
-$basic-shadow: 2px 2px 5px #333;
-$border-grey: #999;
-$menu-select: #ccc;
+$basic-shadow: 2px 2px 7px #333;
+$border-grey: #ddd;
+$menu-select: #e9e9e9;
 $gridline-color: green;
+$site-border-radius: 4px;
+$window-background: #e6e4e5;
 
 
 body {
@@ -43,10 +45,10 @@ body {
     position: relative;
     width: 50px;
     height: 50px;
-    background-color: white;
-    border-radius: 10px;
+    background-color: $window-background;
+    border-radius: 4px;
     margin: 30px;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
     background-clip: border-box;
     box-shadow: $basic-shadow;
@@ -56,21 +58,33 @@ body {
     overflow: hidden;
 
     .main-icon {
-      float:left;
+      transition: opacity 300ms;
+      transition-delay: 300ms;
+      position: absolute;
       font-size: 50px;
-      margin: 2px;
+      margin: 0 0 4px 3px;
     }
 
-    .fa-file {
-      font-size: 45px;
-      margin: 3px;
+    i {
+      font-size: 20px;
+
+      &.fa-image {
+        margin-left: -1px
+      }
     }
 
     label {
       position: absolute;
+      left: 32px;
       opacity: 0;
-      transition: opacity 300ms;
-      margin: 15px;
+      transition-property: opacity, left;
+      transition-duration: 300ms, 300ms;
+      transition-delay: 0, 300ms;
+      margin: 15px 15px 5px 15px;
+    }
+
+    > div > label {
+      left: 46px;
     }
 
     &:hover {
@@ -91,14 +105,18 @@ body {
 
     &.expanded-menu {
       width: 200px;
-      height: 296px;
-      padding-bottom: 20px;
+      height: 278px;
+
+      .main-icon {
+        opacity: 0;
+        transition-delay: 100ms;
+      }
 
       .fa-close {
         position: absolute;
         display: block;
         top: 7px;
-        left: 191px;
+        right: 7px;
         font-size: 20px;
         opacity: 1;
       }
@@ -107,16 +125,25 @@ body {
         opacity: 1;
       }
 
+      > div > label {
+        left: 2px;
+        transition-delay: 0 400ms;
+        margin-top: 11px;
+      }
+
       ul {
-        margin-top: 58px;
-        padding: 0px 10px;
+        margin: 48px 0 0 0;
+        padding: 0px;
         display: block;
       }
 
       li {
         display: block;
-        font-size: 25px;
-        border-top: 1px solid $border-grey;
+        padding: 0 9px;
+
+        &:first-child {
+          border-top: 1px solid $border-grey;
+        }
 
         i {
           margin-top: 8px;
@@ -126,11 +153,11 @@ body {
         label {
           margin-top: 11px;
           margin-bottom: px;
-          font-size: 20px;
+          font-size: 15px;
         }
 
         &:hover {
-          background-color: $menu-select;
+          color: #aaa;
         }
       }
     }
@@ -186,8 +213,8 @@ nav {
   transition-property: max-height box-shadow;
   transition-timing-function: easeInOutSine;
   transition-duration: 400ms;
-  background-color: white;
-  border-radius: 10px 0 10px 0;
+  background-color: $window-background;
+  border-radius: $site-border-radius;
   padding: 13px 10px 1px 10px;
   cursor: pointer;
   background-clip: border-box;
@@ -195,7 +222,7 @@ nav {
   max-height: 20px;
   left: 187px;
   top: 6px;
-  background-color: #fff;
+  background-color: $window-background;
   overflow: hidden;
   padding: 7px 7px 2px 8px;
 

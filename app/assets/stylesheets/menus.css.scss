@@ -13,7 +13,7 @@ $list-group-border-radius: 5px;
 
 .clixr-menu {
   box-shadow: $basic-shadow;
-  background-color: white;
+  background-color: $window-background;
   position: fixed;
   padding: 0px 20px;
   ul {
@@ -26,7 +26,7 @@ $list-group-border-radius: 5px;
     padding: 10px 15px;
     // Place the border on the list items and negative margin up for better styling
     margin-bottom: -1px;
-    background-color: white;
+    background-color: $window-background;
     border: 1px solid $list-group-border;
 
     // Round the first and last items
