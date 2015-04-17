@@ -3,6 +3,9 @@
   cursor: move;
 }
 
+.user-site-elements {
+}
+
 .user-page-elements {
   display: none;
   transition-property: -webkit-filter, opacity;
@@ -15,10 +18,6 @@
 
 .bring-to-front {
   z-index: 10000 !important;
-}
-
-.user-page {
-
 }
 
 .text-content {

@@ -1,0 +1,20 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+# Changes to be committed:
+# 	modified:   app/assets/javascripts/mixins/menu/edit_element_menu.js
+# 	modified:   app/assets/javascripts/models/page.js
+# 	modified:   app/assets/javascripts/models/site.js
+# 	modified:   app/assets/javascripts/views/menus/add_element_menu.js
+# 	modified:   app/assets/javascripts/views/sites/site_edit.js
+# 	modified:   app/assets/stylesheets/sites.css.scss
+# 	modified:   app/assets/stylesheets/user-styles.css.scss
+# 	modified:   app/assets/templates/sites/edit.jst.ejs
+# 	new file:   app/controllers/api/elements_controller.rb
+# 	new file:   app/controllers/api/pages_controller.rb
+# 	modified:   app/controllers/api/sites_controller.rb
+# 	modified:   app/views/api/sites/_element.json.jbuilder
+# 	modified:   app/views/api/sites/_page.json.jbuilder

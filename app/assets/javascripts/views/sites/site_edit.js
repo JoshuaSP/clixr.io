@@ -8,6 +8,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     "click .add-element-button": "showAddElementMenu",
     "click .page-select": "pageSelect",
     "click .user-element": "selectElement",
+    "click .site-save": "siteSave"
   },
 
   elementViews: {
@@ -58,6 +59,11 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.addElementMenu.model = this.currentPage;
     this.changePageName()
     this.$currentPage().addClass('current');
+  },
+
+  siteSave: function () {
+    this.model.save();
+    console.log('saved')
   },
 
   fadeInOut: function (newPage) {

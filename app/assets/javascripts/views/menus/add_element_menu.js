@@ -77,6 +77,10 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       view.siteView = this.siteView;
       this.model.elements().add(view.model);
       this.siteView.addSubview(this.siteView.pageSelector(this.model), view);
+      view.model.set({
+        'placeable_type': 'Page',
+        'placeable_id': this.model.id
+      });
       this.siteView.selectView(view);
     },
 

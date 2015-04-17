@@ -29,4 +29,14 @@ ClixrIo.Models.Site = Backbone.Model.extend({
   pages: function() {
     return this._pages || (this._pages = new ClixrIo.Collections.Pages());
   },
+
+  save: function() {
+    this.pages().forEach(function(page){
+      page.save();
+    });
+    this.elements().forEach(function(element){
+      element.save();
+    });
+    Backbone.Model.prototype.save.apply(this);
+  }
 });

@@ -9,5 +9,10 @@ ClixrIo.Models.Page = Backbone.Model.extend({
 
   elements: function() {
     return this._elements || (this._elements = new ClixrIo.Collections.Elements());
+  },
+
+  save: function() {
+    this.elements().forEach(save);
+    Backbone.Model.prototype.save.apply(this);
   }
 });
