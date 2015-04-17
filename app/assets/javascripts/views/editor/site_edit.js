@@ -53,6 +53,12 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     }.bind(this), 300);
   },
 
+  siteSave: function () {
+    if (this.selectedView) this.selectedView.deselect();
+    this.model.save();
+    console.log('saved');
+  },
+
   switchInOut: function (newPage) {
     this.$currentPage().removeClass('current');
     this.currentPage = newPage;
@@ -60,13 +66,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.changePageName()
     this.$currentPage().addClass('current');
   },
-
-  siteSave: function () {
-    if (this.selectedView) this.selectedView.deselect();
-    this.model.save();
-    console.log('saved');
-  },
-
 
   fadeInOut: function (newPage) {
     this.$('.user-page-elements .user-element').css('opacity', 0);
