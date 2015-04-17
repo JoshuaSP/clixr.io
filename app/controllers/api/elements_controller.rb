@@ -10,6 +10,12 @@ class Api::ElementsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @element = Element.find(params[:id])
+    @element.destroy
+    render :show
+  end
+
   private
 
   def element_params

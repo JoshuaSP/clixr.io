@@ -1,5 +1,5 @@
 ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
-  template: JST['editor/sites/edit'],
+  template: JST['editor/site'],
 
   currentMenu: null,
 

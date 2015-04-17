@@ -4,6 +4,6 @@
 //= require_tree ../templates/live
 //= require_tree ./models/live
 //= require_tree ./collections/live
-//= require_tree ./mixins/live
+//= require_tree ./routers
 //= require_tree ./views/live/elements
-//= require_tree ./views/live/site_show.js
+//= require ./views/live/site_show

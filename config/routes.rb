@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :sites, only: [:show, :update], defaults: {format: "json"}
     resources :pages, only: [:create, :show, :update], defaults: {format: "json"}
-    resources :elements, only: [:create, :show, :update], defaults: {format: "json"}
+    resources :elements, only: [:create, :show, :update, :destroy], defaults: {format: "json"}
   end
   resources :sites, only: [:index, :create, :destroy, :edit]
 
