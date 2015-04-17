@@ -1,0 +1,23 @@
+
+<div class="user-page-container">
+
+  <div class="user-site include-user-fonts">
+    <img class="user-background-image" src="<%= site.escape('background_url') %>" alt=""
+      style="z-index:-1; position: fixed; width: 100vw; height: 100vh;"/>
+
+    <div class="user-page">
+      <% this.model.pages().forEach(function (page, i) { %>
+        <div class="user-page-elements<%= if (i = 0) ' current' %>" data-page-ord=<%= i %>>
+          <% page.elements().forEach(function(element) { %>
+            <%= domElement(element) %>
+          <% }) %>
+        </div>
+      <% }) %>
+      <div class="user-site-elements">
+        <% this.model.elements().forEach(function(element) { %>
+          <%= domElement(element) %>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
