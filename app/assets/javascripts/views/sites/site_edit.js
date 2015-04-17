@@ -67,7 +67,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     console.log('saved');
   },
 
+
   fadeInOut: function (newPage) {
+        // TODO: fix this so that overlaps aren't broken with site elements
     this.$('.user-page-elements').css('opacity', 0);
     var $oldpage = this.$currentPage();
     this.currentPage = newPage;
@@ -88,12 +90,12 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       this.$currentPage().removeClass('current');
       this.currentPage = newPage;
       this.addElementMenu.model = this.currentPage;
-      this.changePageName()
+      this.changePageName();
       this.$currentPage().addClass('current');
       setTimeout(function(){
-        this.$('.user-page-elements').css('-webkit-filter', 'blur(0px)')
-      }.bind(this), 4)
-    }.bind(this), 400)
+        this.$('.user-page-elements').css('-webkit-filter', 'blur(0px)');
+      }.bind(this), 4);
+    }.bind(this), 400);
   },
 
   pageSelect: function (event) {
@@ -110,8 +112,10 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   selectPage: function (pageIndex) {
     var newPage = this.model.pages().at(pageIndex);
     if (newPage === this.currentPage) return;
-    if (this.selectedView) this.selectedView.deselect();
-    this.selectedView = null;
+    if (this.selectedView && !this.selectedView.global()) {
+      this.selectedView.deselect();
+      this.selectedView = null;
+    }
     this[this.transition[this.model.get('transition')]](newPage);
   },
 
@@ -120,7 +124,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   currentPageSelector: function () {
-    this.pageSelector(this.currentPage);
+    return this.pageSelector(this.currentPage);
   },
 
   pageSelector: function (page) {
@@ -172,10 +176,10 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       currentPage: this.currentPage
     });
     this.$el.html(content);
-    this._renderElements('.user-site', this.model.elements());
+    this._renderElements('.user-site-elements', this.model.elements());
     this.model.pages().forEach(function(page) {
-      this._renderElements(this.pageSelector(page), page.elements())
-    }.bind(this))
+      this._renderElements(this.pageSelector(page), page.elements());
+    }.bind(this));
     return this;
   },
 
