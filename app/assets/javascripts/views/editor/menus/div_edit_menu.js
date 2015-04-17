@@ -3,7 +3,7 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
     ClixrIo.Mixins.EditElementMenu,
     ClixrIo.Mixins.MenuUtils,
     ClixrIo.Mixins.Styles, {
-      template: JST['menus/div_edit_menu'],
+      template: JST['editor/menus/div_edit_menu'],
 
       styles: [
         'user-div-style-1',
@@ -27,8 +27,8 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
 
       render: function () {
         var content = this.template({
-          styleMenu: JST['menus/style_menu']({ styles: this.styles }),
-          colorPicker: JST['menus/color_picker'](),
+          styleMenu: JST['editor/menus/style_menu']({ styles: this.styles }),
+          colorPicker: JST['editor/menus/color_picker'](),
           commonButtons: this.commonButtons({
             global: this.global()
           })

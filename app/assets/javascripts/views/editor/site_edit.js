@@ -1,5 +1,5 @@
 ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
-  template: JST['sites/edit'],
+  template: JST['editor/sites/edit'],
 
   currentMenu: null,
 
@@ -69,7 +69,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
 
   fadeInOut: function (newPage) {
-        // TODO: fix this so that overlaps aren't broken with site elements
     this.$('.user-page-elements .user-element').css('opacity', 0);
     var $oldpage = this.$currentPage();
     this.currentPage = newPage;

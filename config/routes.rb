@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   end
   resources :sites, only: [:index, :create, :destroy, :edit]
 
+  get '[:sitename]', to: 'sites#show'
 end

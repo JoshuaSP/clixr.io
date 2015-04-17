@@ -1,5 +1,5 @@
 ClixrIo.Mixins.MenuItems = {
-  template: JST['menus/menu'],
+  template: JST['editor/menus/menu'],
 
   setupMenuItems: function () {
     this._addMenuItems();

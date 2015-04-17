@@ -1,7 +1,7 @@
 ClixrIo.Views.Menu = ClixrIo.Views.Element.extend({
   tagName: 'ul',
-  template: JST['elements/menu'],
-  iconTemplate: JST['elements/menu_icon'],
+  template: JST['editor/elements/menu'],
+  iconTemplate: JST['editor/elements/menu_icon'],
   editMenu: ClixrIo.Views.MenuEditMenu,
   class: 'noselect',
 

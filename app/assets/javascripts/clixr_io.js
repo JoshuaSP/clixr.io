@@ -3,8 +3,6 @@ window.ClixrIo = {
   Collections: {},
   Mixins: {},
   Views: {},
-  Routers: {},
-  Constants: {},
   initialize: function($rootEl, id) {
     var siteEdit = new ClixrIo.Views.SiteEdit({
       el: $rootEl,

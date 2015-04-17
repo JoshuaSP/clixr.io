@@ -4,7 +4,7 @@ ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
     'keyup input': 'setTarget'
   },
 
-  template: JST['menus/link_targets_menu'],
+  template: JST['editor/menus/link_targets_menu'],
   className: 'link-targets',
   tagName: 'ul',
 

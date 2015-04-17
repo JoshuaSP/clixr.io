@@ -3,7 +3,7 @@ ClixrIo.Views.ImageEditMenu = Backbone.View.extend(
     ClixrIo.Mixins.EditElementMenu,
     ClixrIo.Mixins.Styles,
     ClixrIo.Mixins.MenuUtils, {
-      template: JST['menus/image_edit_menu'],
+      template: JST['editor/menus/image_edit_menu'],
 
       events: {
         'click .replace-button': 'replaceImage'
@@ -39,7 +39,7 @@ ClixrIo.Views.ImageEditMenu = Backbone.View.extend(
           commonButtons: this.commonButtons({
             global: this.global()
           }),
-          styleMenu: JST['menus/style_menu']({ styles: this.styles })
+          styleMenu: JST['editor/menus/style_menu']({ styles: this.styles })
         });
         this.$el.html(content);
         return this;

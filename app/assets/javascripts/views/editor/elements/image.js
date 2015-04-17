@@ -1,7 +1,7 @@
 ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
   tagName: 'div',
   editMenu: ClixrIo.Views.ImageEditMenu,
-  template: JST['elements/image'],
+  template: JST['editor/elements/image'],
 
   initialize: function (options) {
     this.render();

@@ -5,7 +5,7 @@ ClixrIo.Views.OverlappingItemsMenu = Backbone.View.extend({
     'click': 'select'
   },
 
-  template: JST['menus/overlapping_items_menu'],
+  template: JST['editor/menus/overlapping_items_menu'],
   className: "overlapping-items",
 
   initialize: function (options) {

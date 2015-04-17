@@ -1,6 +1,6 @@
 ClixrIo.Views.Button = ClixrIo.Views.Element.extend({
   tagName: 'div',
-  template: JST['elements/button'],
+  template: JST['editor/elements/button'],
   editMenu: ClixrIo.Views.ButtonEditMenu,
 
   initialize: function (options) {
