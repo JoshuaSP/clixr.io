@@ -2,7 +2,7 @@
   <li class="clearfix">
     <%= item.view.icon(15) %>
     <div>
-      <%= item.get('type') %><% if (item.view.$('.text-content').length) { %><%= ": " + item.view.$('.text-content').html().replace(/<.*?>/g, "").slice(0, 7) %> <% } %>
+      <%= item.get('element_type') %><% if (item.view.$('.text-content').length) { %><%= ": " + item.view.$('.text-content').html().replace(/<.*?>/g, "").slice(0, 7) %> <% } %>
     </div>
     <i class="fa fa-bars"></i>
   </li>

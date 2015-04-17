@@ -28,7 +28,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 placeable_id     | integer   | not null, foreign key (polymorphic association references page or site)
 placeable_type | string | not null, in: (page, site), default: "page"
-type        | string    | not null, in: (div, image, text, button, header, {media}), default: "div"
+element_type        | string    | not null, in: (div, image, text, button, header, {media}), default: "div"
 class       | string    |
 container_id| integer   | foreign_key (references element)
 height      | integer   | not null

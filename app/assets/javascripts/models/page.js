@@ -1,4 +1,6 @@
 ClixrIo.Models.Page = Backbone.Model.extend({
+  urlRoot: '/api/pages',
+
   parse: function (response) {
     if (response.elements) {
       this.elements().set(response.elements);

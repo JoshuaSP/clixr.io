@@ -13,14 +13,14 @@ class Api::ElementsController < ApplicationController
   private
 
   def element_params
-    @element.update(params.require(:element).permit(
+    params.require(:element).permit(
       :placeable_id,
       :placeable_type,
-      :type,
+      :element_type,
       :class,
       :css,
       :url,
       :content
-    ))
+    )
   end
 end

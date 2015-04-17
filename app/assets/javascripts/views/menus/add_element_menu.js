@@ -37,7 +37,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     button: function () {
       var button = new ClixrIo.Models.Element({
-        type: 'Button',
+        element_type: 'Button',
         content: "My Button"
       });
       var buttonView = new ClixrIo.Views.Button({ model: button });
@@ -52,7 +52,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     horizontalLine: function () {
-      var div = new ClixrIo.Models.Element({ type: 'Horizontal Line' });
+      var div = new ClixrIo.Models.Element({ element_type: 'Horizontal Line' });
       var divView = new ClixrIo.Views.HorizontalLine({ model: div });
       divView.$el.css("left", "0px");
       divView.$el.css("top", "200px");
@@ -63,7 +63,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     box: function () {
-      var div = new ClixrIo.Models.Element({ type: 'Box' });
+      var div = new ClixrIo.Models.Element({ element_type: 'Box' });
       var divView = new ClixrIo.Views.Box({ model: div });
       this._placeCenter(divView);
       divView.$el.css('width', '200px');
@@ -86,7 +86,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     text: function () {
       var text = new ClixrIo.Models.Element({
-        type: 'Text',
+        element_type: 'Text',
         content: "My Paragraph"
       });
       var textView = new ClixrIo.Views.Text({ model: text });
@@ -98,7 +98,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     image: function () {
       var image = new ClixrIo.Models.Element({
-        type: 'Image',
+        element_type: 'Image',
         resize_property: 'scale'
       });
       filepicker.pick(function(blob) {
@@ -114,7 +114,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     },
 
     menu: function () {
-      var menu = new ClixrIo.Models.Element({ type: 'Menu' });
+      var menu = new ClixrIo.Models.Element({ element_type: 'Menu' });
       var menuView = new ClixrIo.Views.Menu({
         model: menu,
         collection: this.collection
