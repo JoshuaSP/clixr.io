@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417012738) do
+ActiveRecord::Schema.define(version: 20150417032838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150417012738) do
     t.integer  "placeable_id",   null: false
     t.string   "placeable_type", null: false
     t.string   "element_type",   null: false
-    t.string   "class"
+    t.string   "element_class"
     t.text     "css"
     t.string   "url"
     t.text     "content"
