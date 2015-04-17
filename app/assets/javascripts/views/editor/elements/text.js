@@ -25,9 +25,8 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
   deselect: function () {
     this.closeEditMenu();
     this.selected = false;
-    this.$el.resizable('destroy');
-    this.$el.draggable();
-    this.$el.draggable('destroy');
+    this.$el.resizable().draggable();
+    this.$el.resizable('destroy').draggable('destroy');
     this.$textbox.attr("contenteditable", "false");
     this.$textbox.css('cursor', 'default');
     this.$textbox.addClass('noselect');

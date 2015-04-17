@@ -91,6 +91,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
 		this.$('.drag-handle').remove();
     this.closeEditMenu();
 		this.$el.removeClass("selected-element");
+    this.$el.resizable().draggable();
 		this.$el.resizable('destroy').draggable('destroy');
     this.$el.off();
 	},
