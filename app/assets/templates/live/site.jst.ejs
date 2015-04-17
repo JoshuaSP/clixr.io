@@ -3,8 +3,9 @@
 
   <div class="user-site include-user-fonts">
     <img class="user-background-image" src="<%= site.escape('background_url') %>" alt=""
-      style="z-index:-1; position: fixed; width: 100vw; height: 100vh;"/>
-
+      style="z-index:-2; position: fixed; width: 100vw; height: 100vh;"/>
+    <div class="image-cover">
+    </div>
     <div class="user-page">
       <% this.model.pages().forEach(function (page, i) { %>
         <div class="user-page-elements<%= i === 0 ? ' current' : '' %>" data-page-ord=<%= i %>>

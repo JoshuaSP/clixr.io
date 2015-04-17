@@ -39,7 +39,6 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       this.$textbox.css('cursor','text');
       this.$textbox.attr("contenteditable", "true");
       this.$textbox.removeClass('noselect')
-      $('a[data-wysihtml5-command-value="p"]')[0].click();
     },
 
     textboxUnedit: function () {

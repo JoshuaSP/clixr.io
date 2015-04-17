@@ -3,6 +3,15 @@
   cursor: move;
 }
 
+.image-cover {
+  background-color: white;
+  z-index: -1;
+  transition: opacity 500ms;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
 .user-element {
   transition: opacity 600ms ease;
 }

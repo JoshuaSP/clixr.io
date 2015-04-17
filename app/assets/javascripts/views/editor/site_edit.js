@@ -36,6 +36,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.model.ensurePage();
     this.currentPage = this.model.pages().findWhere({ ord: 0 });
     this.renderSite();
+    $('img').on('load', function (event) {
+      $(event.target).fadeIn(500);
+    });
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
       $functionButtons: this.$('.function-buttons'),
       siteView: this,
