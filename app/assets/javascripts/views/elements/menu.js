@@ -3,6 +3,7 @@ ClixrIo.Views.Menu = ClixrIo.Views.Element.extend({
   template: JST['elements/menu'],
   iconTemplate: JST['elements/menu_icon'],
   editMenu: ClixrIo.Views.MenuEditMenu,
+  class: 'noselect',
 
   initialize: function (options) {
     ClixrIo.Views.Element.prototype.initialize.call(this, options);

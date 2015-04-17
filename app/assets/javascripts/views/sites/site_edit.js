@@ -183,7 +183,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     elements.each(function (element) {
       var elementView = new this.elementViews[element.get('element_type')]({
         siteView: this,
-        model: element
+        model: element,
+        collection: this.model.pages()
       });
       this.addSubview(selector, elementView);
     }.bind(this));
