@@ -14,10 +14,10 @@ ClixrIoLive.Models.Site = Backbone.Model.extend({
   },
 
   elements: function() {
-    return this._elements || (this._elements = new ClixrIo.Collections.Elements());
+    return this._elements || (this._elements = new ClixrIoLive.Collections.Elements());
   },
 
   pages: function() {
-    return this._pages || (this._pages = new ClixrIo.Collections.Pages());
+    return this._pages || (this._pages = new ClixrIoLive.Collections.Pages());
   }
 });

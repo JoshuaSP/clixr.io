@@ -5,8 +5,8 @@ window.ClixrIoLive = {
   Mixins: {},
   Routers: {},
   initialize: function($rootEl, id) {
-    var siteEdit = new ClixrIoLive.Routers.LiveRouter({
-      el: $rootEl,
+    var siteEdit = new ClixrIoLive.Routers.LiveSite({
+      $rootEl: $rootEl,
       site: new ClixrIoLive.Models.Site ({ id: id })
     });
   }

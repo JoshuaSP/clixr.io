@@ -7,7 +7,7 @@
 
     <div class="user-page">
       <% this.model.pages().forEach(function (page, i) { %>
-        <div class="user-page-elements<%= if (i = 0) ' current' %>" data-page-ord=<%= i %>>
+        <div class="user-page-elements<%= i === 0 ? ' current' : '' %>" data-page-ord=<%= i %>>
           <% page.elements().forEach(function(element) { %>
             <%= domElement(element) %>
           <% }) %>

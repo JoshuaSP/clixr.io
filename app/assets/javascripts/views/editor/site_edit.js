@@ -34,7 +34,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   _setupPage: function () {
     this.model.ensurePage();
-    this.currentPage = this.model.pages().where({ ord: 0 })[0];
+    this.currentPage = this.model.pages().findWhere({ ord: 0 });
     this.renderSite();
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
       $functionButtons: this.$('.function-buttons'),

@@ -1,14 +1,16 @@
 ClixrIoLive.Routers.LiveSite = Backbone.Router.extend({
+  routes: {
+    ':address': 'switchPage'
+  },
+
   initialize: function (options) {
     _.extend(this, options);
     var siteView = new ClixrIoLive.Views.Site({ model: this.site });
     this.site.fetch({
       success: function () {
-        this.site.pages().forEach(function (page, i) {
-          this.route(page.get('address'), this.switchPage, i);
-        }.bind(this));
-        var content = this.site.render().$el;
+        var content = siteView.render().$el;
         this.$rootEl.html(content);
+        if (this.directAddress) this.switchPage(this.directAddress);
       }.bind(this)
     });
     Backbone.history.start();
@@ -19,11 +21,16 @@ ClixrIoLive.Routers.LiveSite = Backbone.Router.extend({
     'Fade': 'fadeInOut'
   },
 
-  switchPage: function (pageNum) {
+  switchPage: function (address) {
+    if (this.site.pages().length === 0) {
+      this.directAddress = address;
+      return;
+    }
+    var pageNum = this.site.pages().findWhere({ address: address }).get('ord');
     var $oldPage = $('.user-page-elements.current');
     var $newPage = $('.user-page-elements[data-page-ord=' + pageNum + ']');
-    this[this.transition[this.model.get('transition')]]($oldPage, $newPage);
-
+    if ($oldPage === $newPage) return;
+    this[this.transition[this.site.get('transition')]]($oldPage, $newPage);
   },
 
   switchInOut: function ($oldPage, $newPage) {
@@ -32,7 +39,7 @@ ClixrIoLive.Routers.LiveSite = Backbone.Router.extend({
   },
 
   fadeInOut: function ($oldPage, $newPage) {
-    $('.user-element').css('opacity', 0);
+    $('.user-page-elements .user-element').css('opacity', 0);
     $newPage.addClass('current');
     setTimeout(function () {
       $newPage.find('.user-element').css('opacity', '');

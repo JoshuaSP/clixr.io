@@ -10,6 +10,6 @@ ClixrIoLive.Models.Page = Backbone.Model.extend({
   },
 
   elements: function() {
-    return this._elements || (this._elements = new ClixrIo.Collections.Elements());
+    return this._elements || (this._elements = new ClixrIoLive.Collections.Elements());
   }
 });
