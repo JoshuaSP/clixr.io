@@ -110,7 +110,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
   deleteElement: function () {
     this.deselect();
     this.siteView.selectedView = null;
-    this.model.collection.remove(this.model);
+    this.model.destroy();
     if (this.global()) {
       this.siteView.removeSubview('.user-site-elements', this);
     } else {

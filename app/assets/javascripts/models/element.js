@@ -1,4 +1,6 @@
 ClixrIo.Models.Element = Backbone.Model.extend ({
+  urlRoot: 'api/model',
+
   cssProperties: [
     'width',
     'height',
