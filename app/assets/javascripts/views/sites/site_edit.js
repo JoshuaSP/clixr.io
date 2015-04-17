@@ -62,8 +62,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   siteSave: function () {
+    if (this.selectedView) this.selectedView.deselect();
     this.model.save();
-    console.log('saved')
+    console.log('saved');
   },
 
   fadeInOut: function (newPage) {

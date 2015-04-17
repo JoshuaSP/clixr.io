@@ -6,7 +6,7 @@ ClixrIo.Models.Site = Backbone.Model.extend({
       this.elements().set(response.elements);
     }
     if (response.pages) {
-      this.pages().set(response.pages);
+      this.pages().set(response.pages, {parse: true});
     }
     delete response.elements;
     delete response.pages;

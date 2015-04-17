@@ -17,7 +17,7 @@ class Api::ElementsController < ApplicationController
       :placeable_id,
       :placeable_type,
       :element_type,
-      :class,
+      :element_class,
       :css,
       :url,
       :content
