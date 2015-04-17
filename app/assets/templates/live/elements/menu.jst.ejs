@@ -1,3 +1,5 @@
-<% pages.each(function (page) { %>
-  <li><a href="#<%= page.escape('address') %>"><%= page.escape('title') %></a></li>
-<% }) %>
+<ul>
+  <% site.pages().each(function (page) { %>
+    <li><a href="#<%= page.escape('address') %>"><%= page.escape('title') %></a></li>
+  <% }) %>
+</ul>

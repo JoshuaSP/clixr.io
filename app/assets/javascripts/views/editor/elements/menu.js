@@ -16,23 +16,22 @@ ClixrIo.Views.Menu = ClixrIo.Views.Element.extend({
     return this;
   },
 
-  icon: function () {
+  icon: function (dim) {
     var origWidth = parseInt(this.$el.css('width'));
     var origHeight = parseInt(this.$el.css('height'));
     var maxDim = Math.max(origWidth, origHeight);
     var $icon = $('<ul>');
     $icon.css({
-      'width': 15,
-      'height': 15,
+      'width': dim,
+      'height': dim,
       'background-color': this.$el.css('background-color'),
-      'fontSize': (15 / this.collection.length) + 'px',
+      'fontSize': (dim / this.collection.length) + 'px',
       'overflow': 'hidden'
     });
-    var content = this.iconTemplate({ pages: this.collection }).replace(/ /, "&nbsp;");
+    var content = this.iconTemplate({ pages: this.collection });
     $icon.html(content);
     var style = this.$el.attr('class').match(/user\S*style-\d+/)[0];
-    $icon.addClass(style);
-    $icon.addClass('element-icon');
+    $icon.addClass(style + ' element-icon');
     return $icon.clone().wrap('<div/>').parent().html();
   },
 });
