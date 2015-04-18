@@ -53,7 +53,7 @@ ClixrIoLive.Routers.LiveSite = Backbone.Router.extend({
     $newPage.addClass('current');
     setTimeout(function () {
       $newPage.find('.user-element').css('opacity', '');
-    }, 0);
+    }, 1);
     setTimeout(function () {
       $oldPage.removeClass('current');
     }, 600);

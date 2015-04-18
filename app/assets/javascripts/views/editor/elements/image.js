@@ -9,6 +9,12 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
     if (options.width) this.$el.css('width', options.width);
   },
 
+  fadeIn: function (event) {
+    $(event.target).fadeIn(500, function () {
+      $(event.target).css('display', 'block');
+    });
+  },
+
   render: function () {
     var content = this.template({
       image: this.model

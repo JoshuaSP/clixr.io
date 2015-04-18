@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'sandbox', to: 'static_pages#sandbox'
-  get 'image_upload', to: 'image_upload#show'
+  root 'sites#new'
 
   namespace :api do
     resources :sites, only: [:show, :update], defaults: {format: "json"}

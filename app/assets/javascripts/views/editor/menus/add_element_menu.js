@@ -110,6 +110,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         imageView.$el.addClass('user-image-style-1');
         this._placeCenter(imageView);
         this._addAndSelect(imageView);
+        imageView.$('img').on('load', imageView.fadeIn);
       }.bind(this));
     },
 
