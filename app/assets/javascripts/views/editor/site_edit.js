@@ -47,9 +47,14 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       collection: this.model.pages(),
       model: this.currentPage
     });
+    this.editSiteMenu = new ClixrIo.Views.SiteEditMenu({
+      $functionButtons: this.$('.function-buttons'),
+      siteView: this,
+      collection: this.model.pages()
+    })
   },
 
-  changePageName: function () {
+  changePageNameDisplay: function () {
     var $pageContainer = $('.page-select');
     $pageContainer.css('opacity', 0);
     setTimeout(function () {
@@ -68,7 +73,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.$currentPage().removeClass('current');
     this.currentPage = newPage;
     this.addElementMenu.model = this.currentPage;
-    this.changePageName()
+    this.changePageNameDisplay()
     this.$currentPage().addClass('current');
   },
 
@@ -77,7 +82,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     var $oldpage = this.$currentPage();
     this.currentPage = newPage;
     this.addElementMenu.model = this.currentPage;
-    this.changePageName();
+    this.changePageNameDisplay();
     this.$currentPage().addClass('current');
     setTimeout(function () {
       $(this.currentPageSelector() + ' .user-element').css('opacity', '');
@@ -93,7 +98,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       this.$currentPage().removeClass('current');
       this.currentPage = newPage;
       this.addElementMenu.model = this.currentPage;
-      this.changePageName();
+      this.changePageNameDisplay();
       this.$currentPage().addClass('current');
       setTimeout(function(){
         this.$('.user-page-elements').css('-webkit-filter', 'blur(0px)');

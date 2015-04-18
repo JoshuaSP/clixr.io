@@ -1,19 +1,19 @@
 ClixrIo.Views.Element = Backbone.View.extend({
   handles: {
-    "n": { left: "50%", top: "-5px"},
+    "n": { left: "calc(50% - 6px)", top: "-5px"},
     "ne": { right: "-5px", top: "-5px"},
-    "e": { right: "-5px", top: "50%"},
+    "e": { right: "-5px", top: "calc(50% - 6px)"},
     "se": { right: "-5px", bottom: "-5px"},
-    "s": { left: "50%", bottom: "-5px"},
+    "s": { left: "calc(50% - 6px)", bottom: "-5px"},
     "nw": { left: "-5px", top: "-5px"},
-    "w": { left: "-5px", top: "50%"},
+    "w": { left: "-5px", top: "calc(50% - 6px)"},
     "sw": { left: "-5px", bottom: "-5px"}
   },
 
 	className: "user-element",
 
   initialize: function (options) {
-    _.extend(this, options)
+    _.extend(this, options);
     this.$el.addClass(this.model.get('element_class'));
     var css = this.model.get('css') ? $.parseJSON(this.model.get('css')) : {} ;
     css.position = "absolute";
