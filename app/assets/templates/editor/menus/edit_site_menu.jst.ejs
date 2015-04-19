@@ -1,5 +1,5 @@
 <div>
-  <i class="main-icon fa fa-file-text-o"></i> <label>Edit Site</label>
+  <i class="main-icon fa fa-file-text-o"></i> <label>Edit&nbsp;Site</label>
 </div>
 <i class="fa fa-close"></i>
 <ul>
@@ -10,21 +10,27 @@
     <i class="fa fa-pencil"></i>
   </li>
   <li class="click-to-edit site-address">
-    <label>Address:
+    <label>Address: <br>
+      clixr.io/
       <span><%= site.escape('published_address') %></span>
     </label>
     <i class="fa fa-pencil"></i>
   </li>
-  <li><label>Background</label></li>
-  <li>
+  <li class="background-button">
+    <i class="fa fa-square"></i>
+    <label>Background</label>
+  </li>
+  <div class="pages-list">
+    <label class='pages-label'>Pages</label>
     <ul class='page-reorder'>
     </ul>
-  </li>
+  </div>
   <li class='add-page'>
     <i class="fa fa-plus"></i>
     <label>add a page</label>
   </li>
   <li class='page-transition'>
+    <i class="fa fa-arrows-h"></i>
     <label>Page Transition: <span><%= site.escape('transition') %></span></label>
   </li>
 </ul>

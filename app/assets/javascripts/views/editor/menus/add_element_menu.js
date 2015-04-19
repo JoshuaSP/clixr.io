@@ -6,7 +6,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       { glyph: "font", name: "Text" },
       { glyph: "image", name: "Image" },
       { glyph: "align-justify", name: "Menu" },
-      { glyph: "minus", name: "Horizontal Line" }
+      { glyph: "minus", name: "Horizontal&nbsp;Line" }
     ],
 
     className: "add-element-button",

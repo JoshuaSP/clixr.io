@@ -5,7 +5,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   events: {
     "click .page-menu-button": "showPageMenu",
-    "click .add-element-button": "showAddElementMenu",
+    "click .function-buttons > div": "showMenu",
     "click .page-select": "pageSelect",
     "click .user-element": "selectElement",
     "click .site-save": "siteSave"
@@ -41,18 +41,18 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
         $(event.target).css('display', 'block');
       });
     });
+    this.editSiteMenu = new ClixrIo.Views.EditSiteMenu({
+      $functionButtons: this.$('.function-buttons'),
+      siteView: this,
+      pages: this.model.pages(),
+      site: this.model
+    });
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
       $functionButtons: this.$('.function-buttons'),
       siteView: this,
       collection: this.model.pages(),
       model: this.currentPage
     });
-    this.editSiteMenu = new ClixrIo.Views.EditSiteMenu({
-      $functionButtons: this.$('.function-buttons'),
-      siteView: this,
-      pages: this.model.pages(),
-      site: this.model
-    })
   },
 
   changePageNameDisplay: function () {
@@ -203,15 +203,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     }.bind(this));
   },
 
-  showPageMenu: function (event) {
+  showMenu: function (event) {
     if(!$(event.target).hasClass("fa-close")) {
-      this.addElementMenu.$el.addClass("expanded-menu");
-    }
-  },
-
-  showAddElementMenu: function (event) {
-    if(!$(event.target).hasClass("fa-close")) {
-      this.addElementMenu.$el.addClass("expanded-menu");
+      $(event.currentTarget).addClass("expanded-menu");
     }
   },
 

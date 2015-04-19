@@ -1,10 +1,11 @@
 ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
   className: 'edit-site-button',
-  template: JST['editor/menus/edit_site'],
+  template: JST['editor/menus/edit_site_menu'],
 
   events: {
     'click .fa-close': 'closeMenu',
     'input.site-title blur': 'changeTitle',
+    'input.site-title submit': 'changeTitle',
     'input.site-address keyup': 'checkAddress',
     'input.site-address blur': 'addressBlur',
     'click .click-to-edit': 'clickToEdit',
@@ -150,7 +151,7 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   },
 
   delete: function () {
-    this.model.destroy();
+    if (this.model.collection.length > 1) this.model.destroy();
   },
 
   rename: function () {

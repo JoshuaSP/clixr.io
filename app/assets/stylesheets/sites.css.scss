@@ -14,6 +14,8 @@ $select-color: #7effeb;
 $handle-bg-color: white;
 $lightish-blue: #ddf;
 $user-text-grey: #444;
+$app-text-color: #505050;
+$hover-select-color: #aaaaaa;
 $focus-good: #322fa1;
 $focus-bad: #cf383a;
 
@@ -75,8 +77,8 @@ body {
     cursor: pointer;
     background-clip: border-box;
     box-shadow: $basic-shadow;
-    transition-property: width height background-color;
-    transition-duration: 300ms;
+    transition-property: width, max-height, background-color;
+    transition-duration: 300ms, 600ms, 300ms;
     font-size: 30px;
     overflow: hidden;
 
@@ -112,7 +114,14 @@ body {
     }
 
     &:hover {
-      width: 140px;
+
+      &.edit-site-button {
+        width: 220px;
+      }
+
+      &.add-element-button {
+        width: 140px;
+      }
 
       label {
         opacity: 1;
@@ -149,7 +158,7 @@ body {
 
       label {
         margin-top: 11px;
-        margin-bottom: px;
+        margin-bottom: 5px;
         font-size: 15px;
       }
 
@@ -158,9 +167,22 @@ body {
       }
     }
 
+
     &.expanded-menu {
-      width: 211px;
-      max-height: 350px;
+
+      &.add-element-button {
+        width: 211px;
+      }
+
+      &.edit-site-button {
+        width: 250px;
+      }
+
+      .page-transition {
+        margin-bottom: 13px;
+      }
+
+      max-height: 900px;
 
       .main-icon {
         opacity: 0;
@@ -185,8 +207,93 @@ body {
         transition-delay: 0, 400ms;
       }
     }
-  }
 
+    &.edit-site-button {
+
+      .pages-label {
+        font-size: 10px;
+        font-weight: bold;
+        margin-top: -7px;
+        margin-left: 70px;
+      }
+
+      i.fa-pencil, i.fa-trash, {
+        opacity: 0;
+      }
+
+      .site-address {
+        margin-top: -9px;
+        margin-bottom: 10px;
+      }
+
+      .background-button {
+        border-bottom: 1px solid $border-grey;
+      }
+
+      .pages-list {
+        margin-top: 10px;
+
+        ul {
+          border: none;
+        }
+      }
+
+      li {
+        padding-right: 2px;
+
+        &:hover {
+          i.fa-pencil, i.fa-trash {
+            opacity: 1
+          }
+
+          i.fa-bars {
+            color: $app-text-color;
+          }
+
+          .pages-label {
+            color: $app-text-color;
+          }
+        }
+      }
+
+      .add-page {
+        border-top: 1px solid $border-grey;
+        margin-top: 16px;
+      }
+
+      ul > div > ul > li {
+        padding: 0;
+        height: 32px;
+
+        i {
+          margin: 14px 0 -2px 0 ;
+        }
+
+        &:first-child {
+          margin-top: 10px;
+          border: none;
+        }
+      }
+
+
+      i.fa-trash, i.fa-bars {
+        float: right;
+        margin-left: 9px;
+      }
+
+      input {
+        width: 130px;
+
+        &:nth-child(2) {
+          width: 100px;
+        }
+      }
+
+      span {
+        font-size: 15px;
+      }
+    }
+  }
 }
 
 nav {
