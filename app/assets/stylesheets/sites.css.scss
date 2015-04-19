@@ -61,6 +61,14 @@ body {
   }
 }
 
+.clearfix:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+
+
 .function-buttons {
   position: fixed;
   z-index: 10000;
@@ -209,11 +217,28 @@ body {
     }
 
     &.edit-site-button {
+
+      i {
+        display: initial;
+      }
+
+      > ul > li {
+        position: initial;
+
+        .fa-pencil {
+          float: left;
+          position: static;
+          margin: 0;
+        }
+      }
+
       input {
         margin-top: -5px;
       }
 
-
+      > ul {
+        padding-right: 2px;
+      }
 
       .pages-label {
         font-size: 10px;
@@ -226,23 +251,31 @@ body {
         opacity: 0;
       }
 
-      .site-address {
-        margin-top: -9px;
-        margin-bottom: 10px;
+      .site-title, .site-address {
+
+        padding-left: 0;
+        margin: 7px 0 7px 9px;
 
         label {
-          position: relative;
-          position: 0;
-          margin: 0;
+          float: left;
+          margin: 0 0 0 14px;
+          position: static
         }
       }
 
-      .site-title {
-        position: relative;
-      }
+
 
       .background-button {
         border-bottom: 1px solid $border-grey;
+        margin-top: 3px;
+        i {
+          float: left;
+          margin: 3px 0 3px 0;
+        }
+
+        label {
+          margin-top: 3px;
+        }
       }
 
       .pages-list {
@@ -280,8 +313,12 @@ body {
         padding: 0;
         height: 32px;
 
+        span {
+          margin-left: 4px;
+        }
+
         i {
-          margin: 14px 0 -2px 0 ;
+          margin: 14px 0 0 9px;
         }
 
         &:first-child {
@@ -315,14 +352,6 @@ nav {
   margin: 0;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
 
 .user-page-container {
   position: fixed;

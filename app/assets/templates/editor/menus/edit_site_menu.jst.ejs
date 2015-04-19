@@ -3,20 +3,20 @@
 </div>
 <i class="fa fa-close"></i>
 <ul>
-  <li class="click-to-edit site-title">
+  <li class="click-to-edit site-title clearfix">
+    <i class="fa fa-pencil"></i>
     <label>Name:
       <span><%= site.escape('title') %></span>
     </label>
-    <i class="fa fa-pencil"></i>
   </li>
-  <li class="click-to-edit site-address">
-    <label>Address: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <li class="click-to-edit site-address clearfix">
+    <i class="fa fa-pencil"></i>
+    <label>Address: <br>
       clixr.io/
       <span><%= site.escape('published_address') %></span>
     </label>
-    <i class="fa fa-pencil"></i>
   </li>
-  <li class="background-button">
+  <li class="background-button clearfix">
     <i class="fa fa-square"></i>
     <label>Background</label>
   </li>
