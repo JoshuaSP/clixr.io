@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418183409) do
+ActiveRecord::Schema.define(version: 20150418211420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 20150418183409) do
     t.string   "published_address"
     t.string   "thumbnail_url"
     t.string   "background_url"
-    t.string   "body_class"
     t.string   "body_css"
     t.string   "transition"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "hash_id"
+    t.text     "background_css"
   end
 
   add_index "sites", ["published_address"], name: "index_sites_on_published_address", using: :btree

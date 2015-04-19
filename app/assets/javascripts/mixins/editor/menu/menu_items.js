@@ -34,7 +34,6 @@ ClixrIo.Mixins.MenuItems = {
 
   _addClose: function () {
     this.events["click .fa-close"] = "closeMenu";
-    this.openable = true;
   },
 
   _functionize: function(name) {

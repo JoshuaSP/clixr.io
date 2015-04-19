@@ -1,0 +1,32 @@
+<div>
+  <i class="main-icon fa fa-file-text-o"></i> <label>Edit Site</label>
+</div>
+<i class="fa fa-close"></i>
+<ul>
+  <li class="click-to-edit site-title">
+    <label>Name:
+      <span><%= site.escape('title') %></span>
+    </label>
+    <i class="fa fa-pencil"></i>
+  </li>
+  <li class="click-to-edit site-address">
+    <label>Address:
+      <span><%= site.escape('published_address') %></span>
+    </label>
+    <i class="fa fa-pencil"></i>
+  </li>
+  <li><label>Background</label></li>
+  <li>
+    <ul class='page-reorder'>
+    </ul>
+  </li>
+  <li class='add-page'>
+    <i class="fa fa-plus"></i>
+    <label>add a page</label>
+  </li>
+  <li class='page-transition'>
+    <label>Page Transition: <span><%= site.escape('transition') %></span></label>
+  </li>
+</ul>
+
+<!-- do css::after for home icon -->

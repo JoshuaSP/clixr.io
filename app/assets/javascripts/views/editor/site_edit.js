@@ -47,10 +47,11 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       collection: this.model.pages(),
       model: this.currentPage
     });
-    this.editSiteMenu = new ClixrIo.Views.SiteEditMenu({
+    this.editSiteMenu = new ClixrIo.Views.EditSiteMenu({
       $functionButtons: this.$('.function-buttons'),
       siteView: this,
-      collection: this.model.pages()
+      pages: this.model.pages(),
+      site: this.model
     })
   },
 
@@ -203,8 +204,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   showPageMenu: function (event) {
-    if (this.pageMenu.openable) {
-      this.pageMenu.$el.addClass("expanded-menu");
+    if(!$(event.target).hasClass("fa-close")) {
+      this.addElementMenu.$el.addClass("expanded-menu");
     }
   },
 

@@ -10,7 +10,20 @@ class Api::SitesController < ApplicationController
       :published_address,
       :thumbnail_url,
       :background_url,
+      :body_css,
+      :background_css,
       :transition
     ))
+  end
+
+  def check_address
+    @site = Site.find(params[:id]);
+    found_site = Site.find_by_published_address(params[:address])
+    disallowed = params[:address].match(/[^A-za-z]|^api$|^sites$|^edit$|^$/)
+    if (found_site && !found_site == @site) || disallowed
+      head :bad_request
+    else
+      head :ok
+    end
   end
 end
