@@ -4,10 +4,10 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
 
   events: {
     'click .fa-close': 'closeMenu',
-    'input.site-title blur': 'changeTitle',
-    'input.site-title submit': 'changeTitle',
-    'input.site-address keyup': 'checkAddress',
-    'input.site-address blur': 'addressBlur',
+    'keyup .site-title input': 'changeTitleIfEnter',
+    'focusout .site-title input': 'changeTitle',
+    'keyup .site-address input': 'checkAddress',
+    'focusout .site-address input': 'addressBlur',
     'click .click-to-edit': 'clickToEdit',
     'click .add-page': 'addPage',
     'click .page-transition': 'pageTransition'
@@ -58,15 +58,24 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
     this.site.set('transition', this.transitions[(currIdx + 1) % 2]);
   },
 
+  changeTitleIfEnter: function (event) {
+    if (event.which === 13) this.changeTitle(event);
+  },
+
   changeTitle: function (event) {
     this.site.set('title', $(event.currentTarget).val());
+    this.render();
   },
 
   checkAddress: function (event) {
     this.addressBlurred = false;
     var $input = $(event.currentTarget);
+    if (event.which === 13) {
+      this.changeAddress($input);
+      return;
+    }
     var newAddress = $input.val();
-    $input.removeClass('validated');
+    $input.removeClass('validated').removeClass('input-bad');
     $.ajax({
       url: "/api/sites/" + this.site.id + "/address",
       data: {address: newAddress},
@@ -83,7 +92,8 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
 
   changeAddress: function ($input) {
     if (!$input.hasClass('input-bad')) {
-      this.site.set('title', $input.val());
+      this.site.set('published_address', $input.val());
+      this.render();
     } else {
       this.render();
     }
@@ -101,7 +111,9 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
   clickToEdit: function (event) {
     var $span = $(event.currentTarget).find('span');
     var currentValue = $span.text();
-    $span.replaceWith('<input value="' + currentValue + '">');
+    $input = $('<input type="text" value="' + currentValue + '">')
+    $span.replaceWith($input);
+    $input.focus();
   },
 
   render: function () {
@@ -125,9 +137,9 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   className: 'page-edit',
 
   events: {
-    'click fa-pencil': 'renameBox',
-    'click fa-trash': 'delete',
-    'input blur': 'rename'
+    'click .fa-pencil': 'renameBox',
+    'click .fa-trash': 'delete',
+    'focusout input': 'rename'
   },
 
   initialize: function () {
@@ -147,7 +159,7 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   renameBox: function () {
     var $span = $(event.currentTarget).find('span');
     var currentValue = $span.text();
-    $span.replaceWith('<input value="' + currentValue + '">');
+    $span.replaceWith('<input type= "text" value="' + currentValue + '">');
   },
 
   delete: function () {
@@ -164,5 +176,6 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
       address += i;
     }
     this.model.set('address', address);
+    this.render();
   }
 });

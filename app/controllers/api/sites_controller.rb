@@ -20,8 +20,8 @@ class Api::SitesController < ApplicationController
     @site = Site.find(params[:id]);
     found_site = Site.find_by_published_address(params[:address])
     disallowed = params[:address].match(/[^A-za-z]|^api$|^sites$|^edit$|^$/)
-    if (found_site && !found_site == @site) || disallowed
-      head :bad_request
+    if (found_site && !(found_site == @site)) || disallowed
+      head :conflict
     else
       head :ok
     end

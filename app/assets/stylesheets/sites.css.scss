@@ -209,6 +209,11 @@ body {
     }
 
     &.edit-site-button {
+      input {
+        margin-top: -5px;
+      }
+
+
 
       .pages-label {
         font-size: 10px;
@@ -224,6 +229,16 @@ body {
       .site-address {
         margin-top: -9px;
         margin-bottom: 10px;
+
+        label {
+          position: relative;
+          position: 0;
+          margin: 0;
+        }
+      }
+
+      .site-title {
+        position: relative;
       }
 
       .background-button {
@@ -282,7 +297,7 @@ body {
       }
 
       input {
-        width: 130px;
+        width: 121px;
 
         &:nth-child(2) {
           width: 100px;
