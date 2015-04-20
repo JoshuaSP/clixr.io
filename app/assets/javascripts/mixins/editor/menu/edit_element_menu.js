@@ -12,13 +12,12 @@ ClixrIo.Mixins.EditElementMenu = {
 
   sitePageToggle: function () {
     var site = this.siteView;
-    var currentPageSelector = site.pageSelector(site.currentPage);
     if (this.global()) {
       this.model.collection.remove(this.model);
-      site.currentPage.elements().add(this.model);
-      site.moveSubview('.user-site-elements', currentPageSelector, this.model.view);
+      site.currentPage().elements().add(this.model);
+      site.moveSubview('.user-site-elements', site.currentPageSelector(), this.model.view);
       this.model.set({
-        'placeable_id': site.currentPage.id,
+        'placeable_id': site.currentPage().id,
         'placeable_type': 'Page'
       });
       this.$('.site-page-toggle i').removeClass('fa-check-square-o').addClass('fa-square-o');
@@ -29,7 +28,7 @@ ClixrIo.Mixins.EditElementMenu = {
         'placeable_id': site.model.id,
         'placeable_type': 'Site'
       });
-      site.moveSubview(currentPageSelector, '.user-site-elements', this.model.view);
+      site.moveSubview(site.currentPageSelector(), '.user-site-elements', this.model.view);
       this.$('.site-page-toggle i').addClass('fa-check-square-o').removeClass('fa-square-o');
     }
   },

@@ -33,7 +33,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   _setupPage: function () {
     this.model.ensurePage();
-    this.currentPage = this.model.pages().findWhere({ ord: 0 });
+    this._currentPage = this.model.pages().findWhere({ ord: 0 });
     this.renderSite();
     $('img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
@@ -50,13 +50,17 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       $functionButtons: this.$('.function-buttons'),
       siteView: this,
       collection: this.model.pages(),
-      model: this.currentPage
+      model: this.currentPage()
     });
     this.pageChangeMenu = new ClixrIo.Views.PageChangeMenu({
       selectPage: this.selectPage.bind(this),
       collection: this.model.pages(),
-      currentPage: this.currentPage
+      currentPage: this.currentPage.bind(this)
     });
+  },
+
+  currentPage: function() {
+    return this._currentPage
   },
 
   changePageNameDisplay: function () {
@@ -64,7 +68,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     $pageContainer.css('opacity', 0);
     setTimeout(function () {
       $pageContainer.css('opacity', 1);
-      $('.current-page-name').html(this.currentPage.escape('title'));
+      $('.current-page-name').html(this.currentPage().escape('title'));
     }.bind(this), 300);
   },
 
@@ -76,8 +80,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   switchInOut: function (newPage) {
     this.$currentPage().removeClass('current');
-    this.currentPage = newPage;
-    this.addElementMenu.model = this.currentPage;
+    this._currentPage = newPage;
+    this.addElementMenu.model = this.currentPage();
     this.changePageNameDisplay();
     this.$currentPage().addClass('current');
   },
@@ -85,8 +89,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   fadeInOut: function (newPage) {
     this.$('.user-page-elements .user-element').css('opacity', 0);
     var $oldpage = this.$currentPage();
-    this.currentPage = newPage;
-    this.addElementMenu.model = this.currentPage;
+    this._currentPage = newPage;
+    this.addElementMenu.model = this.currentPage();
     this.changePageNameDisplay();
     this.$currentPage().addClass('current');
     setTimeout(function () {
@@ -101,8 +105,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.$('.user-page-elements').css('-webkit-filter', 'blur(50px)');
     setTimeout(function() {
       this.$currentPage().removeClass('current');
-      this.currentPage = newPage;
-      this.addElementMenu.model = this.currentPage;
+      this._currentPage = newPage;
+      this.addElementMenu.model = this.currentPage();
       this.changePageNameDisplay();
       this.$currentPage().addClass('current');
       setTimeout(function(){
@@ -113,7 +117,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   selectPage: function (pageIndex) {
     var newPage = this.model.pages().at(pageIndex);
-    if (newPage === this.currentPage) return;
+    if (newPage === this.currentPage()) return;
     if (this.selectedView && !this.selectedView.global()) {
       this.selectedView.deselect();
       this.selectedView = null;
@@ -126,7 +130,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   currentPageSelector: function () {
-    return this.pageSelector(this.currentPage);
+    return this.pageSelector(this.currentPage());
   },
 
   pageSelector: function (page) {
@@ -157,7 +161,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   findView: function($el) {
-    var allViews = this.subviews(this.currentPageSelector)
+    var allViews = this.subviews(this.currentPageSelector())
       .concat(this.subviews('.user-site-elements'));
     return _(allViews).find(function(subview) {
       return subview.$el.is($el);
@@ -175,7 +179,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   renderSite: function () {
     var content = this.template({
       site: this.model,
-      currentPage: this.currentPage
+      currentPage: this.currentPage.bind(this)
     });
     this.$el.html(content);
     this._renderElements('.user-site-elements', this.model.elements());

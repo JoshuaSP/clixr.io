@@ -1,146 +1,151 @@
-ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
-  className: 'edit-site-button',
-  template: JST['editor/menus/edit_site_menu'],
+ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
+  _.extend({}, ClixrIo.Mixins.Submenus, {
+    className: 'edit-site-button',
+    template: JST['editor/menus/edit_site_menu'],
 
-  events: {
-    'click .fa-close': 'closeMenu',
-    'keyup .site-title input': 'changeTitleIfEnter',
-    'focusout .site-title input': 'changeTitle',
-    'keyup .site-address input': 'checkAddress',
-    'focusout .site-address input': 'addressBlur',
-    'click .click-to-edit': 'clickToEdit',
-    'click .add-page': 'addPage',
-    'click .page-transition': 'pageTransition'
-  },
+    events: {
+      'click .fa-close': 'closeMenu',
+      'keyup .site-title input': 'changeTitleIfEnter',
+      'focusout .site-title input': 'changeTitle',
+      'keyup .site-address input': 'checkAddress',
+      'focusout .site-address input': 'addressBlur',
+      'click .click-to-edit': 'clickToEdit',
+      'click .add-page': 'addPage',
+      'click .page-transition': 'pageTransition'
+    },
 
-  transitions: [
-    'None',
-    'Fade'
-  ],
+    transitions: [
+      'None',
+      'Fade'
+    ],
 
-  initialize: function(options) {
-    _.extend(this, options);
-    this.$functionButtons.append(this.$el);
-    this.render();
-    this.setup();
-    this.listenTo(this.site, "change", this.render);
-    this.listenTo(this.pages, "add", this.addPageListView);
-    this.listenTo(this.pages, "remove", this.removePageListView);
-  },
-
-  setup: function () {
-    this.pages.forEach(this.addPageListView.bind(this));
-  },
-
-  addPageListView: function(page) {
-    var pageListItem = new ClixrIo.Views.PageListItem({
-      model: page,
-      collection: this.pages
-    });
-    this.addSubview('.page-reorder', pageListItem);
-  },
-
-  removePageListView: function(page) {
-    this.removeModelSubview('.page-reorder', page);
-  },
-
-  addPage: function () {
-    var page = new ClixrIo.Models.Page({
-      title: "New Page",
-      ord: this.pages.length
-    });
-    this.pages.add(page);
-  },
-
-  pageTransition: function () {
-    var currIdx = this.transitions.indexOf(this.site.get('transition'));
-    this.site.set('transition', this.transitions[(currIdx + 1) % 2]);
-  },
-
-  changeTitleIfEnter: function (event) {
-    if (event.which === 13) this.changeTitle(event);
-  },
-
-  changeTitle: function (event) {
-    this.site.set('title', $(event.currentTarget).val());
-    this.render();
-  },
-
-  checkAddress: function (event) {
-    this.addressBlurred = false;
-    var $input = $(event.currentTarget);
-    if (event.which === 13) {
-      this.changeAddress($input);
-      return;
-    }
-    var newAddress = $input.val();
-    $input.removeClass('validated').removeClass('input-bad');
-    $.ajax({
-      url: "/api/sites/" + this.site.id + "/address",
-      data: {address: newAddress},
-      success: function () {
-        $input.addClass('validated');
-        if (this.addressBlurred) this.changeAddress($input);
-      },
-      error: function () {
-        $input.addClass('validated input-bad');
-        if (this.addressBlurred) this.changeAddress($input);
-      }
-    });
-  },
-
-  changeAddress: function ($input) {
-    if (!$input.hasClass('input-bad')) {
-      this.site.set('published_address', $input.val());
+    initialize: function(options) {
+      _.extend(this, options);
+      this.$functionButtons.append(this.$el);
       this.render();
-    } else {
+      this.setup();
+      this.listenTo(this.site, "change", this.render);
+      this.listenTo(this.pages, "add", this.addPageListView);
+      this.listenTo(this.pages, "remove", this.removePageListView);
+    },
+
+    setup: function () {
+      this.pages.forEach(this.addPageListView.bind(this));
+    },
+
+    addPageListView: function(page) {
+      var pageListItem = new ClixrIo.Views.PageListItem({
+        model: page,
+        collection: this.pages
+      });
+      this.addSubview('.page-reorder', pageListItem);
+    },
+
+    removePageListView: function(page) {
+      this.removeModelSubview('.page-reorder', page);
+    },
+
+    addPage: function () {
+      var page = new ClixrIo.Models.Page({
+        title: "New Page",
+        ord: this.pages.length
+      });
+      this.pages.add(page);
+    },
+
+    pageTransition: function () {
+      var currIdx = this.transitions.indexOf(this.site.get('transition'));
+      this.site.set('transition', this.transitions[(currIdx + 1) % 2]);
+    },
+
+    changeTitleIfEnter: function (event) {
+      if (event.which === 13) this.changeTitle(event);
+    },
+
+    changeTitle: function (event) {
+      this.site.set('title', $(event.currentTarget).val());
       this.render();
-    }
-  },
+    },
 
-  addressBlur: function (event) {
-    var $input = $(event.currentTarget);
-    if (!$input.hasClass('validated')) {
-      this.addressBlurred = true;
-    } else {
-      this.changeAddress($input);
-    }
-  },
-
-  clickToEdit: function (event) {
-    var $span = $(event.currentTarget).find('span');
-    var currentValue = $span.text();
-    var $input = $('<input type="text" value="' + currentValue + '">');
-    $span.replaceWith($input);
-    $input.focus();
-    $input.select();
-  },
-
-  render: function () {
-    var content = this.template({
-      site: this.site,
-      pages: this.pages
-    });
-    this.$el.html(content);
-    var editSiteMenu = this;
-    this.$('.page-reorder').sortable({
-      update: function () {
-        editSiteMenu.subviews('.page-reorder').forEach(function(subview) {
-          subview.reorder();
-        });
-        editSiteMenu.pages.sort();
-        editSiteMenu.subviews()['.page-reorder'] = _(editSiteMenu.subviews()['.page-reorder']).sortBy(function(subview) {
-          return subview.model.get('ord');
-        })
+    checkAddress: function (event) {
+      this.addressBlurred = false;
+      var $input = $(event.currentTarget);
+      if (event.which === 13) {
+        this.changeAddress($input);
+        return;
       }
-    });
-    this.attachSubviews();
-  },
+      var newAddress = $input.val();
+      $input.removeClass('validated').removeClass('input-bad');
+      $.ajax({
+        url: "/api/sites/" + this.site.id + "/address",
+        data: {address: newAddress},
+        success: function () {
+          $input.addClass('validated');
+          if (this.addressBlurred) this.changeAddress($input);
+        },
+        error: function () {
+          $input.addClass('validated input-bad');
+          if (this.addressBlurred) this.changeAddress($input);
+        }
+      });
+    },
 
-  closeMenu: function (event) {
-    this.$el.removeClass("expanded-menu");
-  }
-});
+    changeAddress: function ($input) {
+      if (!$input.hasClass('input-bad')) {
+        this.site.set('published_address', $input.val());
+        this.render();
+      } else {
+        this.render();
+      }
+    },
+
+    addressBlur: function (event) {
+      var $input = $(event.currentTarget);
+      if (!$input.hasClass('validated')) {
+        this.addressBlurred = true;
+      } else {
+        this.changeAddress($input);
+      }
+    },
+
+    clickToEdit: function (event) {
+      var $span = $(event.currentTarget).find('span');
+      var currentValue = $span.text();
+      var $input = $('<input type="text" value="' + currentValue + '">');
+      $span.replaceWith($input);
+      $input.focus();
+      $input.select();
+    },
+
+    render: function () {
+      var content = this.template({
+        site: this.site,
+        pages: this.pages
+      });
+      this.$el.html(content);
+      var editSiteMenu = this;
+      this.$('.page-reorder').sortable({
+        update: function () {
+          editSiteMenu.subviews('.page-reorder').forEach(function(subview) {
+            subview.reorder();
+          });
+          editSiteMenu.pages.sort();
+          editSiteMenu.subviews()['.page-reorder'] = _(editSiteMenu.subviews()['.page-reorder']).sortBy(function(subview) {
+            return subview.model.get('ord');
+          });
+        }
+      });
+      this.attachSubviews();
+      this.setupSubmenus(this.$el, {
+        '.background-button': '.site-background-menu'
+      });
+    },
+
+    closeMenu: function (event) {
+      this.$el.removeClass("expanded-menu");
+    }
+  })
+);
 
 
 ClixrIo.Views.PageListItem = Backbone.View.extend({

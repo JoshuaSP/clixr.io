@@ -25,7 +25,7 @@ ClixrIo.Views.PageChangeMenu = Backbone.View.extend({
   render: function () {
     var content = this.template({
       pages: this.collection,
-      currentPage: this.currentPage
+      currentPage: this.currentPage()
     });
     this.$el.html(content);
     return this;

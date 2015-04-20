@@ -1,4 +1,4 @@
-ClixrIo.Mixins.Colorpicker = {
+ClixrIo.Mixins.ColorPicker = {
   colorPicker: function (slideFunctionCreator, startColor, ctxt) {
     var context = ctxt || $(document)
     var $redSlider = context.find('.color-picker .red .slider');
