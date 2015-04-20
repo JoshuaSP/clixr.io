@@ -14,9 +14,13 @@ ClixrIo.Models.Page = Backbone.Model.extend({
   },
 
   save: function() {
-    this.elements().forEach(function(element) {
-      element.save();
+    Backbone.Model.prototype.save.apply(this, {
+      success: function () {
+        this.elements().forEach(function(element) {
+          element.set('placeable_id', this.id);
+          element.save();
+        });
+      }.bind(this)
     });
-    Backbone.Model.prototype.save.apply(this);
   }
 });

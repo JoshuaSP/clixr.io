@@ -6,7 +6,7 @@ class Api::PagesController < ApplicationController
   end
 
   def create
-    Page.create(page_params)
+    @page = Page.create(page_params)
     render :show
   end
 

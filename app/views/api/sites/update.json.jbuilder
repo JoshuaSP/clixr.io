@@ -3,6 +3,6 @@ json.extract! @site,
   :published_address,
   :thumbnail_url,
   :background_url,
-  :body_class,
+  :background_css,
   :body_css,
   :transition
