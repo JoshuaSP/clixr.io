@@ -45,7 +45,10 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
   },
 
   addPage: function () {
-    var page = new ClixrIo.Models.Page({ title: "New Page" });
+    var page = new ClixrIo.Models.Page({
+      title: "New Page",
+      ord: this.pages.length
+    });
     this.pages.add(page);
   },
 

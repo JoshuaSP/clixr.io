@@ -1,7 +1,7 @@
 ClixrIo.Views.MenuEditMenu = Backbone.View.extend(
   _.extend({},
     ClixrIo.Mixins.EditElementMenu,
-    ClixrIo.Mixins.MenuUtils,
+    ClixrIo.Mixins.Submenus,
     ClixrIo.Mixins.Styles, {
       template: JST['editor/menus/menu_edit_menu'],
 

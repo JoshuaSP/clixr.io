@@ -157,7 +157,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   findView: function($el) {
-    var allViews = this.subviews(this.pageSelector(this.currentPage))
+    var allViews = this.subviews(this.currentPageSelector)
       .concat(this.subviews('.user-site-elements'));
     return _(allViews).find(function(subview) {
       return subview.$el.is($el);

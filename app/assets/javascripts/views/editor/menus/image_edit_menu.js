@@ -2,7 +2,7 @@ ClixrIo.Views.ImageEditMenu = Backbone.View.extend(
   _.extend({},
     ClixrIo.Mixins.EditElementMenu,
     ClixrIo.Mixins.Styles,
-    ClixrIo.Mixins.MenuUtils, {
+    ClixrIo.Mixins.Submenus, {
       template: JST['editor/menus/image_edit_menu'],
 
       events: {
