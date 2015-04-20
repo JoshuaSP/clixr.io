@@ -222,6 +222,17 @@ body {
         display: initial;
       }
 
+      .fa-close {
+        position: absolute;
+        left: 233px;
+        top: 7px;
+      }
+
+      .fa-bars {
+        position: absolute;
+        left: 223px;
+      }
+
       > ul > li {
         position: initial;
 
@@ -234,6 +245,7 @@ body {
 
       input {
         margin-top: -5px;
+        font-size: 15px;
       }
 
       > ul {
@@ -294,9 +306,9 @@ body {
             opacity: 1
           }
 
-          i.fa-bars {
-            color: $app-text-color;
-          }
+          // i.fa-bars {
+          //   color: $app-text-color;
+          // }
 
           .pages-label {
             color: $app-text-color;
@@ -328,9 +340,15 @@ body {
       }
 
 
-      i.fa-trash, i.fa-bars {
+      i.fa-bars {
         float: right;
         margin-left: 9px;
+      }
+
+      i.fa-trash {
+        float: right;
+        margin: 0 25px -2px 26px;
+        padding-top: 13px;
       }
 
       input {

@@ -29,10 +29,11 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
   },
 
   setup: function () {
+    var editSiteMenu = this
     this.pages.forEach(this.addPageListView.bind(this));
     this.$('.page-reorder').sortable({
       update: function () {
-        this.subviews().forEach(function(subview) {
+        editSiteMenu.subviews('.page-reorder').forEach(function(subview) {
           subview.reorder();
         });
       }
@@ -40,7 +41,10 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
   },
 
   addPageListView: function(page) {
-    var pageListItem = new ClixrIo.Views.PageListItem({ model: page });
+    var pageListItem = new ClixrIo.Views.PageListItem({
+      model: page,
+      collection: this.pages
+    });
     this.addSubview('.page-reorder', pageListItem);
   },
 
@@ -111,9 +115,10 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
   clickToEdit: function (event) {
     var $span = $(event.currentTarget).find('span');
     var currentValue = $span.text();
-    $input = $('<input type="text" value="' + currentValue + '">')
+    var $input = $('<input type="text" value="' + currentValue + '">');
     $span.replaceWith($input);
     $input.focus();
+    $input.select();
   },
 
   render: function () {
@@ -137,13 +142,14 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   className: 'page-edit',
 
   events: {
-    'click .fa-pencil': 'renameBox',
+    'click .fa-pencil, span': 'renameBox',
     'click .fa-trash': 'delete',
+    'keyup input': 'rename',
     'focusout input': 'rename'
   },
 
   initialize: function () {
-    this.listenTo(this.model, "change", this.render());
+    this.listenTo(this.model, "change", this.render);
   },
 
   reorder: function () {
@@ -159,23 +165,25 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   renameBox: function () {
     var $span = $(event.currentTarget).find('span');
     var currentValue = $span.text();
-    $span.replaceWith('<input type= "text" value="' + currentValue + '">');
+    var $input = $('<input type= "text" value="' + currentValue + '">')
+    $span.replaceWith($input);
+    $input.select();
   },
 
   delete: function () {
     if (this.model.collection.length > 1) this.model.destroy();
   },
 
-  rename: function () {
-    var newName = $(event.currentTarget).find('span').val();
+  rename: function (event) {
+    if (event.which !== 0 && event.which !== 13) return;
+    var newName = $(event.currentTarget).val();
     this.model.set('title', newName);
     var address = newName.replace(/[^A-Za-z]/g, "_");
-    if (this.pages.where({ address: address }).length) {
+    if (this.collection.where({ address: address }).length) {
       var i = 1;
-      while (this.pages.where({ address: address + i }).length) i++;
+      while (this.collection.where({ address: address + i }).length) i++;
       address += i;
     }
     this.model.set('address', address);
-    this.render();
   }
 });
