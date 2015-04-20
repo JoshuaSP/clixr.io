@@ -2,15 +2,9 @@
   <div class="logo">
     clixr.io
   </div>
-  <div class="page-select">
-    <span class="page-identifier">Page:</span> <span class="current-page-name"><%= currentPage.escape('title') %></span>
-    <ul>
-      <% this.model.pages().forEach(function(page, index) { %>
-        <li><%= page.escape('title') %></li>
-      <% }) %>
-    </ul>
+  <!-- <div class="page-select">
 
-  </div>
+  </div> -->
 
   <a href="#" class="site-save">Save</a>
   <a href="/<%= this.model.get('published_address') %>" target="_blank" class="site-view">View</a>

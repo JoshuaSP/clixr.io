@@ -4,7 +4,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   currentMenu: null,
 
   events: {
-    "click .page-menu-button": "showPageMenu",
     "click .function-buttons > div": "showMenu",
     "click .page-select": "pageSelect",
     "click .user-element": "selectElement",
@@ -53,6 +52,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       collection: this.model.pages(),
       model: this.currentPage
     });
+    this.pageChangeMenu = new ClixrIo.Views.PageChangeMenu({
+
+    })
   },
 
   changePageNameDisplay: function () {

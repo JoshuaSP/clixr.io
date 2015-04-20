@@ -1,0 +1,11 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+# Changes to be committed:
+# 	new file:   app/assets/javascripts/views/editor/menus/page_change_menu.js
+# 	modified:   app/assets/javascripts/views/editor/site_edit.js
+# 	new file:   app/assets/templates/editor/menus/page_change_menu.jst.ejs
+# 	modified:   app/assets/templates/editor/site.jst.ejs
