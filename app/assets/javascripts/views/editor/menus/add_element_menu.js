@@ -36,7 +36,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       var button = new ClixrIo.Models.Element({
         element_type: 'Button',
         content: "My Button",
-        url: '#' + this.siteView.pages().at(0).get('address')
+        url: '#' + this.siteView.pages.at(0).get('address')
       });
       var buttonView = new ClixrIo.Views.Button({ model: button });
       this._placeCenter(buttonView);

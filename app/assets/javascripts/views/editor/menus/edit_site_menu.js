@@ -20,8 +20,8 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     _.extend(this, options);
-    this.render();
     this.$functionButtons.append(this.$el);
+    this.render();
     this.setup();
     this.listenTo(this.site, "change", this.render);
     this.listenTo(this.pages, "add", this.addPageListView);
@@ -29,15 +29,7 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
   },
 
   setup: function () {
-    var editSiteMenu = this
     this.pages.forEach(this.addPageListView.bind(this));
-    this.$('.page-reorder').sortable({
-      update: function () {
-        editSiteMenu.subviews('.page-reorder').forEach(function(subview) {
-          subview.reorder();
-        });
-      }
-    });
   },
 
   addPageListView: function(page) {
@@ -127,6 +119,18 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend({
       pages: this.pages
     });
     this.$el.html(content);
+    var editSiteMenu = this;
+    this.$('.page-reorder').sortable({
+      update: function () {
+        editSiteMenu.subviews('.page-reorder').forEach(function(subview) {
+          subview.reorder();
+        });
+        editSiteMenu.pages.sort();
+        editSiteMenu.subviews()['.page-reorder'] = _(editSiteMenu.subviews()['.page-reorder']).sortBy(function(subview) {
+          return subview.model.get('ord');
+        })
+      }
+    });
     this.attachSubviews();
   },
 
@@ -178,7 +182,7 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
     if (event.which !== 0 && event.which !== 13) return;
     var newName = $(event.currentTarget).val();
     this.model.set('title', newName);
-    var address = newName.replace(/[^A-Za-z]/g, "_");
+    var address = newName.replace(/[^A-Za-z0-9]/g, "_");
     if (this.collection.where({ address: address }).length) {
       var i = 1;
       while (this.collection.where({ address: address + i }).length) i++;

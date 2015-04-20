@@ -93,6 +93,7 @@ body {
     .main-icon {
       transition: opacity 300ms;
       transition-delay: 300ms;
+      -webkit-transition-delay: 300ms;
       position: relative;
       font-size: 50px;
       margin: 0 0 4px 3px;
@@ -112,7 +113,8 @@ body {
       opacity: 0;
       transition-property: opacity, left;
       transition-duration: 300ms, 300ms;
-      transition-delay: 0, 300ms;
+      transition-delay: 0ms, 300ms;
+      -webkit-transition-delay: 0ms, 300ms;
       margin: 15px 15px 5px 15px;
     }
 
@@ -195,6 +197,7 @@ body {
       .main-icon {
         opacity: 0;
         transition-delay: 100ms;
+        -webkit-transition-delay: 100ms;
       }
 
       .fa-close {
@@ -213,6 +216,7 @@ body {
       > div > label {
         left: 2px;
         transition-delay: 0, 400ms;
+        -webkit-transition-delay: 0, 400ms;
       }
     }
 
@@ -245,6 +249,7 @@ body {
 
       input {
         margin-top: -5px;
+        margin-bottom: -10px;
         font-size: 15px;
       }
 

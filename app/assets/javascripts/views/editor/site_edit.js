@@ -53,8 +53,10 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       model: this.currentPage
     });
     this.pageChangeMenu = new ClixrIo.Views.PageChangeMenu({
-
-    })
+      selectPage: this.selectPage.bind(this),
+      collection: this.model.pages(),
+      currentPage: this.currentPage
+    });
   },
 
   changePageNameDisplay: function () {
@@ -76,7 +78,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.$currentPage().removeClass('current');
     this.currentPage = newPage;
     this.addElementMenu.model = this.currentPage;
-    this.changePageNameDisplay()
+    this.changePageNameDisplay();
     this.$currentPage().addClass('current');
   },
 
@@ -96,7 +98,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   blurInOut: function (newPage) {
-    this.$('.user-page-elements').css('-webkit-filter', 'blur(50px)')
+    this.$('.user-page-elements').css('-webkit-filter', 'blur(50px)');
     setTimeout(function() {
       this.$currentPage().removeClass('current');
       this.currentPage = newPage;
@@ -107,17 +109,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
         this.$('.user-page-elements').css('-webkit-filter', 'blur(0px)');
       }.bind(this), 4);
     }.bind(this), 400);
-  },
-
-  pageSelect: function (event) {
-    var $pageBox = $('.page-select');
-    var $selected = $(event.target);
-    if (!$pageBox.hasClass('expanded-menu')) {
-      $pageBox.addClass('expanded-menu');
-    } else {
-      if ($selected.prop('tagName') === 'LI') this.selectPage($selected.index());
-      $pageBox.removeClass('expanded-menu');
-    }
   },
 
   selectPage: function (pageIndex) {
