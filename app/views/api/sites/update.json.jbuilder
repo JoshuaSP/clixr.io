@@ -4,5 +4,5 @@ json.extract! @site,
   :thumbnail_url,
   :background_url,
   :background_css,
-  :body_css,
+  :image_cover_css,
   :transition

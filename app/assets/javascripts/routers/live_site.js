@@ -10,6 +10,10 @@ ClixrIoLive.Routers.LiveSite = Backbone.Router.extend({
       success: function () {
         var content = siteView.render().$el;
         this.$rootEl.html(content);
+        this.$('.user-site').css($.parseJSON(this.site.get('background_css')));
+        var imageCoverCSS = $.parseJSON(this.site.get('image_cover_css')
+        this.$('.image-cover').css(imageCoverCSS));
+        this.$('.image-cover').css('opacity', 1)
         $('.user-page-elements img').on('load', function (event) {
           $(event.target).fadeIn(500, function () {
             $(event.target).css('opacity', '');
@@ -17,7 +21,7 @@ ClixrIoLive.Routers.LiveSite = Backbone.Router.extend({
         });
         $('.user-background-image').on('load', function (event) {
           setTimeout(function() {
-            $('.image-cover').css('opacity', 0);
+            $('.image-cover').css('opacity', imageCoverCSS.opacity || 0); // returns 0 if imageCoverCSS.opacity is unedfined
           },0);
         });
         if (this.directAddress) this.switchPage(this.directAddress);

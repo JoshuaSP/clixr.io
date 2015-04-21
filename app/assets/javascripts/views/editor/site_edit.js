@@ -58,7 +58,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       collection: this.pages,
       currentPage: this.currentPage.bind(this)
     });
-    // filepicker.setKey("<%= ENV['filepicker_api_key'] %>");
   },
 
   currentPage: function() {
@@ -184,6 +183,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       currentPage: this.currentPage.bind(this)
     });
     this.$el.html(content);
+    this.$('.user-site').css(this.model.get('background_css'));
+    this.$('.image-cover').css(this.model.get('image_cover_css'));
     this._renderElements('.user-site-elements', this.model.elements());
     this.pages.forEach(function(page) {
       this._renderElements(this.pageSelector(page), page.elements());

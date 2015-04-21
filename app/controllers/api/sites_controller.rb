@@ -10,7 +10,7 @@ class Api::SitesController < ApplicationController
       :published_address,
       :thumbnail_url,
       :background_url,
-      :body_css,
+      :image_cover_css,
       :background_css,
       :transition
     ))

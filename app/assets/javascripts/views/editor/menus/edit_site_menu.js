@@ -23,14 +23,20 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
       _.extend(this, options);
       this.$functionButtons.append(this.$el);
       this.render();
-      this.setup();
+      this.pages.forEach(this.addPageListView.bind(this));
       this.listenTo(this.site, "change", this.render);
       this.listenTo(this.pages, "add", this.addPageListView);
       this.listenTo(this.pages, "remove", this.removePageListView);
+      this.siteBackgroundMenu = new ClixrIo.Views.BackgroundMenu({
+        model: this.site,
+        close: this.closeBackgroundMenu.bind(this)
+      })
     },
 
-    setup: function () {
-      this.pages.forEach(this.addPageListView.bind(this));
+    closeBackgroundMenu: function () {
+      if (this.siteBackgroundMenu.$el.css('opacity') === 1) {
+        this.$('.background-button').click()
+      };
     },
 
     addPageListView: function(page) {
