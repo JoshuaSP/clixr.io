@@ -36,7 +36,8 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
     addPageListView: function(page) {
       var pageListItem = new ClixrIo.Views.PageListItem({
         model: page,
-        collection: this.pages
+        collection: this.pages,
+        ellipsis: this.ellipsis
       });
       this.addSubview('.page-reorder', pageListItem);
     },
@@ -143,6 +144,14 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
 
     closeMenu: function (event) {
       this.$el.removeClass("expanded-menu");
+    },
+
+    ellipsis: function (string, maxlength) {
+      if (string.length > maxlength) {
+        return string.substring(0, maxlength - 2) + ("...")
+      } else {
+        return string
+      }
     }
   })
 );
@@ -160,7 +169,8 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
     'focusout input': 'rename'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.ellipsis = options.ellipsis;
     this.listenTo(this.model, "change", this.render);
   },
 
@@ -169,14 +179,17 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   },
 
   render: function () {
-    var content = this.template({ page: this.model });
+    var content = this.template({
+      page: this.model,
+      ellipsis: this.ellipsis
+    });
     this.$el.html(content);
     return this;
   },
 
   renameBox: function () {
     var $span = $(event.currentTarget).find('span');
-    var currentValue = $span.text();
+    var currentValue = this.model.get('title');
     var $input = $('<input type= "text" value="' + currentValue + '">')
     $span.replaceWith($input);
     $input.select();

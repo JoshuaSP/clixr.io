@@ -22,6 +22,5 @@
   $(document).ready(function(){
     var contentDiv = $('.content')
     ClixrIo.initialize(contentDiv, <%= @site.id %>);
-    filepicker.setKey("<%= ENV['filepicker_api_key'] %>");
   });
 </script>

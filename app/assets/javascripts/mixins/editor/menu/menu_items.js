@@ -38,6 +38,6 @@ ClixrIo.Mixins.MenuItems = {
 
   _functionize: function(name) {
     var newname = name.slice(0,1).toLowerCase() + name.slice(1);
-    return newname.replace(" ", "");
+    return newname.replace(/ |&nbsp;/, "");
   }
 }

@@ -33,7 +33,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   _setupPage: function () {
     this.model.ensurePage();
-    this._currentPage = this.model.pages().findWhere({ ord: 0 });
+    this.pages = this.model.pages();
+    this._currentPage = this.pages.findWhere({ ord: 0 });
     this.renderSite();
     $('img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
@@ -43,20 +44,21 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.editSiteMenu = new ClixrIo.Views.EditSiteMenu({
       $functionButtons: this.$('.function-buttons'),
       siteView: this,
-      pages: this.model.pages(),
+      pages: this.pages,
       site: this.model
     });
     this.addElementMenu = new ClixrIo.Views.AddElementMenu({
       $functionButtons: this.$('.function-buttons'),
       siteView: this,
-      collection: this.model.pages(),
+      collection: this.pages,
       model: this.currentPage()
     });
     this.pageChangeMenu = new ClixrIo.Views.PageChangeMenu({
       selectPage: this.selectPage.bind(this),
-      collection: this.model.pages(),
+      collection: this.pages,
       currentPage: this.currentPage.bind(this)
     });
+    // filepicker.setKey("<%= ENV['filepicker_api_key'] %>");
   },
 
   currentPage: function() {
@@ -116,7 +118,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   selectPage: function (pageIndex) {
-    var newPage = this.model.pages().at(pageIndex);
+    var newPage = this.pages.at(pageIndex);
     if (newPage === this.currentPage()) return;
     if (this.selectedView && !this.selectedView.global()) {
       this.selectedView.deselect();
@@ -183,7 +185,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this._renderElements('.user-site-elements', this.model.elements());
-    this.model.pages().forEach(function(page) {
+    this.pages.forEach(function(page) {
       this._renderElements(this.pageSelector(page), page.elements());
     }.bind(this));
     return this;
@@ -194,7 +196,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       var elementView = new this.elementViews[element.get('element_type')]({
         siteView: this,
         model: element,
-        collection: this.model.pages()
+        collection: this.pages
       });
       this.addSubview(selector, elementView);
     }.bind(this));
