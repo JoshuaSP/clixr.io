@@ -59,13 +59,13 @@ ClixrIo.Models.Site = Backbone.Model.extend({
     var userSiteCSS = {};
     this.userSiteCSSProperties.forEach(function(property) {
       if ($('.user-site').css(property)) {
-        userSiteCSS[property] = $('user-site').css(property);
+        userSiteCSS[property] = $('.user-site').css(property);
       }
     }.bind(this));
     var imageCoverCSS = {};
     this.imageCoverCSSProperties.forEach(function(property) {
-      if ($('.user-site').css(property)) {
-        imageCoverCSS[property] = $('user-site').css(property);
+      if ($('.image-cover').css(property)) {
+        imageCoverCSS[property] = $('.image-cover').css(property);
       }
     }.bind(this));
     this.set('background_css', JSON.stringify(userSiteCSS));

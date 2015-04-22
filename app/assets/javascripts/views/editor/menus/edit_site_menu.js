@@ -22,15 +22,12 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
     initialize: function(options) {
       _.extend(this, options);
       this.$functionButtons.append(this.$el);
+      this.siteBackgroundMenu = new ClixrIo.Views.BackgroundMenu({ model: this.site });
       this.render();
       this.pages.forEach(this.addPageListView.bind(this));
       this.listenTo(this.site, "change", this.render);
       this.listenTo(this.pages, "add", this.addPageListView);
       this.listenTo(this.pages, "remove", this.removePageListView);
-      this.siteBackgroundMenu = new ClixrIo.Views.BackgroundMenu();
-      this.setupSubmenus(this.$el, {
-        '.background-button': '.site-background-menu'
-      });
     },
 
 
@@ -142,6 +139,9 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
             return subview.model.get('ord');
           });
         }
+      });
+      this.setupSubmenus(this.$el, {
+        '.background-button': '.site-background-menu'
       });
       this.attachSubviews();
     },

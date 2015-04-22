@@ -10,6 +10,7 @@
   width: 100vw;
   height: 100vh;
   position: absolute;
+  opacity: 0;
 }
 
 .user-element {
@@ -17,6 +18,10 @@
 }
 
 .user-site-elements {
+}
+
+.user-background-image {
+  display: none;
 }
 
 .user-page-elements {
@@ -115,7 +120,7 @@
 }
 
 .user-div-style-5 {
-  border-radius: 0 10px 0 10px;
+  border-radius: 0 15px 0 15px;
 
   &.element-icon {
     border-radius: 0 3px 0 3px;
@@ -167,6 +172,18 @@
 .user-button-style-1 {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+  border-radius: 25px;
+  padding: 10px;
+
+  a {
+    margin: 0 auto;
+  }
+}
+
+.user-button-style-2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  padding: 10px;
 
   a {
     margin: 0 auto;
