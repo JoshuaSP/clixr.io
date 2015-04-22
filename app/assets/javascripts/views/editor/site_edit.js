@@ -68,7 +68,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   currentPage: function() {
-    return this._currentPage
+    return this._currentPage;
   },
 
   changePageNameDisplay: function () {
@@ -213,6 +213,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   showMenu: function (event) {
     if(!$(event.target).hasClass("fa-close")) {
       $(event.currentTarget).addClass("expanded-menu");
+      if (this.selectedView) this.selectedView.deselect();
     }
   },
 

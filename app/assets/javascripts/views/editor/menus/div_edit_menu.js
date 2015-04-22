@@ -9,7 +9,9 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
       styles: [
         'user-div-style-1',
         'user-div-style-2',
-        'user-div-style-3'
+        'user-div-style-3',
+        'user-div-style-4',
+        'user-div-style-5'
       ],
 
       initialize: function (options) {

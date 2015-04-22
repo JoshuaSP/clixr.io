@@ -146,9 +146,9 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
 
     ellipsis: function (string, maxlength) {
       if (string.length > maxlength) {
-        return string.substring(0, maxlength - 2) + ("...");
+        return string.substring(0, maxlength - 2) + ("...").replace(" ", "&nbsp;");
       } else {
-        return string;
+        return string.replace(" ", "&nbsp;");
       }
     }
   })

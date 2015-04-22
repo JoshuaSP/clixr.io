@@ -1,10 +1,10 @@
 - [x] default color boxes
 -  delete button
 - [x] change format menus
-- [ ] user style boxes
-- [ ] user style menus
+- [x] user style boxes (for now)
+- [x] user style menus
 - [ ] user style buttons
-- [ ] fonts
+- [x] fonts
 - [x] fix font toolbar
 - [x] color picker buttons (?)
 - [ ] intro site
@@ -17,3 +17,5 @@
 - [x] overlapping items menu width, also live-update button name
 - [x] default size of text box
 - default position of size slider
+- [ ] switch to CSS ellipses
+- [ ] fix bug in text editor bar not coming back reliably

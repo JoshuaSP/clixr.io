@@ -8,7 +8,8 @@ ClixrIo.Views.MenuEditMenu = Backbone.View.extend(
       styles: [
         'user-menu-style-1',
         'user-menu-style-2',
-        'user-menu-style-3'
+        'user-menu-style-3',
+        'user-menu-style-4'
       ],
 
       initialize: function(options) {
@@ -35,4 +36,4 @@ ClixrIo.Views.MenuEditMenu = Backbone.View.extend(
       }
     }
   )
-)
+);
