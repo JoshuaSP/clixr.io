@@ -59,7 +59,7 @@ ClixrIo.Models.Site = Backbone.Model.extend({
     var userSiteCSS = {};
     this.userSiteCSSProperties.forEach(function(property) {
       if ($('.user-site').css(property)) {
-        userSiteCSS[property] = $('.user-site').css(property);
+        userSiteCSS[property] = $('.user-site').css(property).replace(/http\:\/\/localhost\:\d\d\d\d/, '');
       }
     }.bind(this));
     var imageCoverCSS = {};

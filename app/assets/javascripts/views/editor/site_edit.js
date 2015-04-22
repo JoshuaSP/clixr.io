@@ -217,8 +217,21 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       currentPage: this.currentPage.bind(this)
     });
     this.$el.html(content);
-    this.$('.user-site').css($.parseJSON(this.model.get('background_css')));
-    this.$('.image-cover').css($.parseJSON(this.model.get('image_cover_css')));
+
+    var backgroundCSS = $.parseJSON(this.model.get('background_css'));
+    $('.user-site').css(backgroundCSS);
+    var imageCoverCSS = $.parseJSON(this.model.get('image_cover_css'));
+    $('.image-cover').css(imageCoverCSS);
+    $('.image-cover').css('opacity', 1);
+    if (backgroundCSS['background-image']) {
+      var $userBG = $('.user-background-image');
+      $userBG.attr('src', backgroundCSS['background-image'].replace(/url\(|\)/g, ''));
+      $userBG.on('load', function (event) {
+        setTimeout(function() {
+          $('.image-cover').css('opacity', imageCoverCSS.opacity || 0); // returns 0 if imageCoverCSS.opacity is unedfined
+        },0);
+      });
+    }
     this._renderElements('.user-site-elements', this.model.elements());
     this.pages.forEach(function(page) {
       this._renderElements(this.pageSelector(page), page.elements());
@@ -261,7 +274,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     $(intersectorsSelector).each(function() {
       var $this = $(this);
       var thisPos = $this.offset();
-      var i_x = [thisPos.left, thisPos.left + $this.outerWidth()]
+      var i_x = [thisPos.left, thisPos.left + $this.outerWidth()];
       var i_y = [thisPos.top, thisPos.top + $this.outerHeight()];
 
       if ( t_x[0] < i_x[1] && t_x[1] > i_x[0] &&

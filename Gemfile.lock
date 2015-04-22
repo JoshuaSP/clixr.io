@@ -30,6 +30,8 @@ GEM
       activemodel (= 4.2.0)
       activesupport (= 4.2.0)
       arel (~> 6.0)
+    activerecord-duplicate (0.6.1)
+      activerecord (>= 3.1)
     activesupport (4.2.0)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -215,6 +217,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-duplicate
   backbone-on-rails
   better_errors
   byebug

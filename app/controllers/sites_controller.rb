@@ -8,16 +8,14 @@ class SitesController < ApplicationController
   end
 
   def new
-    @site = Site.new(
-      title: "untitled",
-      background_css: "{\"background-color\":\"rgb(256, 256, 256)\"}",
-      image_cover_css: "{\"background-color\":\"rgb(256, 256, 256)\", \"opacity\":0}"
-    )
+    # @site = Site.new(
+    #   title: "untitled",
+    #   background_css: "{\"background-color\":\"rgb(256, 256, 256)\"}",
+    #   image_cover_css: "{\"background-color\":\"rgb(256, 256, 256)\", \"opacity\":0}"
+    # )
+
+    @site = Site.find(7).duplicate
     @site.save
-    # or we can copy a basic template site
-    # @site = Site.find(###basictemplatesite).dup
-    # @site.save
-    #
     redirect_to "/sites/#{@site.hash_id}/edit"
   end
 end
