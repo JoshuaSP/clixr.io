@@ -8,7 +8,7 @@ ClixrIo.Mixins.ZIndex = {
       while (zis[viewZ - 1]) {  // subtracting 1 here so that later we can increment, so can start z-indexes from 1
           viewZ++;
         }
-      zis[viewZ] = view;   // put view in the closest available z-index at or above its listed z-index
+      zis[viewZ - 1] = view;   // put view in the closest available z-index at or above its listed z-index
     } else {
       zis.push(view);
     }
