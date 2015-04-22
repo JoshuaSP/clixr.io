@@ -13,14 +13,14 @@ ClixrIo.Views.DivEditMenu = Backbone.View.extend(
       ],
 
       initialize: function (options) {
-        _.extend(this, options)
+        _.extend(this, options);
         $('.floating-menus').append(this.render().$el);
-        this.setupColorPicker();
+        this.setupColorPicker(this.$targetEl, this.$el);
         this.styleMenu();
         this.overlappingItems();
         this.setupSubmenus(this.$el, {
           '.style-button': '.style-menu',
-          '.color-button': '.color-picker',
+          '.color-button': '.edit-menu .color-picker',
           '.overlapping-button': '.overlapping-items'
         });
         this.delegateEvents();

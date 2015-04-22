@@ -1,11 +1,11 @@
 ClixrIo.Mixins.ColorPicker = {
   colorPicker: function (slideFunctionCreator, startColor, ctxt) {
-    var context = ctxt || $(document)
+    var context = ctxt || $(document);
     var $redSlider = context.find('.color-picker .red .slider');
     var $greenSlider = context.find('.color-picker .green .slider');
     var $blueSlider = context.find('.color-picker .blue .slider');
     var slideFunction = slideFunctionCreator($redSlider, $greenSlider, $blueSlider);
-    $('.color-picker .red .slider, .color-picker .green .slider, .color-picker .blue .slider').slider({
+    context.find('.color-picker .red .slider, .color-picker .green .slider, .color-picker .blue .slider').slider({
       slide: slideFunction,
       min: 0,
       max: 256
@@ -17,8 +17,8 @@ ClixrIo.Mixins.ColorPicker = {
     }
   },
 
-  setupColorPicker: function () {
-    var $el = this.$targetEl;
+  setupColorPicker: function ($targetEl, ctxt) {
+    var $el = $targetEl || this.$targetEl;
     var slideFunctionCreator = function ($redSlider, $greenSlider, $blueSlider) {
       return function (event, ui) {
         $el.css(
@@ -29,6 +29,6 @@ ClixrIo.Mixins.ColorPicker = {
         );
       };
     };
-    this.colorPicker(slideFunctionCreator, $el.css('background-color'));
+    this.colorPicker(slideFunctionCreator, $el.css('background-color'), ctxt);
   }
-}
+};

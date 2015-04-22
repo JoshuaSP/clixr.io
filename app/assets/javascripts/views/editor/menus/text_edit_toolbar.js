@@ -1,7 +1,7 @@
 ClixrIo.Views.TextEditToolbar = Backbone.View.extend (
   _.extend({},
   ClixrIo.Mixins.Submenus,
-  ClixrIo.Mixins.Colorpicker, {
+  ClixrIo.Mixins.ColorPicker, {
 
     template: JST['editor/menus/text_toolbar'],
     id: 'wysihtml5-toolbar',
@@ -41,7 +41,7 @@ ClixrIo.Views.TextEditToolbar = Backbone.View.extend (
       this.setupSubmenus(this.$el, {
         '.font-button': '.font-menu',
         '.size-button': '.size-slider',
-        '.color-button': '.color-picker',
+        '.color-button': '#wysihtml5-toolbar .color-picker',
       });
       return this;
     },
@@ -65,7 +65,7 @@ ClixrIo.Views.TextEditToolbar = Backbone.View.extend (
           );
         };
       };
-      this.colorPicker(slideFunctionCreator);
+      this.colorPicker(slideFunctionCreator, null, this.$el);
     }
   })
 );

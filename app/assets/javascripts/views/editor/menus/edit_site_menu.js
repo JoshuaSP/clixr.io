@@ -27,17 +27,12 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
       this.listenTo(this.site, "change", this.render);
       this.listenTo(this.pages, "add", this.addPageListView);
       this.listenTo(this.pages, "remove", this.removePageListView);
-      this.siteBackgroundMenu = new ClixrIo.Views.BackgroundMenu({
-        model: this.site,
-        close: this.closeBackgroundMenu.bind(this)
-      })
+      this.siteBackgroundMenu = new ClixrIo.Views.BackgroundMenu();
+      this.setupSubmenus(this.$el, {
+        '.background-button': '.site-background-menu'
+      });
     },
 
-    closeBackgroundMenu: function () {
-      if (this.siteBackgroundMenu.$el.css('opacity') === 1) {
-        this.$('.background-button').click()
-      };
-    },
 
     addPageListView: function(page) {
       var pageListItem = new ClixrIo.Views.PageListItem({
@@ -143,9 +138,6 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
         }
       });
       this.attachSubviews();
-      this.setupSubmenus(this.$el, {
-        '.background-button': '.site-background-menu'
-      });
     },
 
     closeMenu: function (event) {
@@ -154,9 +146,9 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
 
     ellipsis: function (string, maxlength) {
       if (string.length > maxlength) {
-        return string.substring(0, maxlength - 2) + ("...")
+        return string.substring(0, maxlength - 2) + ("...");
       } else {
-        return string
+        return string;
       }
     }
   })
@@ -190,13 +182,14 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
       ellipsis: this.ellipsis
     });
     this.$el.html(content);
+    this.delegateEvents();
     return this;
   },
 
   renameBox: function () {
     var $span = $(event.currentTarget).find('span');
     var currentValue = this.model.get('title');
-    var $input = $('<input type= "text" value="' + currentValue + '">')
+    var $input = $('<input type= "text" value="' + currentValue + '">');
     $span.replaceWith($input);
     $input.select();
   },

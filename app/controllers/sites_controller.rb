@@ -8,7 +8,11 @@ class SitesController < ApplicationController
   end
 
   def new
-    @site = Site.new(title: "untitled")
+    @site = Site.new(
+      title: "untitled",
+      background_css: "{\"background-color\":\"rgb(256, 256, 256)\"}",
+      image_cover_css: "{\"background-color\":\"rgb(256, 256, 256)\", \"opacity\":0}"
+    )
     @site.save
     # or we can copy a basic template site
     # @site = Site.find(###basictemplatesite).dup
