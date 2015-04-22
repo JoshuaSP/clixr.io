@@ -7,7 +7,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     "click .function-buttons > div": "showMenu",
     "click .page-select": "pageSelect",
     "click .user-element": "selectElement",
-    "click .site-save": "siteSave"
+    "click .site-save": "siteSave",
   },
 
   elementViews: {
@@ -29,6 +29,13 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.model.fetch({
       success: this._setupPage.bind(this)
     });
+  },
+
+  keyCommand: function (event) {
+    if (event.which === 8 && this.selectedView) {
+      this.selectedView.deleteElement();
+      event.preventDefault();
+    }
   },
 
   _setupPage: function () {

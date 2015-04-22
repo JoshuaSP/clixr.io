@@ -57,6 +57,8 @@ body {
 	padding: 15px;
 	width: 165px;
 
+	font-size: 14px;
+
 	input {
 		margin: 6px 0 3px;
 		width: 96%;
@@ -70,7 +72,7 @@ body {
 	.style-menu {
 		left: -120px;
 		top: 130px;
-		width: 50px;
+		width: 80px;
 	}
 
 	.fa-close {
@@ -88,7 +90,7 @@ body {
 		}
 
 		&:hover {
-			background-color: $menu-select;
+			color: $hover-select-color;
 		}
 
 		&.button-text {
