@@ -5,7 +5,7 @@ ClixrIo.Mixins.ZIndex = {
     var zIndex = this;
     var zis = this._zIndexes;
     if (viewZ) {
-      while (zis[viewZ]) {
+      while (zis[viewZ - 1]) {  // subtracting 1 here so that later we can increment, so can start z-indexes from 1
           viewZ++;
         }
       zis[viewZ] = view;   // put view in the closest available z-index at or above its listed z-index
@@ -46,7 +46,7 @@ ClixrIo.Mixins.ZIndex = {
 
   refresh: function() {
     this._zIndexes.forEach(function(view, index) {
-      view.$el.css('z-index', index);
+      view.$el.css('z-index', index + 1);
     });
   }
 };

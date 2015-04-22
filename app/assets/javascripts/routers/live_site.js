@@ -10,10 +10,10 @@ ClixrIoLive.Routers.LiveSite = Backbone.Router.extend({
       success: function () {
         var content = siteView.render().$el;
         this.$rootEl.html(content);
-        this.$('.user-site').css($.parseJSON(this.site.get('background_css')));
-        var imageCoverCSS = $.parseJSON(this.site.get('image_cover_css')
-        this.$('.image-cover').css(imageCoverCSS));
-        this.$('.image-cover').css('opacity', 1)
+        $('.user-site').css($.parseJSON(this.site.get('background_css')));
+        var imageCoverCSS = $.parseJSON(this.site.get('image_cover_css'));
+        $('.image-cover').css(imageCoverCSS);
+        $('.image-cover').css('opacity', 1);
         $('.user-page-elements img').on('load', function (event) {
           $(event.target).fadeIn(500, function () {
             $(event.target).css('opacity', '');

@@ -51,12 +51,6 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.initializeSaver();
 	},
 
-  initializeSaver: function () {
-    this.saver = setInterval(function() {
-      this.model.save();
-    }.bind(this), 200);
-  },
-
   resizable: function () {
 		var $handles = this._addResizeHandles();
     this.$el.resizable({ handles: $handles });
