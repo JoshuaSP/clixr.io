@@ -25,7 +25,7 @@ ClixrIo.Views.BackgroundMenu = Backbone.CompositeView.extend(
       'pyramid_@2X.png',
       'triangular_@2X.png'
       ].map(function(pattern) {
-        return "/assets/subtle_patterns/" + pattern;
+        return "/images/subtle_patterns/" + pattern;
       }),
 
     initialize: function (options) {
