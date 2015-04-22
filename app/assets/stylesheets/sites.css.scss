@@ -34,6 +34,7 @@ body {
   font-size: 30px;
   margin: 3px 33px;
   color: $logo-color;
+  text-transform: none;
 }
 
 @mixin navbar-button {
@@ -41,6 +42,7 @@ body {
   background-color: $window-background;
   border-radius: $site-border-radius;
   cursor: pointer;
+  margin-top: 4px;
 }
 
 @mixin basic-window {
@@ -270,7 +272,7 @@ body {
   a {
     @include navbar-button;
     float: right;
-    margin: 5px 80px 0 0;
+    margin-top: 8px;
 
     &:first-of-type {
       margin-right: 140px;
