@@ -85,11 +85,11 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     text: function () {
       var text = new ClixrIo.Models.Element({
         element_type: 'Text',
-        content: "WHAT'S UP! I'M A PARAGRAPH!"
+        content: "<h4>HEY, WHAT'S UP! I'M A PARAGRAPH!</h4>"
       });
       var textView = new ClixrIo.Views.Text({ model: text });
       this._placeCenter(textView);
-      textView.$el.css('width', '250px');
+      textView.$el.css('width', '360px');
       textView.$el.css('height', '200px');
       this._addAndSelect(textView);
     },

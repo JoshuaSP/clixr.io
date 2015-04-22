@@ -157,6 +157,7 @@ body {
 
 .site-background-menu {
   @include basic-window;
+  display: none;
   left: 700px;
   top: 100px;
   width: 180px;

@@ -39,33 +39,47 @@
 
 .include-user-fonts {
   text-transform: none;
-  font-family: 'Anton', sans-serif;
+
   p {
     margin: 0;
+    font-size: inherit;
+    font-family: 'Anton', sans-serif;
   }
 
   h1 {
     margin: 0;
+    font-size: inherit;
+    font-family: 'Lato', sans-serif;
   }
 
   h2 {
     margin: 0;
+    font-size: inherit;
+    font-family: 'Arvo', serif;
   }
 
   h3 {
     margin: 0;
+    font-size: inherit;
+    font-family: 'Lora', serif;
   }
 
   h4 {
     margin: 0;
+    font-size: inherit;
+    font-family: 'Oxygen', sans-serif;
   }
 
   h5 {
     margin: 0;
+    font-size: inherit;
+    font-family: 'Roboto', sans-serif;
   }
 
   h6 {
     margin: 0;
+    font-size: inherit;
+    font-family: 'Slabo 27px', serif;
   }
 }
 

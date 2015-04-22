@@ -8,7 +8,12 @@
 - [x] fix font toolbar
 - [x] color picker buttons (?)
 - [ ] intro site
-- [ ] fix background menu not fading
+- [x] fix background menu not fading
 - [ ] fix edit menus going off page
 - [ ] change options in filepicker
 - [ ] favicon
+- [ ] default link target & overlapping items menu in same place
+- [x] current target - undefined????
+- [x] overlapping items menu width, also live-update button name
+- [x] default size of text box
+- default position of size slider
