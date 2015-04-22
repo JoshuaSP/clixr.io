@@ -35,7 +35,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     button: function () {
       var button = new ClixrIo.Models.Element({
         element_type: 'Button',
-        content: "My Button",
+        content: "HI! I'M A BUTTON!",
         url: '#' + this.siteView.pages.at(0).get('address')
       });
       var buttonView = new ClixrIo.Views.Button({ model: button });
@@ -43,7 +43,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       buttonView.$el.css({
         'width': '150px',
         'height': '60px',
-        'background-color': '#d8deda'
+        'background-color': '#efcb99'
       });
       buttonView.$el.addClass('user-button-style-1');
       this._addAndSelect(buttonView);
@@ -64,9 +64,9 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
       var div = new ClixrIo.Models.Element({ element_type: 'Box' });
       var divView = new ClixrIo.Views.Box({ model: div });
       this._placeCenter(divView);
-      divView.$el.css('width', '200px');
-      divView.$el.css('height', '200px');
-      divView.$el.css('background-color', '#7093ae');
+      divView.$el.css('width', '280px');
+      divView.$el.css('height', '130px');
+      divView.$el.css('background-color', '#9f9cb5');
       divView.$el.addClass('user-div-style-1');
       this._addAndSelect(divView);
     },
@@ -85,11 +85,11 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
     text: function () {
       var text = new ClixrIo.Models.Element({
         element_type: 'Text',
-        content: "My Paragraph"
+        content: "WHAT'S UP! I'M A PARAGRAPH!"
       });
       var textView = new ClixrIo.Views.Text({ model: text });
       this._placeCenter(textView);
-      textView.$el.css('width', '200px');
+      textView.$el.css('width', '250px');
       textView.$el.css('height', '200px');
       this._addAndSelect(textView);
     },

@@ -111,7 +111,7 @@ body {
 
 		> li {
 			padding: 10px 0;
-			width: 160px;
+			width: 190px;
 
 			> div, i, img, ul {
 				float: left;
@@ -150,11 +150,12 @@ body {
 
 	li {
 		padding: 5px;
-		box-shadow: 2px 2px 3px #818181;
+		// box-shadow: 2px 2px 3px #818181;
 		margin: 3px;
 
 		&:hover {
-			background-color: $lightish-blue;
+			// background-color: $lightish-blue;
+			color: $hover-select-color;
 		}
 	}
 

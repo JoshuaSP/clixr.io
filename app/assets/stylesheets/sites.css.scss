@@ -12,7 +12,7 @@ $site-border-radius: 4px;
 $window-background: #f9f9f9;
 $select-color: #7effeb;
 $handle-bg-color: white;
-$lightish-blue: #eeeeff;
+$lightish-blue: #f4f5ff;
 $user-text-grey: #444;
 $app-text-color: #505050;
 $hover-select-color: #aaaaaa;
@@ -162,7 +162,6 @@ body {
   width: 180px;
   padding: 5px 5px 15px 5px;
   font-size: 13px;
-  transition: height 300ms;
 
   .image-transparency {
     margin: 27px auto 0 auto;

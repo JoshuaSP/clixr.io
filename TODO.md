@@ -1,13 +1,14 @@
-- [ ] default color boxes
+- [x] default color boxes
 -  delete button
-- [ ] change format menus
+- [x] change format menus
 - [ ] user style boxes
 - [ ] user style menus
 - [ ] user style buttons
 - [ ] fonts
 - [x] fix font toolbar
-- [ ] color picker buttons (?)
+- [x] color picker buttons (?)
 - [ ] intro site
 - [ ] fix background menu not fading
 - [ ] fix edit menus going off page
 - [ ] change options in filepicker
+- [ ] favicon

@@ -2,6 +2,7 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
   _.extend({},
     ClixrIo.Mixins.EditElementMenu,
     ClixrIo.Mixins.Submenus,
+    ClixrIo.Mixins.ColorPicker,
     ClixrIo.Mixins.Styles, {
       template: JST['editor/menus/button_edit_menu'],
 
@@ -14,16 +15,25 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
       initialize: function (options) {
         _.extend(this, options);
         $('.floating-menus').append(this.render().$el);
+        this.setupColorPicker(this.$targetEl, this.$el);
         this.styleMenu();
-        this.overlappingItems();
         this.linkTargets();
+        this.setupTextbox();
+        this.overlappingItems();
         this.setupSubmenus(this.$el, {
           '.style-button': '.style-menu',
           '.overlapping-button': '.overlapping-items',
-          '.target-button': '.link-targets'
-        });  // TODO: maybe add some color-pickers later, see what we need after creating user styles
-        this.setupTextbox();
+          '.target-button': '.link-targets',
+          '.color-button': '.edit-menu .color-picker'
+        });
         this.delegateEvents();
+      },
+
+      overlapListen: function () {
+        this.$el.find('input').on('keyup', function () {
+          this.overlappingItemsMenu.render();
+        }.bind(this));
+        ClixrIo.Mixins.EditElementMenu.overlapListen.apply(this);
       },
 
       linkTargets: function () {
@@ -33,7 +43,7 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
             this.model.set('url', value);
           }.bind(this),
           targetFunction: function () {
-            return this.model.get('url')
+            return this.model.get('url');
           }.bind(this)
         });
         this.$el.append(this.linkTargetsMenu.render().$el);
@@ -51,7 +61,8 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
           styleMenu: JST['editor/menus/style_menu']({ styles: this.styles }),
           commonButtons: this.commonButtons({
             global: this.global()
-          })
+          }),
+          colorPicker: JST['editor/menus/color_picker']()
         });
         this.$el.html(content);
         return this;

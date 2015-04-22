@@ -15,7 +15,11 @@ ClixrIo.Models.Site = Backbone.Model.extend({
 
   ensurePage: function () {
     if (this.pages().length === 0) {
-      this.pages().add(new ClixrIo.Models.Page({title: "untitled", ord: 0}));
+      this.pages().add(new ClixrIo.Models.Page({
+        title: "untitled",
+        ord: 0,
+        address: "untitled"
+      }));
     }
   },
 
