@@ -101,7 +101,7 @@ ClixrIo.Views.BackgroundMenu = Backbone.CompositeView.extend(
     },
 
     selectImage: function () {
-      filepicker.pick(function(blob) {
+      filepicker.pick(ClixrIo.Mixins.FilepickerOptions, function(blob) {
         this.setImage(blob.url);
       }.bind(this));
     },

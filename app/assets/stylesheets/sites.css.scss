@@ -284,7 +284,15 @@ body {
   clear: both;
 }
 
-
+nav .error {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  font-size: 12px;
+  width: 250px;
+  color: $focus-bad;
+  text-align: center;
+}
 
 .function-buttons {
   position: fixed;

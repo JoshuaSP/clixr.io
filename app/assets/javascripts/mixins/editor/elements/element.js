@@ -27,7 +27,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
   initializeSaver: function () {
     this.saver = setInterval(function() {
       this.model.save();
-    }.bind(this), 200);
+    }.bind(this), 300);
   },
 
   select: function () {

@@ -8,6 +8,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     "click .page-select": "pageSelect",
     "click .user-element": "selectElement",
     "click .site-save": "siteSave",
+    "click .site-view": "viewSite"
   },
 
   elementViews: {
@@ -17,6 +18,19 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     'Menu': ClixrIo.Views.Menu,
     'Image': ClixrIo.Views.Image,
     'Button': ClixrIo.Views.Button
+  },
+
+  viewSite: function (event) {
+    if (!this.model.get('published_address')) {
+      $error = $(JST['editor/menus/view_error']());
+      $('.site-view').after($error).fadeIn(300);
+      setTimeout(function () {
+        $error.fadeOut(300, function () {
+          $error.remove();
+        });
+      }, 2500);
+      event.preventDefault();
+    }
   },
 
   transition: {
@@ -46,7 +60,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.attachPages();
     this.listenTo(this.pages, "add", this.addPage);
     this.listenTo(this.pages, "remove", this.removePage);
-    $('img').on('load', function (event) {
+    $('.user-page-container img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
         $(event.target).css('display', 'block');
       });

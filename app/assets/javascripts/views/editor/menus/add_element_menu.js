@@ -100,11 +100,21 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         element_type: 'Image',
         resize_property: 'scale'
       });
-      filepicker.pick(function(blob) {
+      filepicker.pick({
+        services: [
+          'COMPUTER',
+          'FACEBOOK',
+          'IMAGE_SEARCH',
+          'FLICKR',
+          'PICASA',
+          'URL'
+        ]
+      }, function(blob) {
         image.set('url', blob.url);
         var imageView = new ClixrIo.Views.Image({
           model: image,
-          width: '200px'
+          width: '200px',
+
         });
         imageView.$el.addClass('user-image-style-1');
         this._placeCenter(imageView);

@@ -27,7 +27,7 @@ ClixrIo.Views.ImageEditMenu = Backbone.View.extend(
       },
 
       replaceImage: function() {
-        filepicker.pick(function(blob) {
+        filepicker.pick(ClixrIo.Mixins.FilepickerOptions, function(blob) {
           this.model.set('url', blob.url);
           this.$targetEl.attr('src', blob.url);
           if (this.overlappingItemsMenu) this.overlappingItemsMenu.render();
