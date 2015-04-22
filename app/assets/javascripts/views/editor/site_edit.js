@@ -43,6 +43,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.pages = this.model.pages();
     this._currentPage = this.pages.findWhere({ ord: 0 });
     this.renderSite();
+    this.attachPages();
+    this.listenTo(this.pages, "add", "addPage");
+    this.listenTo(this.pages, "remove", "removePage")
     $('img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
         $(event.target).css('display', 'block');
@@ -65,6 +68,30 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       collection: this.pages,
       currentPage: this.currentPage.bind(this)
     });
+  },
+
+  //not destroying on server on save but we will deal with orphans on server
+
+  attachPages: function () {
+    this.pages.forEach(function(page) {
+      page.$pageEl = $(pageSelector(page));
+    });
+  },
+
+  removePage: function (page) {
+    page.elements().forEach(function (element) {
+      this.removeModelSubview(pageSelector(page), element);
+    });
+    $(pageSelector(page)).remove();
+  },
+
+  // the following is not the best solution and in an ideal world will be refactored...
+  // but it's a big structural change, so I'm taking on the technical debt here:
+
+  addPage: function (page) {
+    var $newPage = $('<div class="user-page-elements" data-page-ord=' + page.get('ord') + '>');
+    $('user-page-gridlines').append($newPage);
+    page.$pageEl = $newPage;
   },
 
   currentPage: function() {
