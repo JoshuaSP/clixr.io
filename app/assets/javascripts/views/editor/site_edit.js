@@ -44,8 +44,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this._currentPage = this.pages.findWhere({ ord: 0 });
     this.renderSite();
     this.attachPages();
-    this.listenTo(this.pages, "add", "addPage");
-    this.listenTo(this.pages, "remove", "removePage")
+    this.listenTo(this.pages, "add", this.addPage);
+    this.listenTo(this.pages, "remove", this.removePage);
     $('img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
         $(event.target).css('display', 'block');
@@ -74,8 +74,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   attachPages: function () {
     this.pages.forEach(function(page) {
-      page.$pageEl = $(pageSelector(page));
-    });
+      page.$pageEl = $(this.pageSelector(page));
+    }.bind(this));
   },
 
   removePage: function (page) {
@@ -90,7 +90,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   addPage: function (page) {
     var $newPage = $('<div class="user-page-elements" data-page-ord=' + page.get('ord') + '>');
-    $('user-page-gridlines').append($newPage);
+    $('.user-page-gridlines').append($newPage);
     page.$pageEl = $newPage;
   },
 

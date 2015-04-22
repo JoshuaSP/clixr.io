@@ -23,13 +23,21 @@ ClixrIo.Models.Site = Backbone.Model.extend({
     return response;
   },
 
+  // set: function (property, value) {
+  //   Backbone.Model.prototype.set.call(this, property, value);
+  //   this.save();
+  // },
+
   ensurePage: function () {
     if (this.pages().length === 0) {
-      this.pages().add(new ClixrIo.Models.Page({
+      var untitledPage = new ClixrIo.Models.Page({
         title: "untitled",
         ord: 0,
-        address: "untitled"
-      }));
+        address: "untitled",
+        site_id: this.id
+      });
+      this.pages().add(untitledPage);
+      untitledPage.save();
     }
   },
 
@@ -42,21 +50,22 @@ ClixrIo.Models.Site = Backbone.Model.extend({
   },
 
   save: function() {
-    this.pages().forEach(function(page){
-      page.save();
-    });
-    this.elements().forEach(function(element){
-      element.save();
-    });
+    // this.pages().forEach(function(page){
+    //   page.save();
+    // });
+    // this.elements().forEach(function(element){
+    //   element.save();
+    // });
     var userSiteCSS = {};
     this.userSiteCSSProperties.forEach(function(property) {
       if ($('.user-site').css(property)) {
         userSiteCSS[property] = $('user-site').css(property);
       }
     }.bind(this));
+    var imageCoverCSS = {};
     this.imageCoverCSSProperties.forEach(function(property) {
       if ($('.user-site').css(property)) {
-        userSiteCSS[property] = $('user-site').css(property);
+        imageCoverCSS[property] = $('user-site').css(property);
       }
     }.bind(this));
     this.set('background_css', JSON.stringify(userSiteCSS));

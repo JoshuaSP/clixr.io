@@ -49,15 +49,18 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
 
     addPage: function () {
       var page = new ClixrIo.Models.Page({
-        title: "New Page",
+        site_id: this.site.id,
         ord: this.pages.length
       });
       this.pages.add(page);
+      page.name("New Page");
+      page.save();
     },
 
     pageTransition: function () {
       var currIdx = this.transitions.indexOf(this.site.get('transition'));
       this.site.set('transition', this.transitions[(currIdx + 1) % 2]);
+      this.site.save();
     },
 
     changeTitleIfEnter: function (event) {
@@ -66,6 +69,7 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
 
     changeTitle: function (event) {
       this.site.set('title', $(event.currentTarget).val());
+      this.site.save();
       this.render();
     },
 
@@ -94,7 +98,8 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
 
     changeAddress: function ($input) {
       if (!$input.hasClass('input-bad')) {
-        this.site.set('published_address', $input.val());
+        this.site.set();
+        this.site.save('published_address', $input.val());
         this.render();
       } else {
         this.render();
@@ -173,7 +178,10 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   },
 
   reorder: function () {
-    this.model.set('ord', this.$el.index());
+    var newIndex = this.$el.index();
+    this.model.set('ord', newIndex);
+    this.model.save();
+    this.model.$pageEl.attr('data-page-ord', newIndex);
   },
 
   render: function () {
@@ -201,13 +209,7 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   rename: function (event) {
     if (event.which !== 0 && event.which !== 13) return;
     var newName = $(event.currentTarget).val();
-    this.model.set('title', newName);
-    var address = newName.replace(/[^A-Za-z0-9]/g, "_");
-    if (this.collection.where({ address: address }).length) {
-      var i = 1;
-      while (this.collection.where({ address: address + i }).length) i++;
-      address += i;
-    }
-    this.model.set('address', address);
+    this.model.name(newName);
+    this.model.save();
   }
 });

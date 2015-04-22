@@ -33,6 +33,20 @@ ClixrIo.Views.BackgroundMenu = Backbone.CompositeView.extend(
       this.$background = $('.user-site');
       this.$image_cover = $('.image-cover');
       $('.floating-menus').append(this.render().$el);
+
+      this.$background.styleListener({
+        styles: ['background-size', 'background-image'],
+        changed: function () {
+          this.model.save();
+        }.bind(this)
+      });
+      this.$image_cover.styleListener({
+        styles: ['background-color', 'opacity'],
+        changed: function () {
+          this.model.save();
+        }.bind(this)
+      });
+
       this.$('.image-transparency .slider').slider({
         slide: function (event, ui) {
           this.$image_cover.css('opacity', ui.value);
@@ -128,5 +142,4 @@ ClixrIo.Views.SubtlePattern = Backbone.View.extend({
     this.$el.html(content);
     return this;
   }
-
 });

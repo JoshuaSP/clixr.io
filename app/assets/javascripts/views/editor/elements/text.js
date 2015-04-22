@@ -35,6 +35,7 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     if (!this.$textbox.html()) {
       this.deleteElement();
     }
+    clearInterval(this.saver);
   },
 
   icon: function () {

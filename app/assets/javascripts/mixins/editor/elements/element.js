@@ -23,6 +23,13 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.model.view = this;
   },
 
+
+  initializeSaver: function () {
+    this.saver = setInterval(function() {
+      this.model.save();
+    }.bind(this), 200);
+  },
+
   select: function () {
 		if (this.selected) {
       this.secondClick();
@@ -41,7 +48,14 @@ ClixrIo.Views.Element = Backbone.View.extend({
       }
     });
     this.resizable();
+    this.initializeSaver();
 	},
+
+  initializeSaver: function () {
+    this.saver = setInterval(function() {
+      this.model.save();
+    }.bind(this), 200);
+  },
 
   resizable: function () {
 		var $handles = this._addResizeHandles();
@@ -94,6 +108,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.$el.resizable().draggable();
 		this.$el.resizable('destroy').draggable('destroy');
     this.$el.off();
+    clearInterval(this.saver);
 	},
 
 	_addResizeHandles: function (hndls) {
