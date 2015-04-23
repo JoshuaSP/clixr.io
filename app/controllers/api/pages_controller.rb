@@ -10,6 +10,12 @@ class Api::PagesController < ApplicationController
     render :show
   end
 
+  def destroy
+    @page = Page.find(params[:id])
+    @page.destroy
+    render :show
+  end
+
   private
 
   def page_params

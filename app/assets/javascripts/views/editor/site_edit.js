@@ -94,9 +94,9 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   removePage: function (page) {
     page.elements().forEach(function (element) {
-      this.removeModelSubview(pageSelector(page), element);
-    });
-    $(pageSelector(page)).remove();
+      this.removeModelSubview(this.pageSelector(page), element);
+    }.bind(this));
+    $(this.pageSelector(page)).remove();
   },
 
   // the following is not the best solution and in an ideal world will be refactored...
