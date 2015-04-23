@@ -28,7 +28,7 @@ ClixrIo.Views.OverlappingItemsMenu = Backbone.View.extend({
 
   select: function(event) {
     if ($(event.target).closest('li').length) {
-      var selectedView = this.collection.at($(event.target.closest('li')).index()).view
+      var selectedView = this.collection.at($(event.target).closest('li').index()).view;
       this.siteView.selectView(selectedView);
       selectedView.$el.addClass('bring-to-front');
     }
