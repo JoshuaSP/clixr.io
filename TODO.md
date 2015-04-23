@@ -3,14 +3,14 @@
 - [x] change format menus
 - [x] user style boxes (for now)
 - [x] user style menus
-- [ ] user style buttons
+- [x] user style buttons (sort of)
 - [x] fonts
 - [x] fix font toolbar
 - [x] color picker buttons (?)
-- [ ] intro site
+- [x] intro site
 - [x] fix background menu not fading
 - [ ] fix edit menus going off page
-- [ ] change options in filepicker
+- [x] change options in filepicker
 - [ ] favicon
 - [ ] default link target & overlapping items menu in same place
 - [x] current target - undefined????
@@ -19,3 +19,13 @@
 - default position of size slider
 - [ ] switch to CSS ellipses
 - [ ] fix bug in text editor bar not coming back reliably
+- [x] selection from overlapping items menu has broken
+- [x] adding pages doesn't add pages to the DOM
+- [x] fix saving site and image CSS
+- [x] disable view button with no site?
+- [x] fix background-image url compatibility
+- [ ] continuous saving....
+- [x] get nonbreaking spaces into page list successfully
+- [x] fix Jquery looking for ui resources
+- [x] deal with page menu breaking
+- [x] prevent multiple saves with no id
