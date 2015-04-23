@@ -20,19 +20,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     'Button': ClixrIo.Views.Button
   },
 
-  viewSite: function (event) {
-    if (!this.model.get('published_address')) {
-      $error = $(JST['editor/menus/view_error']());
-      $('.site-view').after($error).fadeIn(300);
-      setTimeout(function () {
-        $error.fadeOut(300, function () {
-          $error.remove();
-        });
-      }, 2500);
-      event.preventDefault();
-    }
-  },
-
   transition: {
     'None': "switchInOut",
     'Fade': "fadeInOut",
@@ -84,8 +71,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     });
   },
 
-  //not destroying on server on save but we will deal with orphans on server
-
   attachPages: function () {
     this.pages.forEach(function(page) {
       page.$pageEl = $(this.pageSelector(page));
@@ -125,6 +110,19 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     if (this.selectedView) this.selectedView.deselect();
     this.model.save();
     console.log('saved');
+  },
+
+  viewSite: function (event) {
+    if (!this.model.get('published_address')) {
+      $error = $(JST['editor/menus/view_error']());
+      $('.site-view').after($error).fadeIn(300);
+      setTimeout(function () {
+        $error.fadeOut(300, function () {
+          $error.remove();
+        });
+      }, 2500);
+      event.preventDefault();
+    }
   },
 
   switchInOut: function (newPage) {
@@ -186,10 +184,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     return '.user-page-elements[data-page-ord=' + page.get('ord') + ']';
   },
 
-  collapseMenus: function () {
-    // iterate and collapse each menu
-  },
-
   selectElement: function(event) {
     var newView = this.findView($(event.currentTarget));
     var pageIntersectors = this._findIntersectors(newView.$el,
@@ -231,7 +225,6 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       currentPage: this.currentPage.bind(this)
     });
     this.$el.html(content);
-
     var backgroundCSS = $.parseJSON(this.model.get('background_css'));
     $('.user-site').css(backgroundCSS);
     var imageCoverCSS = $.parseJSON(this.model.get('image_cover_css'));
@@ -240,17 +233,22 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     if (backgroundCSS['background-image']) {
       var $userBG = $('.user-background-image');
       $userBG.attr('src', backgroundCSS['background-image'].replace(/url\(|\)/g, ''));
+      if ($userBG.complete) this.fadeOutImageCover(imageCoverCSS.opacity);
       $userBG.on('load', function (event) {
-        setTimeout(function() {
-          $('.image-cover').css('opacity', imageCoverCSS.opacity || 0); // returns 0 if imageCoverCSS.opacity is unedfined
-        },0);
-      });
+        this.fadeOutImageCover(imageCoverCSS.opacity);
+      }.bind(this));
     }
     this._renderElements('.user-site-elements', this.model.elements());
     this.pages.forEach(function(page) {
       this._renderElements(this.pageSelector(page), page.elements());
     }.bind(this));
     return this;
+  },
+
+  fadeOutImageCover: function (opacity) {
+    setTimeout(function() {
+      $('.image-cover').css('opacity', opacity || 0); // returns 0 if imageCoverCSS.opacity is unedfined
+    },0);
   },
 
   _renderElements: function (selector, elements) {
