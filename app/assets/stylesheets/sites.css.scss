@@ -295,6 +295,15 @@ nav .error {
 
 .edit-site-button {
   white-space: nowrap;
+
+  .page-edit span {
+    text-overflow: ellipsis;
+    width: 194px;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 13px;
+  }
+
 }
 
 .function-buttons {
@@ -413,7 +422,7 @@ nav .error {
       }
 
       &.edit-site-button {
-        width: 270px;
+        width: 285px;
       }
 
       .page-transition {
@@ -456,13 +465,13 @@ nav .error {
 
       .fa-close {
         position: absolute;
-        left: 253px;
+        left: 268px;
         top: 7px;
       }
 
       .fa-bars {
         position: absolute;
-        left: 243px;
+        left: 258px;
       }
 
       > ul > li {

@@ -34,8 +34,7 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
     addPageListView: function(page) {
       var pageListItem = new ClixrIo.Views.PageListItem({
         model: page,
-        collection: this.pages,
-        ellipsis: this.ellipsis
+        collection: this.pages
       });
       this.addSubview('.page-reorder', pageListItem);
     },
@@ -148,14 +147,6 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
 
     closeMenu: function (event) {
       this.$el.removeClass("expanded-menu");
-    },
-
-    ellipsis: function (string, maxlength) {
-      if (string.length > maxlength) {
-        return string.substring(0, maxlength - 2) + ("...").replace(" ", "&nbsp;");
-      } else {
-        return string.replace(" ", "&nbsp;");
-      }
     }
   })
 );
@@ -174,7 +165,6 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.ellipsis = options.ellipsis;
     this.listenTo(this.model, "change", this.render);
   },
 
@@ -187,8 +177,7 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
 
   render: function () {
     var content = this.template({
-      page: this.model,
-      ellipsis: this.ellipsis
+      page: this.model
     });
     this.$el.html(content);
     this.delegateEvents();
