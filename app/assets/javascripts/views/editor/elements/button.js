@@ -9,8 +9,8 @@ ClixrIo.Views.Button = ClixrIo.Views.Element.extend({
   },
 
   render: function () {
-    var content = this.template({ button: this.model })
-    this.$el.html(content)
+    var content = this.template({ button: this.model });
+    this.$el.html(content);
     return this;
   }
 

@@ -47,7 +47,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.attachPages();
     this.listenTo(this.pages, "add", this.addPage);
     this.listenTo(this.pages, "remove", this.removePage);
-    
+
     $('.user-page-container img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
         $(event.target).css('display', 'block');
@@ -124,13 +124,15 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   viewSite: function (event) {
     if (!this.model.get('published_address')) {
-      $error = $(JST['editor/menus/view_error']());
+      var $error = $(JST['editor/menus/view_error']());
       $('.site-view').after($error).fadeIn(300);
       setTimeout(function () {
         $error.fadeOut(300, function () {
           $error.remove();
         });
       }, 2500);
+      $('.site-address').click();
+      $('.site-address input').focus();
       event.preventDefault();
     }
   },

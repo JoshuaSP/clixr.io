@@ -1,7 +1,8 @@
 ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
   events: {
     'click li': 'setTarget',
-    'keyup input': 'setTarget'
+    'keyup input': 'setTarget',
+    'blur input': 'render'
   },
 
   template: JST['editor/menus/link_targets_menu'],
@@ -16,7 +17,7 @@ ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
   render: function () {
     var content = this.template({
       pages: this.collection,
-      linkTarget: this.targetFunction()
+      linkTarget: this.getUrl()
     });
     this.$el.html(content);
     return this;
@@ -25,10 +26,9 @@ ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
   setTarget: function(event) {
     var address, $inputbox, $operator = $(event.currentTarget);
     if (event.which === 13) {
-      $operator.blur();
+      this.render();
+      return;
     }
-    // TODO: write logic that clears/blurs other things for each selection.
-
     if ($operator.closest('.external-url-button').length) {
       $inputbox = $operator.closest('.external-url-button').find('input');
       address = $inputbox.val();
@@ -38,7 +38,7 @@ ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
       } else {
         $inputbox.removeClass('input-bad');
       }
-      this.setFunction(address);
+      this.setUrl(address);
     } else if ($operator.closest('.email-link-button').length) {
       $inputbox = $operator.closest('.email-link-button').find('input');
       address = $inputbox.val();
@@ -47,10 +47,11 @@ ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
       } else {
         $inputbox.removeClass('input-bad');
       }
-      this.setFunction("mailto:" + address);
+      this.setUrl("mailto:" + address);
     } else {
-      this.setFunction("#" + this.collection.at($operator.index() - 5).get('address'));
+      this.setUrl("#" + this.collection.at($operator.index() - 5).get('address'));
+      this.render();
     }
-    this.$el.find('.target-name').text(this.targetFunction());
+    this.$el.find('.target-name').text(this.getUrl());
   }
 });

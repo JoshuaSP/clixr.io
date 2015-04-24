@@ -39,10 +39,10 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
       linkTargets: function () {
         this.linkTargetsMenu = new ClixrIo.Views.LinkTargetsMenu({
           collection: this.siteView.model.pages(),
-          setFunction: function (value) {
+          setUrl: function (value) {
             this.model.set('url', value);
           }.bind(this),
-          targetFunction: function () {
+          getUrl: function () {
             return this.model.get('url');
           }.bind(this)
         });
