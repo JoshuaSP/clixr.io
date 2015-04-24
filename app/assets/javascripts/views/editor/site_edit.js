@@ -47,6 +47,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.attachPages();
     this.listenTo(this.pages, "add", this.addPage);
     this.listenTo(this.pages, "remove", this.removePage);
+    
     $('.user-page-container img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
         $(event.target).css('display', 'block');
@@ -82,6 +83,15 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       this.removeModelSubview(this.pageSelector(page), element);
     }.bind(this));
     $(this.pageSelector(page)).remove();
+  },
+
+  checkHeight: function () {
+    // var newheight = Math.max.apply(this.currentPage().elements().map(function(element) {
+    //   return $(element.$el).height + $(element.$el).position().top;
+    // }).concat(this.model.elements().map(function(element) {
+    //   return $(element.$el).height + $(element.$el).position().top;
+    // })));
+    // $('.user-page-container, .user-page, .image-cover').css('height', newheight);
   },
 
   // the following is not the best solution and in an ideal world will be refactored...

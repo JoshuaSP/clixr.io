@@ -254,9 +254,6 @@ body {
 
   }
 
-
-
-
 }
 
 
@@ -606,11 +603,19 @@ nav {
   margin: 0;
 }
 
+@mixin static-background {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
 
 .user-page-container {
   position: fixed;
   min-height: 100vh;
+  overflow: scroll;
   width: 100%;
+  z-index: 10;
 }
 
 .user-page {
@@ -621,13 +626,13 @@ nav {
 }
 
 .user-page-gridlines {
+  @include static-background;
   border-style: dotted;
   border-width: 2px;
   border-color: transparent $gridline-color;
-  height: 100vh;
-  width: 100%;
-  z-index: 10000;
-  position: absolute;
+  width: 980px;
+  left: calc(50% - 490px);
+  z-index: 1;
 }
 
 

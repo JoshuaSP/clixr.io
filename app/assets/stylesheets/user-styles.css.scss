@@ -9,15 +9,20 @@
   transition: opacity 500ms;
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   opacity: 0;
 }
 
 .user-element {
   transition: opacity 600ms ease;
+  position: absolute;
 }
 
 .user-site-elements {
+}
+
+.user-site {
+  @include static-background;
 }
 
 .user-background-image {

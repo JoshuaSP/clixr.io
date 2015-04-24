@@ -18,7 +18,7 @@ ClixrIoLive.Views.Site = Backbone.View.extend({
       }));
       $element.addClass('user-element ' + element.get('element_class'));
       $element.css($.parseJSON(element.get('css')));
-      $element.css('position', 'absolute');
+      // $element.css('position', 'absolute');
       return $element.clone().wrap('<div/>').parent().html();
     }.bind(this);
   },

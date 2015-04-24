@@ -11,24 +11,26 @@
 <div class="floating-menus">
 </div>
 
-<div class="user-page-container">
-
-  <div class="user-site include-user-fonts">
+<div class="user-site include-user-fonts">
   <div class="image-cover">
   </div>
+  <div class="user-page-gridlines">
+  </div>
+  <div class="user-page-container">
     <div class="user-page">
-      <div class="user-page-gridlines">
-        <div class="user-page-elements current" data-page-ord=0>
+      <div class="user-page-elements current" data-page-ord=0>
+      </div>
+      <% for (var i = 1; i < this.model.pages().length; i++) { %>
+        <div class="user-page-elements" data-page-ord=<%= i %>>
         </div>
-        <% for (var i = 1; i < this.model.pages().length; i++) { %>
-          <div class="user-page-elements" data-page-ord=<%= i %>>
-          </div>
-        <% } %>
-        <div class="user-site-elements">
-        </div>
+      <% } %>
+      <div class="user-site-elements">
       </div>
     </div>
   </div>
 </div>
+
+
+
 
 <img class="user-background-image"/>

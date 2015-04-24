@@ -1,4 +1,25 @@
+- [ ] fix edit menus going off page
+- [ ] default link target & overlapping items menu in same place
+- [ ] switch to CSS ellipses
+- [ ] fix bug in text editor bar not coming back reliably
+- [ ] continuous saving....
+- [ ] mouseover styles user buttons
+- [ ] image edit menu throws error
+- [ ] image style
+- [ ] textboxes lose move cursor
+- [ ] enter to submit in link target menu... erase other link targets
+- [ ] overflow scrolling
+- [ ] open address box on unsuccessful view
+- [ ] better intro (arrows?)
+- [ ] user circles
+- [ ] overlapping items menu text nbsps
+- [ ] deal with bringing to front issues
+- [ ] set correct .image-cover opacity
+- [x] stylelistener cannot read property 'width' of undefined
 - [x] default color boxes
+- [x] images don't save
+- [x] buttons don't save
+- [x] menus don't save
 -  delete button
 - [x] change format menus
 - [x] user style boxes (for now)
@@ -9,22 +30,17 @@
 - [x] color picker buttons (?)
 - [x] intro site
 - [x] fix background menu not fading
-- [ ] fix edit menus going off page
 - [x] change options in filepicker
-- [ ] favicon
-- [ ] default link target & overlapping items menu in same place
+- [x] favicon
 - [x] current target - undefined????
 - [x] overlapping items menu width, also live-update button name
 - [x] default size of text box
 - default position of size slider
-- [ ] switch to CSS ellipses
-- [ ] fix bug in text editor bar not coming back reliably
 - [x] selection from overlapping items menu has broken
 - [x] adding pages doesn't add pages to the DOM
 - [x] fix saving site and image CSS
 - [x] disable view button with no site?
 - [x] fix background-image url compatibility
-- [ ] continuous saving....
 - [x] get nonbreaking spaces into page list successfully
 - [x] fix Jquery looking for ui resources
 - [x] deal with page menu breaking
