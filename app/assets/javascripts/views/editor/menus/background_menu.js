@@ -54,7 +54,7 @@ ClixrIo.Views.BackgroundMenu = Backbone.CompositeView.extend(
         min: 0,
         max: 1,
         step: 0.01,
-        value: this.$image_cover.css('opacity')
+        value: $.parseJSON(this.model.get('image_cover_css')).opacity
       });
       this.$('.tile-size .slider').slider({
         slide: function (event, ui) {

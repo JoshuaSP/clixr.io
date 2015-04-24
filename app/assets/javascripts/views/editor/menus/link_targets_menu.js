@@ -24,6 +24,11 @@ ClixrIo.Views.LinkTargetsMenu = Backbone.View.extend ({
 
   setTarget: function(event) {
     var address, $inputbox, $operator = $(event.currentTarget);
+    if (event.which === 13) {
+      $operator.blur();
+    }
+    // TODO: write logic that clears/blurs other things for each selection.
+
     if ($operator.closest('.external-url-button').length) {
       $inputbox = $operator.closest('.external-url-button').find('input');
       address = $inputbox.val();
