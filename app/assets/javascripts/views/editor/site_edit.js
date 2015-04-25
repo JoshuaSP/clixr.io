@@ -85,22 +85,15 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     $(this.pageSelector(page)).remove();
   },
 
-  checkHeight: function () {
-    // var newheight = Math.max.apply(this.currentPage().elements().map(function(element) {
-    //   return $(element.$el).height + $(element.$el).position().top;
-    // }).concat(this.model.elements().map(function(element) {
-    //   return $(element.$el).height + $(element.$el).position().top;
-    // })));
-    // $('.user-page-container, .user-page, .image-cover').css('height', newheight);
-  },
-
-  // the following is not the best solution and in an ideal world will be refactored...
-  // but it's a big structural change, so I'm taking on the technical debt here:
-
   addPage: function (page) {
-    var $newPage = $('<div class="user-page-elements" data-page-id=' + page.id + '>');
-    $('.user-page-gridlines').append($newPage);
-    page.$pageEl = $newPage;
+    page.save({}, {
+      success: function() {
+        var $newPage = $('<div class="user-page-elements" data-page-id=' + page.id + '>');
+        $('.user-page').append($newPage);
+        page.$pageEl = $newPage;
+        page.save();
+      }
+    });
   },
 
   currentPage: function() {
