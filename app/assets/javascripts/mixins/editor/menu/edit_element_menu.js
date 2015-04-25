@@ -34,7 +34,6 @@ ClixrIo.Mixins.EditElementMenu = {
   overlappingItems: function () {
     if (this.intersectingModels().length < 2) {
       this.$('.overlapping-button').hide();
-      return;
     }
     this.overlappingItemsMenu = new ClixrIo.Views.OverlappingItemsMenu({
       collection: new ClixrIo.Collections.Elements(this.intersectingModels()),
@@ -53,7 +52,7 @@ ClixrIo.Mixins.EditElementMenu = {
     });
     this.$targetEl.on("drag resize", function () {
       var intersectingModels = this.intersectingModels();
-      if (intersectingModels.length > 2) this.$('.overlapping-button').show();
+      if (intersectingModels.length > 1) this.$('.overlapping-button').show();
       this.overlappingItemsMenu.collection.reset(this.intersectingModels());
     }.bind(this));
   },
