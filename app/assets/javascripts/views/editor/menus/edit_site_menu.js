@@ -64,7 +64,9 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
     },
 
     changeTitle: function (event) {
-      this.site.set('title', $(event.currentTarget).val());
+      var newTitle = $(event.currentTarget).val();
+      this.site.set('title', newTitle);
+      $(document).prop('title', 'clixr.io - ' + newTitle);
       this.site.save();
       this.render();
     },
@@ -198,7 +200,8 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   rename: function (event) {
     if (event.which !== 0 && event.which !== 13) return;
     var newName = $(event.currentTarget).val();
-    this.model.name(newName);
+    this.model.set('title', newName);
+    this.model.setAddress();
     this.model.save();
   }
 });

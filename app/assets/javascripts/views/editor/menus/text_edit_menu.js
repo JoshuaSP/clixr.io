@@ -46,7 +46,7 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         this.$textbox.addClass('noselect');
         if (deselect) return;
         this.$textbox.css('cursor','move');
-        this.$targetEl.draggable();
+        this.draggable();
       },
 
       overlapListen: function () {

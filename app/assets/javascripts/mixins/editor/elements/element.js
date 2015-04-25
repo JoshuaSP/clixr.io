@@ -40,20 +40,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.$ghost = $('<div>').addClass('ghost');
     this.ghostCopy($el, this.$ghost);
     $('.user-page-elements.current').append(this.$ghost);
-    this.$el.draggable({
-      distance: 5,
-      start: function () {
-        $el.addClass('bring-to-front');
-      },
-      stop: function () {
-        $el.removeClass('bring-to-front');
-      },
-      drag: function () {
-        this.ghostCopy($el, this.$ghost);
-      }.bind(this)
-    });
-    this.resizable();
-    this.initializeSaver();
+    this.draggable().resizable().initializeSaver();
 	},
 
   ghostCopy: function ($source, $target) {
@@ -66,6 +53,23 @@ ClixrIo.Views.Element = Backbone.View.extend({
     });
   },
 
+  draggable: function () {
+    var $el = this.$el;
+    $el.draggable({
+      distance: 5,
+      start: function () {
+        $el.addClass('bring-to-front');
+      },
+      stop: function () {
+        $el.removeClass('bring-to-front');
+      },
+      drag: function () {
+        this.ghostCopy($el, this.$ghost);
+      }.bind(this)
+    });
+    return this;
+  },
+
   resizable: function () {
     this.$el.resizable({
       handles: this._addResizeHandles(),
@@ -73,6 +77,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
         this.ghostCopy(this.$el, this.$ghost);
       }.bind(this)
     });
+    return this;
   },
 
   global: function () {
@@ -86,6 +91,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
       $targetEl: this.$el,
       model: this.model,
       close: this.closeEditMenu.bind(this),
+      draggable: this.draggable.bind(this),
       siteView: this.siteView,
       intersectingViews: this.intersectingViews,
       global: this.global,

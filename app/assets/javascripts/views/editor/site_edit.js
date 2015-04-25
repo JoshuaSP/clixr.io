@@ -191,15 +191,21 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   selectElement: function(event) {
     var newView = this.findView($(event.currentTarget));
-    var pageIntersectors = this._findIntersectors(newView.$el,
-      this.currentPageSelector() + ' .user-element');
-    var siteIntersectors = this._findIntersectors(newView.$el,
-      '.user-site-elements .user-element');
-    var intersectors = pageIntersectors.concat(siteIntersectors);
-    newView.intersectingViews = _(this.findViews(intersectors)).sortBy(function(view) {
-      return parseInt(view.$el.css('z-index'));
-    }).reverse();
+    newView.intersectingViews = function() {
+      var pageIntersectors = this._findIntersectors(view.$el,
+        this.currentPageSelector() + ' .user-element');
+      var siteIntersectors = this._findIntersectors(view.$el,
+        '.user-site-elements .user-element');
+      var intersectors = pageIntersectors.concat(siteIntersectors);
+      return _(this.findViews(intersectors)).sortBy(function(iview) {
+        return parseInt(iview.$el.css('z-index'));
+      }).reverse();
+    }.bind(this);
     this.selectView(newView);
+  },
+
+  setIntersectingViews: function(view) {
+
   },
 
   findViews: function($els) {
