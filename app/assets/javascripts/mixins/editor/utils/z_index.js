@@ -48,7 +48,7 @@ ClixrIo.Mixins.ZIndex = {
     this._zIndexes.forEach(function(view, index) {
       var oldZIndex = view.$el.css('z-index');
       view.$el.css('z-index', index + 1);
-      if (oldZindex !== index + 1) view.model.save();
+      if (oldZIndex !== index + 1) view.model.save();
     });
   }
 };

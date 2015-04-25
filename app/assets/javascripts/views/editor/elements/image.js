@@ -31,6 +31,7 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
         this.ghostCopy(this.$el, this.$ghost);
       }.bind(this)
     });
+    return this;
   },
 
   overlapListen: function () {
