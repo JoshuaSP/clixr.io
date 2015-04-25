@@ -25,6 +25,11 @@
   @include static-background;
 }
 
+.floating-menus ~ .user-site {
+  height: calc(100% - 43px);
+  top: 43px;
+}
+
 .user-background-image {
   display: none;
 }

@@ -79,7 +79,8 @@ ClixrIo.Views.Element = Backbone.View.extend({
     this.editMenuView.$el.position({
       my: "center",
       at: "left-150px center",
-      of: this.$el
+      of: this.$el,
+      within: $('.user-site')
     });
   },
 
