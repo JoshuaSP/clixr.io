@@ -93,7 +93,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
       close: this.closeEditMenu.bind(this),
       draggable: this.draggable.bind(this),
       siteView: this.siteView,
-      intersectingViews: this.intersectingViews,
+      intersectingModels: this.intersectingModels,
       global: this.global,
       deleteElement: this.deleteElement.bind(this)
     });

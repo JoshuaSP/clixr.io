@@ -11,14 +11,15 @@ ClixrIo.Views.OverlappingItemsMenu = Backbone.View.extend({
   initialize: function (options) {
     this.siteView = options.siteView;
     this.render();
-    this.$el.sortable({
-      axis: 'y'
-    });
+    this.listenTo(this.collection, "reset", this.render);
   },
 
   render: function() {
     var content = this.template({ items: this.collection });
     this.$el.html(content);
+    this.$el.sortable({
+      axis: 'y'
+    });
     return this;
   },
 

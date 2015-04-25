@@ -191,21 +191,19 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
 
   selectElement: function(event) {
     var newView = this.findView($(event.currentTarget));
-    newView.intersectingViews = function() {
-      var pageIntersectors = this._findIntersectors(view.$el,
+    newView.intersectingModels = newView.intersectingModels || function() {
+      var pageIntersectors = this._findIntersectors(newView.$el,
         this.currentPageSelector() + ' .user-element');
-      var siteIntersectors = this._findIntersectors(view.$el,
+      var siteIntersectors = this._findIntersectors(newView.$el,
         '.user-site-elements .user-element');
       var intersectors = pageIntersectors.concat(siteIntersectors);
       return _(this.findViews(intersectors)).sortBy(function(iview) {
         return parseInt(iview.$el.css('z-index'));
-      }).reverse();
+      }).reverse().map(function(iview) {
+        return iview.model;
+      });
     }.bind(this);
     this.selectView(newView);
-  },
-
-  setIntersectingViews: function(view) {
-
   },
 
   findViews: function($els) {
@@ -287,7 +285,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.currentMenu = newMenu;
   },
 
-  _findIntersectors: function($target, intersectorsSelector) {  // copied from StackOverflow, because why not
+  _findIntersectors: function($target, intersectorsSelector) {  // copied from StackOverflow
     var intersectors = [];
 
     var tAxis = $target.offset();

@@ -2,6 +2,7 @@
 - [x] default link target & overlapping items menu in same place
 - [x] switch to CSS ellipses
 - [x] fix bug in text editor bar not coming back reliably
+- [ ] fix button icons(again!)
 - [ ] mouseover styles user buttons
 - [ ] recalculate overlapping items
 - [z] image edit menu throws error ??
