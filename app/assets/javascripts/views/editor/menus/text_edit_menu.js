@@ -41,9 +41,10 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         this.$textbox.removeClass('noselect');
       },
 
-      textboxUnedit: function () {
+      textboxUnedit: function (deselect) {
         this.$textbox.attr("contenteditable", "false");
         this.$textbox.addClass('noselect');
+        if (deselect) return;
         this.$textbox.css('cursor','move');
         this.$targetEl.draggable();
       },
@@ -54,9 +55,9 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         }.bind(this));
       },
 
-      remove: function () {
+      remove: function (options) {
         this.$textbox.attr('id','');
-        this.textboxUnedit();
+        this.textboxUnedit(options.deselect);
         ClixrIo.Mixins.EditElementMenu.remove.apply(this);
       },
 

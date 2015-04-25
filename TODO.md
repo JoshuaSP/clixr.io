@@ -1,11 +1,10 @@
-- [ ] fix edit menus going off page
+- [x] fix edit menus going off page
 - [x] default link target & overlapping items menu in same place
 - [x] switch to CSS ellipses
 - [x] fix bug in text editor bar not coming back reliably
-- [ ] continuous saving....
 - [ ] mouseover styles user buttons
 - [ ] recalculate overlapping items
-- [ ] image edit menu throws error ??
+- [z] image edit menu throws error ??
 - [x] image move to site destroys resize handles
 - [x] replace image needs to update height
 - [x] image style
@@ -16,8 +15,9 @@
 - [ ] better intro (arrows?)
 - [ ] user circles
 - [x] overlapping items menu text nbsps
-- [ ] deal with bringing to front issues
+- [x] deal with bringing to front issues
 - [x] set correct .image-cover opacity
+- continuous saving....
 - [x] stylelistener cannot read property 'width' of undefined
 - [x] default color boxes
 - [x] images don't save

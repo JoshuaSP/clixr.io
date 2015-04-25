@@ -10,32 +10,42 @@ ClixrIo.Views.Text = ClixrIo.Views.Element.extend({
     this.$textbox = this.$('.text-content');
   },
 
-  closeEditMenu: function () {
+  closeEditMenu: function (options) {
     if (this.editMenuView) {
       this.editMenuView.$el.css('opacity', 0);
       this.editMenuView.toolbar.$el.css('opacity', 0);
       setTimeout(function () {
         this.editMenuView.toolbar.remove();
-        this.editMenuView.remove();
+        this.editMenuView.remove(options);
         this.editMenuView = null;
       }.bind(this), 200);
     }
   },
 
+  // deselect: function () {
+  //   this.closeEditMenu();
+  //   this.selected = false;
+  //   this.$el.resizable().draggable();
+  //   this.$el.resizable('destroy').draggable('destroy');
+  //   this.$textbox.attr("contenteditable", "false");
+  //   this.$textbox.css('cursor', 'default');
+  //   this.$textbox.addClass('noselect');
+  //   this.$('.drag-handle').remove();
+  //   this.$el.removeClass("selected-element");
+  //   if (!this.$textbox.html()) {
+  //     this.deleteElement();
+  //   }
+  //   clearInterval(this.saver);
+  // },
+
   deselect: function () {
-    this.closeEditMenu();
-    this.selected = false;
-    this.$el.resizable().draggable();
-    this.$el.resizable('destroy').draggable('destroy');
+    ClixrIo.Views.Element.prototype.deselect.apply(this);
     this.$textbox.attr("contenteditable", "false");
     this.$textbox.css('cursor', 'default');
     this.$textbox.addClass('noselect');
-    this.$('.drag-handle').remove();
-    this.$el.removeClass("selected-element");
     if (!this.$textbox.html()) {
       this.deleteElement();
     }
-    clearInterval(this.saver);
   },
 
   icon: function () {

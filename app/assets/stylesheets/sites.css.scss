@@ -634,6 +634,20 @@ nav {
   position: relative;
 }
 
+.selected-element {
+  cursor: move;
+}
+
+.ghost {
+  border: 1px solid $select-color;
+  pointer-events: none;
+  position: absolute;
+  z-index: 10000000;
+  div {
+    pointer-events: auto;
+  }
+}
+
 .user-page-gridlines {
   @include static-background;
   border-style: dotted;

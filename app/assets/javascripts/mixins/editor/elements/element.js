@@ -36,23 +36,43 @@ ClixrIo.Views.Element = Backbone.View.extend({
     }
     var $el = this.$el;
     $el.addClass("selected-element");
-		this.selected = true;
-    $el.draggable({
+    this.selected = true;
+    this.$ghost = $('<div>').addClass('ghost');
+    this.ghostCopy($el, this.$ghost);
+    $('.user-page-elements.current').append(this.$ghost);
+    this.$el.draggable({
       distance: 5,
       start: function () {
         $el.addClass('bring-to-front');
       },
       stop: function () {
         $el.removeClass('bring-to-front');
-      }
+      },
+      drag: function () {
+        this.ghostCopy($el, this.$ghost);
+      }.bind(this)
     });
     this.resizable();
     this.initializeSaver();
 	},
 
+  ghostCopy: function ($source, $target) {
+    $target.css({
+      height: $source.css('height'),
+      width: $source.css('width'),
+      top: $source.css('top'),
+      left: $source.css('left'),
+      padding: $source.css('padding')
+    });
+  },
+
   resizable: function () {
-		var $handles = this._addResizeHandles();
-    this.$el.resizable({ handles: $handles });
+    this.$el.resizable({
+      handles: this._addResizeHandles(),
+      resize: function () {
+        this.ghostCopy(this.$el, this.$ghost);
+      }.bind(this)
+    });
   },
 
   global: function () {
@@ -60,6 +80,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
   },
 
   secondClick: function () {
+    this.$el.removeClass('bring-to-front');
     if (this.editMenuView) return;
     this.editMenuView = new this.editMenu({
       $targetEl: this.$el,
@@ -96,9 +117,9 @@ ClixrIo.Views.Element = Backbone.View.extend({
 
 	deselect: function () {
 		this.selected = false;
-		this.$('.drag-handle').remove();
-    this.closeEditMenu();
-		this.$el.removeClass("selected-element");
+    this.$ghost.remove();
+    this.closeEditMenu({ deselect: true }); // pass in a flag saying we're deselecting the element
+		this.$el.removeClass("selected-element").removeClass("bring-to-front");
     this.$el.resizable().draggable();
 		this.$el.resizable('destroy').draggable('destroy');
     this.$el.off();
@@ -113,7 +134,7 @@ ClixrIo.Views.Element = Backbone.View.extend({
       circle.addClass("ui-resizable-handle ui-resizable-" + handle);
       circle.css(handles[handle]);
       $handles[handle] = circle;
-			this.$el.append(circle);
+			this.$ghost.append(circle);
     }
 		return $handles;
   },

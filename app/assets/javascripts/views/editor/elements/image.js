@@ -26,7 +26,10 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
   resizable: function () {
     this.$el.resizable({
       aspectRatio: true,
-      handles: this._addResizeHandles()
+      handles: this._addResizeHandles(),
+      resize: function () {
+        this.ghostCopy(this.$el, this.$ghost);
+      }.bind(this)
     });
   },
 
@@ -44,8 +47,6 @@ ClixrIo.Views.Image = ClixrIo.Views.Element.extend({
     });
     $icon.attr('src', this.model.get('url'));
     $icon.addClass('element-icon');
-    var style = this.$el.attr('class').match(/user\S*style-\d+/)[0];
-    $icon.addClass(style);
     return $icon.clone().wrap('<div/>').parent().html();
   }
 });
