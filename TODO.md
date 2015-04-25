@@ -1,20 +1,23 @@
 - [ ] fix edit menus going off page
-- [ ] default link target & overlapping items menu in same place
-- [ ] switch to CSS ellipses
-- [ ] fix bug in text editor bar not coming back reliably
+- [x] default link target & overlapping items menu in same place
+- [x] switch to CSS ellipses
+- [x] fix bug in text editor bar not coming back reliably
 - [ ] continuous saving....
 - [ ] mouseover styles user buttons
-- [ ] image edit menu throws error
-- [ ] image style
-- [ ] textboxes lose move cursor
-- [ ] enter to submit in link target menu... erase other link targets
-- [ ] overflow scrolling
-- [ ] open address box on unsuccessful view
+- [ ] recalculate overlapping items
+- [ ] image edit menu throws error ??
+- [x] image move to site destroys resize handles
+- [x] replace image needs to update height
+- [x] image style
+- [x] textboxes lose move cursor
+- [x] enter to submit in link target menu... erase other link targets
+- [x] overflow scrolling
+- [x] open address box on unsuccessful view
 - [ ] better intro (arrows?)
 - [ ] user circles
-- [ ] overlapping items menu text nbsps
+- [x] overlapping items menu text nbsps
 - [ ] deal with bringing to front issues
-- [ ] set correct .image-cover opacity
+- [x] set correct .image-cover opacity
 - [x] stylelistener cannot read property 'width' of undefined
 - [x] default color boxes
 - [x] images don't save

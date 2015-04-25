@@ -10,11 +10,6 @@ ClixrIo.Models.Element = Backbone.Model.extend ({
     'background-color'
   ],
 
-  // set: function (property, value) {
-  //   Backbone.Model.prototype.set.call(this, property, value);
-  //   this.save();
-  // },
-
   save: function () {
     var css = {};
     this.cssProperties.forEach(function(property) {

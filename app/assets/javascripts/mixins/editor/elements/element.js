@@ -16,7 +16,6 @@ ClixrIo.Views.Element = Backbone.View.extend({
     _.extend(this, options);
     this.$el.addClass(this.model.get('element_class'));
     var css = this.model.get('css') ? $.parseJSON(this.model.get('css')) : {} ;
-    // css.position = "absolute";
     css['z-index'] = ClixrIo.Mixins.ZIndex.register(this, css['z-index']);
     this.$el.css(css);
     this.model.$el = this.$el;

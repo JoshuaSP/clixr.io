@@ -97,8 +97,7 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
 
     image: function () {
       var image = new ClixrIo.Models.Element({
-        element_type: 'Image',
-        resize_property: 'scale'
+        element_type: 'Image'
       });
       filepicker.pick({
         services: [
@@ -113,10 +112,8 @@ ClixrIo.Views.AddElementMenu = Backbone.View.extend (
         image.set('url', blob.url);
         var imageView = new ClixrIo.Views.Image({
           model: image,
-          width: '200px',
-
+          width: '200px'
         });
-        imageView.$el.addClass('user-image-style-1');
         this._placeCenter(imageView);
         this._addAndSelect(imageView);
         imageView.$('img').on('load', imageView.fadeIn);
