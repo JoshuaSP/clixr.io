@@ -18,12 +18,10 @@
   </div>
   <div class="user-page-container">
     <div class="user-page">
-      <div class="user-page-elements current" data-page-ord=0>
-      </div>
-      <% for (var i = 1; i < this.model.pages().length; i++) { %>
-        <div class="user-page-elements" data-page-ord=<%= i %>>
+      <% this.model.pages().forEach(function(page, i) { %>
+        <div class="user-page-elements <%= i === 0 ? 'current' : '' %>" data-page-id=<%= page.id %>>
         </div>
-      <% } %>
+      <% }) %>
       <div class="user-site-elements">
       </div>
     </div>

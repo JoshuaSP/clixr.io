@@ -22,8 +22,6 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
           if (this.toolbar.isVisible()) {
             event.preventDefault();
             this.textboxUnedit();
-            this.$textbox.css('cursor','move');
-            this.$targetEl.draggable();
           } else {
             event.preventDefault();
             this.textboxEdit();
@@ -46,6 +44,8 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
       textboxUnedit: function () {
         this.$textbox.attr("contenteditable", "false");
         this.$textbox.addClass('noselect');
+        this.$textbox.css('cursor','move');
+        this.$targetEl.draggable();
       },
 
       overlapListen: function () {

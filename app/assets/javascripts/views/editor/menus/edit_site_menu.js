@@ -172,7 +172,6 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
     var newIndex = this.$el.index();
     this.model.set('ord', newIndex);
     this.model.save();
-    this.model.$pageEl.attr('data-page-ord', newIndex);
   },
 
   render: function () {

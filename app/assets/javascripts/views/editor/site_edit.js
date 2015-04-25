@@ -98,7 +98,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   // but it's a big structural change, so I'm taking on the technical debt here:
 
   addPage: function (page) {
-    var $newPage = $('<div class="user-page-elements" data-page-ord=' + page.get('ord') + '>');
+    var $newPage = $('<div class="user-page-elements" data-page-id=' + page.id + '>');
     $('.user-page-gridlines').append($newPage);
     page.$pageEl = $newPage;
   },
@@ -193,7 +193,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
   },
 
   pageSelector: function (page) {
-    return '.user-page-elements[data-page-ord=' + page.get('ord') + ']';
+    return '.user-page-elements[data-page-id=' + page.id + ']';
   },
 
   selectElement: function(event) {
