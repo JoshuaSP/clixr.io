@@ -98,7 +98,6 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
       if (!$input.hasClass('input-bad')) {
         this.site.set('published_address', $input.val());
         this.site.save();
-        $('.main-navbar a').attr('href', "/" + $input.val());
         this.render();
       } else {
         this.render();

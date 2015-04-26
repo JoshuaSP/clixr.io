@@ -50,6 +50,10 @@ ClixrIo.Mixins.EditElementMenu = {
         this.overlappingItemsMenu.render();
       }.bind(this)
     });
+    this.listenForIntersects();
+  },
+
+  listenForIntersects: function () {
     this.$targetEl.on("drag resize", function () {
       var intersectingModels = this.intersectingModels();
       if (intersectingModels.length > 1) this.$('.overlapping-button').show();

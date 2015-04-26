@@ -53,6 +53,7 @@ ClixrIo.Views.TextEditMenu = Backbone.View.extend(
         this.$targetEl.find('.text-content').on('keyup', function () {
           this.overlappingItemsMenu.render();
         }.bind(this));
+        this.listenForIntersects();
       },
 
       remove: function (options) {

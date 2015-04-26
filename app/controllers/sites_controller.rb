@@ -14,7 +14,7 @@ class SitesController < ApplicationController
     #   image_cover_css: "{\"background-color\":\"rgb(256, 256, 256)\", \"opacity\":0}"
     # )
 
-    @site = Site.find(7).duplicate
+    @site = Site.find(30).duplicate
     @site.save
     redirect_to "/sites/#{@site.hash_id}/edit"
   end

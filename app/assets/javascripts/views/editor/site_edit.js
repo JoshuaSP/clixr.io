@@ -47,6 +47,8 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.attachPages();
     this.listenTo(this.pages, "add", this.addPage);
     this.listenTo(this.pages, "remove", this.removePage);
+    this.listenTo(this.pages, "change:address", this.resetViewLink);
+    this.listenTo(this.model, "change:published_address", this.resetViewLink);
 
     $('.user-page-container img').on('load', function (event) {
       $(event.target).fadeIn(500, function () {
@@ -100,13 +102,18 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     return this._currentPage;
   },
 
-  changePageNameDisplay: function () {
+  changePageReferences: function () {
     var $pageContainer = $('.page-select');
     $pageContainer.css('opacity', 0);
     setTimeout(function () {
       $pageContainer.css('opacity', 1);
       $('.current-page-name').html(this.currentPage().escape('title'));
     }.bind(this), 300);
+    this.resetViewLink();
+  },
+
+  resetViewLink: function () {
+    $('.site-view').attr('href', "/" + this.model.get('published_address') + "#" + this.currentPage().get('address'));
   },
 
   siteSave: function () {
@@ -134,7 +141,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     this.$currentPage().removeClass('current');
     this._currentPage = newPage;
     this.addElementMenu.model = this.currentPage();
-    this.changePageNameDisplay();
+    this.changePageReferences();
     this.$currentPage().addClass('current');
   },
 
@@ -143,7 +150,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
     var $oldpage = this.$currentPage();
     this._currentPage = newPage;
     this.addElementMenu.model = this.currentPage();
-    this.changePageNameDisplay();
+    this.changePageReferences();
     this.$currentPage().addClass('current');
     setTimeout(function () {
       $(this.currentPageSelector() + ' .user-element').css('opacity', '');
@@ -159,7 +166,7 @@ ClixrIo.Views.SiteEdit = Backbone.CompositeView.extend({
       this.$currentPage().removeClass('current');
       this._currentPage = newPage;
       this.addElementMenu.model = this.currentPage();
-      this.changePageNameDisplay();
+      this.changePageReferences();
       this.$currentPage().addClass('current');
       setTimeout(function(){
         this.$('.user-page-elements').css('-webkit-filter', 'blur(0px)');
