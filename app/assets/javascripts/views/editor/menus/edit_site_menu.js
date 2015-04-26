@@ -163,7 +163,7 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
     'click .fa-pencil, span': 'renameBox',
     'click .fa-trash': 'delete',
     'keyup input': 'rename',
-    'focusout input': 'rename'
+    'focusout input': 'render'
   },
 
   initialize: function (options) {

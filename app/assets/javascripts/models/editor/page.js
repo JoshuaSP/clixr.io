@@ -14,7 +14,7 @@ ClixrIo.Models.Page = Backbone.Model.extend({
   },
 
   setAddress: function() {
-    var address = this.get('title').replace(/[^A-Za-z0-9]/g, "_").toLowerCase();
+    var address = this.get('title').replace(/[^A-Za-z0-9]+/g, "_").toLowerCase();
     if (this.collection.where({ address: address }).length) {
       var i = 1;
       while (this.collection.where({ address: address + i }).length) i++;

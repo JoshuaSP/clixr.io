@@ -267,12 +267,8 @@ body {
 
   a {
     @include navbar-button;
-    float: right;
-    margin-top: 8px;
-
-    &:first-of-type {
-      margin-right: 140px;
-    }
+    float: left;
+    margin: 8px 0 0 375px;
   }
 }
 

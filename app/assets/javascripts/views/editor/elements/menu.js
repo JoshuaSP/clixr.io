@@ -7,7 +7,7 @@ ClixrIo.Views.Menu = ClixrIo.Views.Element.extend({
 
   initialize: function (options) {
     ClixrIo.Views.Element.prototype.initialize.call(this, options);
-    this.listenTo(this.collection, "add remove", this.render);
+    this.listenTo(this.collection, "add remove change", this.render);
   },
 
   render: function () {

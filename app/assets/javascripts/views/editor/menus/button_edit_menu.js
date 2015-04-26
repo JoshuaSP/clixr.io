@@ -52,7 +52,7 @@ ClixrIo.Views.ButtonEditMenu = Backbone.View.extend(
       setupTextbox: function (options) {
         var $inputfield = this.$('.button-text input');
         $inputfield.on('keyup', function () {
-          this.$targetEl.find('a').text($inputfield.val());
+          this.$targetEl.find('.text-content').text($inputfield.val());
         }.bind(this));
       },
 
