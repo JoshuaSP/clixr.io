@@ -34,7 +34,8 @@ ClixrIo.Views.EditSiteMenu = Backbone.CompositeView.extend(
     addPageListView: function(page) {
       var pageListItem = new ClixrIo.Views.PageListItem({
         model: page,
-        collection: this.pages
+        collection: this.pages,
+        selectPage: this.siteView.selectPage.bind(this.siteView)
       });
       this.addSubview('.page-reorder', pageListItem);
     },
@@ -159,13 +160,15 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
   className: 'page-edit',
 
   events: {
-    'click .fa-pencil, span': 'renameBox',
+    'click .fa-pencil': 'renameBox',
     'click .fa-trash': 'delete',
     'keyup input': 'rename',
-    'focusout input': 'render'
+    'focusout input': 'render',
+    'click span': 'switchPage'
   },
 
   initialize: function (options) {
+    _.extend(this, options);
     this.listenTo(this.model, "change", this.render);
   },
 
@@ -190,6 +193,10 @@ ClixrIo.Views.PageListItem = Backbone.View.extend({
     var $input = $('<input type= "text" value="' + currentValue + '">');
     $span.replaceWith($input);
     $input.select();
+  },
+
+  switchPage: function () {
+    this.selectPage(this.model.get('ord'));
   },
 
   delete: function () {
