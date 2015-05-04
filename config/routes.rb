@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   resources :sites, only: [:index, :create, :destroy, :edit]
 
+  get "keep_alive", to: 'keep_alive#live'
+
   get ':sitename', to: 'sites#show'
 end

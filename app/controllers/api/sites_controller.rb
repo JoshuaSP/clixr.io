@@ -1,4 +1,9 @@
 class Api::SitesController < ApplicationController
+  BAD_ADDRESSES = ["api", "keep_alive", "sites", "edit"]
+  DISALLOWED_REGEX = RegExp.new ("[^A-Za-z]" + BAD_ADDRESSES.map do |bad_address|
+    "|^#{bad_address}$|"
+  end.join("") + "^$")
+
   def show
     @site = Site.includes(:elements, pages: [:elements]).find(params[:id])
   end
@@ -19,7 +24,7 @@ class Api::SitesController < ApplicationController
   def check_address
     @site = Site.find(params[:id]);
     found_site = Site.find_by_published_address(params[:address])
-    disallowed = params[:address].match(/[^A-za-z]|^api$|^sites$|^edit$|^$/)
+    disallowed = params[:address].match(DISALLOWED_REGEX)
     if (found_site && !(found_site == @site)) || disallowed
       head :conflict
     else
