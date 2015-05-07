@@ -2,7 +2,7 @@ class Api::ElementsController < ApplicationController
   def update
     @element = Element.find(params[:id])
     @element.update(element_params)
-    render :show
+    render json: true
   end
 
   def create
