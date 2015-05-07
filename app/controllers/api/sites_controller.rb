@@ -1,6 +1,6 @@
 class Api::SitesController < ApplicationController
   BAD_ADDRESSES = ["api", "keep_alive", "sites", "edit"]
-  DISALLOWED_REGEX = Regexp.new ("[^A-Za-z]|" + BAD_ADDRESSES.map do |bad_address|
+  DISALLOWED_REGEX = Regexp.new ("[^A-z0-9]|" + BAD_ADDRESSES.map do |bad_address|
     "^#{bad_address}$"
   end.join("|") + "|^$")
 
